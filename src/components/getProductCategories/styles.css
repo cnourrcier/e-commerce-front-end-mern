@@ -1,0 +1,18 @@
+.project-categories-dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(115px);
+    /* transform: translateX(-4vw); */
+    height: auto;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 3px;
+    background-color: hsl(204, 89%, 79%);
+    transition: all 0.3s;
+}
+
+.project-categories-dropdown li {
+    padding: 10px;
+}

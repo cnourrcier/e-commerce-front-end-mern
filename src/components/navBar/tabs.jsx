@@ -1,6 +1,6 @@
 import Home from '../home/index';
-import About from '../about/index';
-import LoadMoreProducts from '../loadMoreProducts/index';
+import Search from '../search/index';
+import GetProductCategories from '../getProductCategories/index';
 import Cart from '../cart/index';
 import Login from '../login/index';
 // import Signup from '../signup/index';
@@ -13,13 +13,13 @@ const tabs = [
     },
     {
         label: 'Shop',
-        content: <LoadMoreProducts url={'https://dummyjson.com/products'} limit={20} />,
+        content: <GetProductCategories url={'https://dummyjson.com/products/category-list'} />,
         imgSrc: 'src/img/shopping-bag.svg'
     },
     {
-        label: 'About',
-        content: <About />,
-        imgSrc: 'src/img/info.svg'
+        label: 'Search',
+        content: <Search />,
+        imgSrc: 'src/img/search.svg'
     },
     {
         label: 'Cart',
@@ -29,7 +29,7 @@ const tabs = [
     {
         label: 'Login',
         content: <Login />,
-        imgSrc: 'src/img/shopping-cart.svg'
+        imgSrc: 'src/img/log-in.svg'
     },
     // {
     //     label: 'Signup',
