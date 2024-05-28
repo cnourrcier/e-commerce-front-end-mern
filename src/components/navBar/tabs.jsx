@@ -3,7 +3,6 @@ import Search from '../search/index';
 import GetProductCategories from '../getProductCategories/index';
 import Cart from '../cart/index';
 import Login from '../login/index';
-// import Signup from '../signup/index';
 
 const tabs = [
     {
@@ -30,12 +29,7 @@ const tabs = [
         label: 'Login',
         content: <Login />,
         imgSrc: 'src/img/log-in.svg'
-    },
-    // {
-    //     label: 'Signup',
-    //     content: <Signup />,
-    //     imgSrc: 'src/img/shopping-cart.svg'
-    // },
+    }
 
 ]
 

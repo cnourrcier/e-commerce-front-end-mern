@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import tabs from './tabs';
 import Content from '../content';
 import './styles.css';
@@ -28,7 +28,14 @@ export default function NavBar() {
                 <div className='box box-two'>
                     {
                         tabs.map((tab, index) => (
-                            <a className='tab' key={index} onClick={() => handleSelect(index)}><img src={tab.imgSrc} />{tab.label}</a>
+                            <a
+                                className='tab'
+                                key={index}
+                                onClick={() => handleSelect(index)}
+                            >
+                                <img src={tab.imgSrc} />
+                                {tab.label}
+                            </a>
                         ))
                     }
                 </div>
@@ -44,7 +51,7 @@ export default function NavBar() {
                 <ul>
                     {
                         tabs.map((tab, index) => (
-                            <li key={index}><a className='tab' onClick={() => handleSelect(index)} >{tab.label.toUpperCase()}</a></li>
+                            <li key={index}><a className='tab' onClick={() => handleSelect(index)}>{tab.label.toUpperCase()}</a></li>
                         ))
                     }
                 </ul>

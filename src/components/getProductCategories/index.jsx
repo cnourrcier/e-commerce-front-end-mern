@@ -35,10 +35,10 @@ export default function GetProductCategories({ url }) {
     console.log(categoryList);
 
     return (
-        <ul className='project-categories-dropdown'>
+        <ul className='project-categories'>
             {
                 categoryList.map((category, index) => (
-                    <li key={index} ><a className='category'>{category}</a></li>
+                    <li key={index} >{category}</li>
                 ))
             }
         </ul >
