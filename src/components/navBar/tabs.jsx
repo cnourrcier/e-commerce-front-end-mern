@@ -12,7 +12,7 @@ const tabs = [
     },
     {
         label: 'Shop',
-        content: <GetProductCategories url={'https://dummyjson.com/products/category-list'} />,
+        content: <GetProductCategories url={'https://dummyjson.com/products/'} categories={'category-list'} />,
         imgSrc: 'src/img/shopping-bag.svg'
     },
     {

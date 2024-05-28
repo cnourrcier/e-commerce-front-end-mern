@@ -6,12 +6,16 @@ import './styles.css';
 export default function NavBar() {
     const [dropdown, setDropdown] = useState(false);
     const [currentSelected, setCurrentSelected] = useState(0);
+    const [resetCategory, setResetCategory] = useState(false);
 
     function handleToggleMenu() {
         setDropdown(!dropdown);
     }
 
     function handleSelect(index) {
+        if (tabs[index].label === 'Shop') {
+            setResetCategory(true); // Reset category state in getProductCategory
+        }
         setCurrentSelected(index);
         setDropdown(false);
     }
@@ -56,7 +60,7 @@ export default function NavBar() {
                     }
                 </ul>
             </div>
-            <Content tabs={tabs} currentSelected={currentSelected} />
+            <Content tabs={tabs} currentSelected={currentSelected} resetCategory={resetCategory} setResetCategory={setResetCategory} />
         </>
     )
 }
