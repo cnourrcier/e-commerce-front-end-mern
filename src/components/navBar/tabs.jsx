@@ -1,7 +1,7 @@
 import Home from '../home/index';
 import Search from '../search/index';
 import GetProductCategories from '../getProductCategories/index';
-import Cart from '../cart/index';
+import ShoppingCart from '../shoppingCart/index';
 import Login from '../login/index';
 
 const tabs = [
@@ -22,7 +22,7 @@ const tabs = [
     },
     {
         label: 'Cart',
-        content: <Cart />,
+        content: <ShoppingCart />,
         imgSrc: 'src/img/shopping-cart.svg'
     },
     {

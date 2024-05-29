@@ -19,7 +19,7 @@ const CartModalButton = () => {
 
     return (
         <>
-            <button className='add-to-cart-button' onClick={handleOpenModalPopup}>Add to cart <img className='add-to-cart-icon' src='src/img/plus-circle.svg' /></button>
+            <button className='open-modal-button' onClick={handleOpenModalPopup}>Add to cart <img className='open-modal-icon' src='src/img/plus-circle.svg' /></button>
             {showModalPopup && <Modal
                 id={'custom-id'}
                 handleCloseModalPopup={handleCloseModalPopup}

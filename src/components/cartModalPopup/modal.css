@@ -5,7 +5,7 @@
     margin-top: 100px;
 }
 
-.add-to-cart-button {
+.open-modal-button {
     position: relative;
     float: right;
     cursor: pointer;
@@ -14,12 +14,12 @@
     margin-left: auto;
 }
 
-.add-to-cart-icon {
+.open-modal-icon {
     position: relative;
     transform: translateY(7px);
 }
 
-.add-to-cart-icon:hover {
+.open-modal-icon:hover {
     border-radius: 50%;
     box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
 }
