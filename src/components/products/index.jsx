@@ -1,19 +1,39 @@
+import { useState } from 'react';
 import ProductCard from '../productCard/index';
 import './styles.css';
+import ProductDetails from '../productDetails/index';
 
 export default function Products({ products, header }) {
+    const [viewProductDetails, setViewProductDetails] = useState(false);
+    const [productData, setProductData] = useState({});
+
+    function handleViewProductDetails(product) {
+        setViewProductDetails(true);
+        setProductData(product);
+    }
+
+    function handleReturnToProducts() {
+        setViewProductDetails(false);
+        setProductData({});
+    }
 
     return (
-        <div className='products-container'>
-            <h1 className='products-header'>{header}</h1>
-            <div className='products-grid'>
-                {
-                    products?.length
-                    && products.map(product => (
-                        <ProductCard product={product} />
-                    ))
-                }
-            </div>
-        </div>
+        <>
+            {
+                !viewProductDetails
+                    ? < div className='products-container' >
+                        <h1 className='products-header'>{header}</h1>
+                        <div className='products-grid'>
+                            {
+                                products?.length
+                                && products.map(product => (
+                                    <ProductCard key={product.id} product={product} viewProductDetails={handleViewProductDetails} />
+                                ))
+                            }
+                        </div>
+                    </div >
+                    : <ProductDetails returnToProducts={handleReturnToProducts} productData={productData} />
+            }
+        </>
     )
 }

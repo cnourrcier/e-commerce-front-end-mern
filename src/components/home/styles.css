@@ -1,0 +1,11 @@
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+}
+
+.home-header {
+    color: #fff;
+    font-size: 5em;
+}

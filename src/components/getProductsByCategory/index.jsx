@@ -33,7 +33,6 @@ export default function GetProductsByCategory({ url, category }) {
 
     const header = `Viewing ${category}`;
 
-    console.log(products)
     return (
         <Products products={products} header={header} />
     )

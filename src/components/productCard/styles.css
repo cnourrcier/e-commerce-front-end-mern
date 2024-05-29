@@ -24,6 +24,11 @@
 
 .title {
     font-weight: 700;
+    cursor: pointer;
+}
+
+.title:hover {
+    color: hsl(0, 0%, 40%);
 }
 
 .availability.in-stock {

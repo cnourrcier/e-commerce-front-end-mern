@@ -1,7 +1,10 @@
+import './styles.css';
 
 export default function Home() {
 
     return (
-        <div>Home Page</div>
+        <div className='home-container'>
+            <h1 className='home-header'>Cardinal Nest Treasures</h1>
+        </div>
     )
 }

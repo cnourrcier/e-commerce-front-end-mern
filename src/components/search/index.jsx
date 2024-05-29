@@ -42,8 +42,6 @@ export default function Search({ url }) {
     if (loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
 
-    console.log(products);
-
     const header = `Viewing products related to ${searchTerm}`;
 
     return (
