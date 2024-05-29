@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../button/index';
+import CartModalButton from '../cartModalPopup/CartModalButton';
 import './styles.css';
 
 export default function productDataDetails({ returnToProducts, productData }) {
@@ -39,9 +40,10 @@ export default function productDataDetails({ returnToProducts, productData }) {
                     productData.discountPercentage > 7 // Everything is discounted. Make it seem more realistic by showing some items without discount.
                         ? <p>
                             <span className='product-current-price'>
-                                ${(productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2)}</span> <span className='product-original-price'>{productData.price}</span><span className='product-add-to-cart'><img src='src/img/plus-circle.svg' /></span></p>
-                        : <p><span className='product-current-price'>{productData.price}</span><span className='product-add-to-cart'><img src='src/img/plus-circle.svg' /></span></p>
+                                ${(productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2)}</span> <span className='product-original-price'>{productData.price}</span></p>
+                        : <p><span className='product-current-price'>{productData.price}</span></p>
                 }
+                <CartModalButton />
                 <p>{productData.description}</p>
             </div>
         </div>

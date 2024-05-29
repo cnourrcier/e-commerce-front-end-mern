@@ -32,7 +32,7 @@
 }
 
 .availability.in-stock {
-    color: green;
+    color: hsl(120, 100%, 25%);
 }
 
 .availability.out-of-stock {
@@ -48,16 +48,4 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 1.8em;
-}
-
-.add-to-cart {
-    position: relative;
-    transform: translateY(7px);
-    float: right;
-    cursor: pointer;
-}
-
-.add-to-cart img:hover {
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
 }

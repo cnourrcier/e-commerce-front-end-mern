@@ -122,7 +122,8 @@ ul {
     height: auto;
     width: auto;
     border-radius: 3px;
-    background-color: hsl(204, 89%, 79%);
+    /* background-color: hsl(204, 89%, 79%); */
+    background-color: hsl(201, 100%, 50%);
     transition: all 0.3s;
     z-index: 999;
   }

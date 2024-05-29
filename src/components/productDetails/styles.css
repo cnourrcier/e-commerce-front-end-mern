@@ -14,7 +14,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     gap: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     width: auto;
     max-width: 400px;
     background-color: hsla(0, 0%, 100%, 0.477);
@@ -41,7 +41,7 @@
 }
 
 .product-availability.in-stock {
-    color: green;
+    color: hsl(120, 100%, 35%);
 }
 
 .product-availability.out-of-stock {
@@ -55,6 +55,7 @@
 .product-rating-good {
     color: hsl(120, 100%, 35%);
 }
+
 .product-rating-okay {
     color: hsl(0, 0%, 30%);
 }
@@ -98,16 +99,4 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 1.8em;
-}
-
-.product-add-to-cart {
-    position: relative;
-    transform: translateY(7px);
-    float: right;
-    cursor: pointer;
-}
-
-.product-add-to-cart img:hover {
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
 }

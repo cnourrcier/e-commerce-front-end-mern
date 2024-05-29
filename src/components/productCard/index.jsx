@@ -1,3 +1,4 @@
+import CartModalButton from '../cartModalPopup/CartModalButton';
 import './styles.css';
 
 export default function ProductCard({ product, viewProductDetails }) {
@@ -23,9 +24,10 @@ export default function ProductCard({ product, viewProductDetails }) {
                 product.discountPercentage > 7 // Everything is discounted. Make it seem more realistic by showing some items without discount.
                     ? <p>
                         <span className='current-price'>
-                            ${(product.price - (product.price * (product.discountPercentage / 100))).toFixed(2)}</span> <span className='original-price'>{product.price}</span><span className='add-to-cart'><img src='src/img/plus-circle.svg' /></span></p>
-                    : <p><span className='current-price'>{product.price}</span><span className='add-to-cart'><img src='src/img/plus-circle.svg' /></span></p>
+                            ${(product.price - (product.price * (product.discountPercentage / 100))).toFixed(2)}</span> <span className='original-price'>{product.price}</span></p>
+                    : <p><span className='current-price'>{product.price}</span></p>
             }
+            <CartModalButton />
         </div>
     )
 }
