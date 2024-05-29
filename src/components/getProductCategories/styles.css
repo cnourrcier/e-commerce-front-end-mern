@@ -1,4 +1,4 @@
-.project-categories {
+.product-categories {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 3vw;
@@ -6,24 +6,24 @@
 }
 
 @media (max-width: 1025px) {
-    .project-categories {
+    .product-categories {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 810px) {
-    .project-categories {
+    .product-categories {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 610px) {
-    .project-categories {
+    .product-categories {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-.project-categories li {
+.product-categories li {
     border: 1px solid #fff;
     color: #fff;
     border-radius: 10px 20px;
@@ -34,6 +34,6 @@
     transition: background-color 0.3s ease;
 }
 
-.project-categories li:hover {
+.product-categories li:hover {
     background-color: hsla(0, 0%, 100%, 0.8);
 }

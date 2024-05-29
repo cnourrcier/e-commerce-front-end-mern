@@ -124,6 +124,7 @@ ul {
     border-radius: 3px;
     background-color: hsl(204, 89%, 79%);
     transition: all 0.3s;
+    z-index: 999;
   }
 
   .drop-down li {

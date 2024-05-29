@@ -1,0 +1,58 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    gap: 5px;
+    padding: 10px;
+    width: 220px;
+    background-color: hsla(0, 0%, 100%, 0.477);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.product p {
+    line-height: 1.5em;
+    font-size: 14px;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.availability.in-stock {
+    color: green;
+}
+
+.availability.out-of-stock {
+    color: red;
+}
+
+.original-price {
+    color: red;
+    text-decoration: line-through;
+}
+
+.current-price {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.8em;
+}
+
+.add-to-cart {
+    position: relative;
+    transform: translateY(7px);
+    float: right;
+    cursor: pointer;
+}
+
+.add-to-cart img:hover {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
+}

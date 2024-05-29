@@ -17,7 +17,7 @@ const tabs = [
     },
     {
         label: 'Search',
-        content: <Search />,
+        content: <Search url={'https://dummyjson.com/products/search'} />,
         imgSrc: 'src/img/search.svg'
     },
     {

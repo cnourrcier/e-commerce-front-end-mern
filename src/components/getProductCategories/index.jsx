@@ -45,7 +45,7 @@ export default function GetProductCategories({ url, categories, resetCategory })
         <>
             {
                 !category
-                    ? <ul className='project-categories'>
+                    ? <ul className='product-categories'>
                         {
                             categoryList.map((category, index) => (
                                 <li key={index} onClick={() => setCategory(category)} >{category}</li>

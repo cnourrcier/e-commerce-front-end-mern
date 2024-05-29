@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import './styles.css';
-
+import Products from "../products/index";
 
 export default function GetProductsByCategory({ url, category }) {
     const [products, setProducts] = useState([]);
@@ -32,28 +31,10 @@ export default function GetProductsByCategory({ url, category }) {
     if (loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
 
+    const header = `Viewing ${category}`;
+
     console.log(products)
     return (
-        <div className='load-more-products-container'>
-            <h1 className='load-more-products-header'>Viewing {category}</h1>
-            <div className='products-container'>
-                {
-                    products?.length
-                    && products.map(product => (
-                        <div
-                            key={product.id}
-                            className='product'>
-                            <img
-                                src={product.thumbnail}
-                                alt={product.title}
-                            />
-                            <p>{product.title}</p>
-                            <p>Available: {product.availabilityStatus}</p>
-                            <p>Price: ${product.price}</p>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
+        <Products products={products} header={header} />
     )
 }
