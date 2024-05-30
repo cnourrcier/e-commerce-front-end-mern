@@ -41,7 +41,7 @@ export default function productDataDetails({ returnToProducts, productData }) {
                         ? <p>
                             <span className='product-current-price'>
                                 ${(productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2)}</span> <span className='product-original-price'>{productData.price}</span></p>
-                        : <p><span className='product-current-price'>{productData.price}</span></p>
+                        : <p><span className='product-current-price'>${productData.price}</span></p>
                 }
                 <AddToCartButton product={productData} />
                 <p>{productData.description}</p>

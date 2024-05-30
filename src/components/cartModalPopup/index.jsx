@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './modal.css';
 import { CurrentTabContext } from '../../contexts/CurrentTabContext';
+import Button from '../button/index';
 
 const Modal = ({ title, handleCloseModalPopup }) => {
     const { setCurrentSelected } = useContext(CurrentTabContext);
@@ -18,10 +19,8 @@ const Modal = ({ title, handleCloseModalPopup }) => {
                     <span onClick={handleCloseModalPopup} className='close-modal-icon'>&times;</span>
                 </div>
                 <div className='body'>
-                    <div>
                         <p>{title} added to cart!</p>
-                        <p onClick={handleViewCart} >View Items in Cart</p>
-                    </div>
+                        <p onClick={handleViewCart} className='view-cart-items'>View Items in Cart</p>
                 </div>
             </div>
         </div>

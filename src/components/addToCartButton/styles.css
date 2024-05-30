@@ -9,10 +9,10 @@
 
 .add-to-cart-icon {
     position: relative;
-    transform: translateY(7px);
+    transform: translateY(8px);
 }
 
 .add-to-cart-icon:hover {
     border-radius: 50%;
-    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
 }
