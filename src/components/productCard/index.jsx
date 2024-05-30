@@ -25,7 +25,7 @@ export default function ProductCard({ product, viewProductDetails }) {
                     ? <p>
                         <span className='current-price'>
                             ${(product.price - (product.price * (product.discountPercentage / 100))).toFixed(2)}</span> <span className='original-price'>{product.price}</span></p>
-                    : <p><span className='current-price'>{product.price}</span></p>
+                    : <p><span className='current-price'>${product.price}</span></p>
             }
             <AddToCartButton product={product} />
         </div>
