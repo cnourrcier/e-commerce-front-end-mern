@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import tabs from './tabs';
 import Content from '../content';
 import './styles.css';
+import { CurrentTabContext } from '../../contexts/CurrentTabContext';
 
 export default function NavBar() {
+    const { currentSelected, setCurrentSelected } = useContext(CurrentTabContext);
     const [dropdown, setDropdown] = useState(false);
-    const [currentSelected, setCurrentSelected] = useState(0);
     const [resetCategory, setResetCategory] = useState(false);
 
     function handleToggleMenu() {
@@ -20,6 +21,7 @@ export default function NavBar() {
         setDropdown(false);
     }
 
+    console.log(currentSelected);
     return (
         <>
             <div className='row-one'>

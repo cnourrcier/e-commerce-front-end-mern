@@ -1,4 +1,4 @@
-import CartModalButton from '../cartModalPopup/CartModalButton';
+import AddToCartButton from '../addToCartButton';
 import './styles.css';
 
 export default function ProductCard({ product, viewProductDetails }) {
@@ -27,7 +27,7 @@ export default function ProductCard({ product, viewProductDetails }) {
                             ${(product.price - (product.price * (product.discountPercentage / 100))).toFixed(2)}</span> <span className='original-price'>{product.price}</span></p>
                     : <p><span className='current-price'>{product.price}</span></p>
             }
-            <CartModalButton />
+            <AddToCartButton product={product} />
         </div>
     )
 }

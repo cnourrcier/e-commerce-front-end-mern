@@ -5,25 +5,6 @@
     margin-top: 100px;
 }
 
-.open-modal-button {
-    position: relative;
-    float: right;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    margin-left: auto;
-}
-
-.open-modal-icon {
-    position: relative;
-    transform: translateY(7px);
-}
-
-.open-modal-icon:hover {
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
-}
-
 .modal {
     position: fixed;
     z-index: 1;
@@ -48,7 +29,7 @@
     border: 1px solid rgba(1, 167, 255);
     /* border-radius: 150px 300px; */
     border-radius: 10px;
-    width: 80%;
+    width: 40%;
     overflow: hidden;
     animation-name: animateModal;
     animation-duration: 0.5s;
@@ -64,11 +45,6 @@
         top: 0;
         opacity: 1;
     }
-}
-
-.header {
-    width: 100%;
-    padding: 4px 16px;
 }
 
 .modal-icon-container {
@@ -93,8 +69,4 @@
     height: 200px;
     background-color: rgba(1, 167, 255, 0.7);
     color: rgb(255, 255, 255);
-}
-
-.footer {
-    padding: 0px 16px;
 }

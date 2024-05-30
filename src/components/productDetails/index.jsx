@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '../button/index';
-import CartModalButton from '../cartModalPopup/CartModalButton';
+import AddToCartButton from '../addToCartButton';
 import './styles.css';
 
 export default function productDataDetails({ returnToProducts, productData }) {
@@ -43,7 +43,7 @@ export default function productDataDetails({ returnToProducts, productData }) {
                                 ${(productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2)}</span> <span className='product-original-price'>{productData.price}</span></p>
                         : <p><span className='product-current-price'>{productData.price}</span></p>
                 }
-                <CartModalButton />
+                <AddToCartButton product={productData} />
                 <p>{productData.description}</p>
             </div>
         </div>

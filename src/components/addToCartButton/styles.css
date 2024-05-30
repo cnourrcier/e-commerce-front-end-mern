@@ -1,0 +1,18 @@
+.add-to-cart-button {
+    position: relative;
+    float: right;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+}
+
+.add-to-cart-icon {
+    position: relative;
+    transform: translateY(7px);
+}
+
+.add-to-cart-icon:hover {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
+}
