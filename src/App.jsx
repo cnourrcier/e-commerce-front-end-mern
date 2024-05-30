@@ -1,3 +1,4 @@
+import React from 'react';
 import NavBar from './components/navBar';
 import { CurrentTabProvider } from './contexts/CurrentTabContext';
 import { ShoppingCartProvider } from './contexts/ShoppingCartContext';

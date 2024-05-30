@@ -21,7 +21,6 @@ export default function NavBar() {
         setDropdown(false);
     }
 
-    console.log(currentSelected);
     return (
         <>
             <div className='row-one'>

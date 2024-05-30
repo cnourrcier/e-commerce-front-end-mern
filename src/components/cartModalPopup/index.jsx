@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './modal.css';
+import { CurrentTabContext } from '../../contexts/CurrentTabContext';
 
 const Modal = ({ title, handleCloseModalPopup }) => {
+    const { setCurrentSelected } = useContext(CurrentTabContext);
 
 
     function handleViewCart() {
         handleCloseModalPopup();
+        setCurrentSelected(3);
     }
+
     return (
         <div className='modal'>
             <div className='modal-content'>
