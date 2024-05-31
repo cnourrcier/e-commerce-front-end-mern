@@ -8,6 +8,15 @@
 
 body {
   background-image: url('../../background.jpg');
+  /* background-image: linear-gradient(rgb(255,196,120), rgb(255,149,171)); */
+  /* afternoon setting */
+  /* background:
+    linear-gradient(rgba(255, 196, 120, 0.5), rgba(255, 149, 171, 0.5)),
+    url('../../background.jpg'); */
+  /* night-setting */
+  /* background:
+    linear-gradient(rgba(47, 64, 144, 0.2), rgba(135, 125, 202, 0.2)),
+    url('../../background.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,6 +24,5 @@ body {
 }
 
 body {
-  /* background-color: orange; */
   font-family: "Freeman", sans-serif;
 }
