@@ -8,15 +8,22 @@
 
 body {
   background-image: url('../../background.jpg');
+  /* background-image: url('../../background2.webp'); */
   /* background-image: linear-gradient(rgb(255,196,120), rgb(255,149,171)); */
   /* afternoon setting */
   /* background:
-    linear-gradient(rgba(255, 196, 120, 0.5), rgba(255, 149, 171, 0.5)),
-    url('../../background.jpg'); */
+    linear-gradient(rgba(255, 196, 120, 0.9), rgba(255, 149, 171, 0.9)),
+    url('../../background1.webp'); */
   /* night-setting */
   /* background:
-    linear-gradient(rgba(47, 64, 144, 0.2), rgba(135, 125, 202, 0.2)),
-    url('../../background.jpg'); */
+    linear-gradient(rgba(47, 64, 144, 0.6), rgba(135, 125, 202, 0.6)),
+    url('../../background1.webp'); */
+
+  /* style for desert image */
+  /* background:
+    linear-gradient(rgba(0, 166, 255, 0.5), rgba(135, 125, 202, 0.5)),
+    url('../../background1.webp'); */
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

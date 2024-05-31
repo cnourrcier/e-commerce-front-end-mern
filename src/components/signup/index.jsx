@@ -7,12 +7,17 @@ export default function Signup({ handleSwitch }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     async function handleSignup(e) {
         e.preventDefault();
+
+        if (password != confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
         try {
             setLoading(true);
             setError(null);
@@ -23,8 +28,8 @@ export default function Signup({ handleSwitch }) {
                 body: JSON.stringify({ name, email, password }),
             });
             const data = await res.json();
-            if (data.success) {
-                alert('Signup successful');
+            if (data.message == 'Verification email sent') {
+                alert('Signup successful. Please check your email to verify your account.');
                 setHasAccount(true);
             } else {
                 setError(data.message || 'Login failed');
@@ -72,16 +77,16 @@ export default function Signup({ handleSwitch }) {
                     placeholder='Password'
                     required
                 />
-                {/* <label htmlFor='confirmPassword'>Confirm Password:</label>
+                <label htmlFor='confirmPassword'>Confirm Password:</label>
                 <input
-                    type='confirmPassword'
+                    type='password'
                     name='confirmPassword'
                     id='confirmPassword'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder='Confirm password'
                     required
-                /> */}
+                />
                 <button type='submit'>Signup</button>
                 {error && <div className='error-message'>{error}</div>}
             </form>
