@@ -27,7 +27,7 @@ export default function Signup({ handleSwitch }) {
                 alert('Signup successful');
                 setHasAccount(true);
             } else {
-                alert('Sign up failed');
+                setError(data.message || 'Login failed');
             }
         } catch (err) {
             setError(err.message);
@@ -37,7 +37,6 @@ export default function Signup({ handleSwitch }) {
     };
 
     if (loading) return <div>Loading...</div>
-    if (error) return <div>{error}</div>
 
     return (
         <div className='signup-container'>
@@ -84,6 +83,7 @@ export default function Signup({ handleSwitch }) {
                     required
                 /> */}
                 <button type='submit'>Signup</button>
+                {error && <div className='error-message'>{error}</div>}
             </form>
             <p>Already have an account? Login <button type='button' onClick={() => setHasAccount(true)}>here</button></p>
         </div>

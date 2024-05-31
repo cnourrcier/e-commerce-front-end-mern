@@ -22,13 +22,16 @@ export default function Login() {
                 body: JSON.stringify({ email, password }),
             });
             const data = await res.json();
+
             console.log(data);
+
             if (data.success) {
                 // Handle successful login
                 alert('Login successful');
+                // Redirect the user to home page or profile page here
             } else {
                 // Handle login failure
-                alert('Login failed');
+                setError(data.message || 'Login failed');
             }
         } catch (err) {
             setError(err.message);
@@ -38,7 +41,6 @@ export default function Login() {
     };
 
     if (loading) return <div>Loading...</div>
-    if (error) return <div>{error}</div>
 
     return (
         <>
@@ -68,6 +70,7 @@ export default function Login() {
                                 required
                             />
                             <button type='submit'>Login</button>
+                            {error && <div className='error-message'>{error}</div>}
                         </form>
                         <p>Don't have an account? Sign up <button type='button' onClick={() => setHasAccount(false)}>here</button></p>
                     </div>
