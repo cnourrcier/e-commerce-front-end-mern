@@ -28,7 +28,7 @@ export default function Login() {
                 alert('Login successful');
                 navigate('/profile');
             } else if (!data.isVerified) {
-                alert('Login failed. Please verify your email first.');
+                setError(data.message);
             } else {
                 // Handle login failure
                 setError(data.message || 'Login failed');
@@ -68,10 +68,10 @@ export default function Login() {
                 />
                 <p>Forgot your password? Click <a href='/request-password-reset'>here</a> to reset your password.</p>
                 <button type='submit'>Login</button>
-                {error && <div className='error-message'>{error}</div>}
             </form>
             <p>Don't have an account? Sign up <a href='/signup'>here</a></p>
             <p>Didn't receive a verification email? Click <a href='/resend-verification-email'>here</a> to resend.</p>
+            {error && <div className='error-message'>{error}</div>}
         </div>
     )
 }
