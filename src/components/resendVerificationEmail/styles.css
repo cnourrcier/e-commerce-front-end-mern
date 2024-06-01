@@ -1,0 +1,5 @@
+.resend-verification-email-container {
+    display: flex;
+    flex-direction: column;
+    margin: 200px;
+}

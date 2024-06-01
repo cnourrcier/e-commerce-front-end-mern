@@ -22,8 +22,9 @@ export default function Login() {
             });
             const data = await res.json();
 
-            if (data.success && data.isVerified) {
+            if (data.token && data.isVerified) {
                 // Handle successful login
+                localStorage.setItem('authToken', data.token);
                 alert('Login successful');
                 navigate('/profile');
             } else if (!data.isVerified) {
@@ -65,11 +66,11 @@ export default function Login() {
                     placeholder='Password'
                     required
                 />
-                <p>Forgot your password? Click <button type='button' onClick={() => navigate('/requestpasswordreset')}>here</button> to reset your password.</p>
+                <p>Forgot your password? Click <a href='/request-password-reset'>here</a> to reset your password.</p>
                 <button type='submit'>Login</button>
                 {error && <div className='error-message'>{error}</div>}
             </form>
-            <p>Don't have an account? Sign up <button type='button' onClick={() => navigate('/signup')}>here</button></p>
+            <p>Don't have an account? Sign up <a href='/signup'>here</a></p>
         </div>
     )
 }

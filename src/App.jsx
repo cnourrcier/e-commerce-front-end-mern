@@ -7,8 +7,11 @@ import Search from './components/search';
 import ShoppingCart from './components/shoppingCart';
 import Login from './components/login';
 import Signup from './components/signup';
-import RequestPasswordReset from './components/requestPasswordReset';
 import Profile from './components/profile';
+import RequestPasswordReset from './components/requestPasswordReset';
+import ResetPassword from './components/resetPassword';
+import VerifyEmail from './components/verifyEmail';
+import ResendVerificationEmail from './components/resendVerificationEmail';
 
 function App() {
 
@@ -22,8 +25,12 @@ function App() {
         <Route path='/cart' element={<ShoppingCart />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/requestpasswordreset' element={<RequestPasswordReset />} />
+        <Route path='/verify-email/:token' element={<VerifyEmail />} />
+        <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/request-password-reset' element={<RequestPasswordReset />} />
+        <Route path='/reset-password/:token' element={<ResetPassword />} />
+
       </Routes>
     </>
   )
