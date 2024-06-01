@@ -3,7 +3,7 @@ import Button from '../button/index';
 import AddToCartButton from '../addToCartButton';
 import './styles.css';
 
-export default function productDataDetails({ returnToProducts, productData }) {
+export default function productDetails({ returnToProducts, productData }) {
     const [showReviews, setShowReviews] = useState(false);
 
     console.log(productData);

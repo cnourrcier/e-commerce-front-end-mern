@@ -46,7 +46,7 @@ export default function Search({ url }) {
 
     return (
         <>
-            <div className='search-bar'>
+            <div className='search-bar-container'>
                 <input className='search-input' value={text} type="text" id="search" onChange={(e) => setText(e.target.value)} />
                 <button className='search-button' onClick={handleClick}>Search</button>
             </div>

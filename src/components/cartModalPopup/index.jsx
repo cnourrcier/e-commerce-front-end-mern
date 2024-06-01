@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './modal.css';
-import { CurrentTabContext } from '../../contexts/CurrentTabContext';
-import Button from '../button/index';
 
 const Modal = ({ title, handleCloseModalPopup }) => {
-    const { setCurrentSelected } = useContext(CurrentTabContext);
-
+    const navigate = useNavigate();
 
     function handleViewCart() {
         handleCloseModalPopup();
-        setCurrentSelected(3);
+        navigate('/cart');
     }
 
     return (
@@ -19,8 +16,8 @@ const Modal = ({ title, handleCloseModalPopup }) => {
                     <span onClick={handleCloseModalPopup} className='close-modal-icon'>&times;</span>
                 </div>
                 <div className='body'>
-                        <p>{title} added to cart!</p>
-                        <p onClick={handleViewCart} className='view-cart-items'>View Items in Cart</p>
+                    <p>{title} added to cart!</p>
+                    <p onClick={handleViewCart} className='view-cart-items'>View Items in Cart</p>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ProductCard from '../productCard/index';
-import './styles.css';
 import ProductDetails from '../productDetails/index';
+import './styles.css';
 
 export default function Products({ products, header }) {
     const [viewProductDetails, setViewProductDetails] = useState(false);

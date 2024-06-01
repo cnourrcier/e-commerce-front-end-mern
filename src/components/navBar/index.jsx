@@ -1,24 +1,12 @@
-import { useContext, useState } from 'react';
-import tabs from './tabs';
-import Content from '../content';
+import { useState } from 'react';
 import './styles.css';
-import { CurrentTabContext } from '../../contexts/CurrentTabContext';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
-    const { currentSelected, setCurrentSelected } = useContext(CurrentTabContext);
     const [dropdown, setDropdown] = useState(false);
-    const [resetCategory, setResetCategory] = useState(false);
 
     function handleToggleMenu() {
         setDropdown(!dropdown);
-    }
-
-    function handleSelect(index) {
-        if (tabs[index].label === 'Shop') {
-            setResetCategory(true); // Reset category state in getProductCategory
-        }
-        setCurrentSelected(index);
-        setDropdown(false);
     }
 
     return (
@@ -31,18 +19,26 @@ export default function NavBar() {
                     <span>Cardinal Nest <br />Treasures</span>
                 </div>
                 <div className='box box-two'>
-                    {
-                        tabs.map((tab, index) => (
-                            <a
-                                className='tab'
-                                key={index}
-                                onClick={() => handleSelect(index)}
-                            >
-                                <img src={tab.imgSrc} />
-                                {tab.label}
-                            </a>
-                        ))
-                    }
+                    <Link to="/" className='tab'>
+                        <img src='src/img/home.svg' />
+                        Home
+                    </Link>
+                    <Link to="/shop" className='tab'>
+                        <img src='src/img/shopping-bag.svg' />
+                        Shop
+                    </Link>
+                    <Link to="/search" className='tab'>
+                        <img src='src/img/search.svg' />
+                        Search
+                    </Link>
+                    <Link to="/cart" className='tab'>
+                        <img src='src/img/shopping-cart.svg' />
+                        Cart
+                    </Link>
+                    <Link to="/login" className='tab'>
+                        <img src='src/img/log-in.svg' />
+                        Login
+                    </Link>
                 </div>
                 <div className='box box-three'>
                     <div onClick={handleToggleMenu} className='hamburger-menu'>
@@ -54,14 +50,15 @@ export default function NavBar() {
             </div>
             <div className={`drop-down ${dropdown ? 'open' : ''}`}>
                 <ul>
-                    {
-                        tabs.map((tab, index) => (
-                            <li key={index}><a className='tab' onClick={() => handleSelect(index)}>{tab.label.toUpperCase()}</a></li>
-                        ))
-                    }
+                    <li><Link to="/" className='tab'>HOME</Link></li>
+                    <li><Link to="/shop" className='tab'>SHOP</Link></li>
+                    <li><Link to="/search" className='tab'>SEARCH</Link></li>
+                    <li><Link to="/cart" className='tab'>CART</Link></li>
+                    <li><Link to="/login" className='tab'>LOGIN</Link></li>
+                    <li><Link to="/signup" className='tab'>SIGNUP</Link></li>
                 </ul>
             </div>
-            <Content tabs={tabs} currentSelected={currentSelected} resetCategory={resetCategory} setResetCategory={setResetCategory} />
+
         </>
     )
 }

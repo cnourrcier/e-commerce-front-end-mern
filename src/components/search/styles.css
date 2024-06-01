@@ -1,8 +1,8 @@
-.search-bar {
+.search-bar-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    margin: 200px;
 }
 
 .search-input {

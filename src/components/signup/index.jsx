@@ -1,9 +1,9 @@
-import { useContext, useState } from "react"
-import { LoginSignupContext } from "../../contexts/LoginSignupContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './styles.css';
 
-
-export default function Signup({ handleSwitch }) {
-    const { setHasAccount } = useContext(LoginSignupContext);
+export default function Signup() {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ export default function Signup({ handleSwitch }) {
             const data = await res.json();
             if (data.message == 'Verification email sent') {
                 alert('Signup successful. Please check your email to verify your account.');
-                setHasAccount(true);
+                navigate('/login');
             } else {
                 setError(data.message || 'Login failed');
             }
@@ -90,7 +90,7 @@ export default function Signup({ handleSwitch }) {
                 <button type='submit'>Signup</button>
                 {error && <div className='error-message'>{error}</div>}
             </form>
-            <p>Already have an account? Login <button type='button' onClick={() => setHasAccount(true)}>here</button></p>
+            <p>Already have an account? Login <button type='button' onClick={() => navigate('/login')}>here</button></p>
         </div>
     )
 }

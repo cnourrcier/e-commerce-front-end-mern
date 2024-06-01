@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './styles.css';
 
-export default function RequestPasswordReset({ returnToLogin }) {
+export default function RequestPasswordReset() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
     const [showForm, setShowForm] = useState(true);
@@ -50,7 +53,7 @@ export default function RequestPasswordReset({ returnToLogin }) {
                         />
                         <button type='submit' disabled={loading}>Request Password Reset</button>
                     </form>
-                    <button onClick={returnToLogin}>Return to login form</button>
+                    <button onClick={() => navigate('/login')}>Return to login form</button>
                 </>
 
             }
