@@ -25,7 +25,7 @@ export default function ResetPassword() {
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/api/reset-password/${token}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password }),
+                body: JSON.stringify({ password, confirmPassword }),
             });
 
             const data = await res.json();
