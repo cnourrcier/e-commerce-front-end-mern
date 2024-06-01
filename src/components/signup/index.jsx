@@ -27,7 +27,7 @@ export default function Signup() {
             const res = await fetch('http://localhost:5000/api/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password }),
+                body: JSON.stringify({ name, email, password, confirmPassword }),
             });
             const data = await res.json();
             if (data.message == 'Verification email sent') {
