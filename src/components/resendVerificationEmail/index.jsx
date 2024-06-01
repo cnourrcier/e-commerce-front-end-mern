@@ -7,20 +7,27 @@ export default function ResendVerificationEmail() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    async function handleResendVerificationEmail() {
+    async function handleResendVerificationEmail(e) {
         e.preventDefault();
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch('http://localhost:5000/api/resend-verification-email', {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/api/resend-verification-email`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
             });
 
             const data = await res.json();
-            setMessage(data.message);
+            if (res.ok) {
+                setMessage(data.message);
+            } else if (res.status === 429) { // Check for rate limit status code
+                console.log(data);
+                setError(data.message)
+            } else {
+                setError(data.message);
+            }
         } catch (err) {
             setError(err.message);
             setMessage(data.message);

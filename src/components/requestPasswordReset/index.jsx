@@ -23,7 +23,13 @@ export default function RequestPasswordReset() {
             });
 
             const data = await res.json();
-            setMessage(data.message);
+            if (res.ok) {
+                setMessage(data.message);
+            } else if (res.status === 429) { // Check for rate limit status code
+                setError(data.message)
+            } else {
+                setError(data.message);
+            }
         } catch (err) {
             setError(err.message);
         } finally {

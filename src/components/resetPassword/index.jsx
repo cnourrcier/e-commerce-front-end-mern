@@ -22,24 +22,26 @@ export default function ResetPassword() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`http://localhost:5000/api/reset-password/${token}`, {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/api/reset-password/${token}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password }),
             });
 
             const data = await res.json();
-            if (data.message === 'Password reset successful') {
-                alert('Password reset successful');
-                navigate('/login');
-            } else {
+            if (res.ok) {
+                setMessage(data.message)
+                setTimeout(() => {
+                    navigate('/login');
+                }, [1000]);
+            }
+            else {
                 setError(data.message);
             }
         } catch (err) {
             setError(err.message);
         } finally {
             setLoading(false);
-            setMessage(data.message);
         }
     }
 

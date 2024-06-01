@@ -71,6 +71,7 @@ export default function Login() {
                 {error && <div className='error-message'>{error}</div>}
             </form>
             <p>Don't have an account? Sign up <a href='/signup'>here</a></p>
+            <p>Didn't receive a verification email? Click <a href='/resend-verification-email'>here</a> to resend.</p>
         </div>
     )
 }

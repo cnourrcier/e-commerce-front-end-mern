@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import './styles.css';
 import { useEffect, useState } from 'react';
+import './styles.css';
 
 export default function VerifyEmail() {
     const { token } = useParams();
