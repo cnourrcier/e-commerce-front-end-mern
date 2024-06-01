@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles.css';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function Profile() {
 
     function handleLogout() {
         localStorage.removeItem('authToken');
-        history.push('/login');
+        navigate('/login');
     }
 
     useEffect(() => {
