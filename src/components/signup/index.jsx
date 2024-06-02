@@ -4,7 +4,8 @@ import './styles.css';
 
 export default function Signup() {
     const navigate = useNavigate();
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,10 +25,10 @@ export default function Signup() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch('http://localhost:5000/api/signup', {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/signup`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password, confirmPassword }),
+                body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
             });
             const data = await res.json();
             if (data.message == 'Verification email sent') {
@@ -52,14 +53,24 @@ export default function Signup() {
                     <>
                         <form onSubmit={handleSignup}>
                             <h1>Sign up</h1>
-                            <label htmlFor='name'>Name:</label>
+                            <label htmlFor='firstName'>First Name:</label>
                             <input
                                 type='name'
-                                name='name'
-                                id='name'
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder='Name'
+                                name='firstName'
+                                id='firstName'
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                placeholder='First Name'
+                                required
+                            />
+                            <label htmlFor='lastName'>Last Name:</label>
+                            <input
+                                type='name'
+                                name='lastName'
+                                id='lastName'
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                placeholder='Last Name'
                                 required
                             />
                             <label htmlFor='email'>Email:</label>
