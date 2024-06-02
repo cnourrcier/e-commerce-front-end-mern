@@ -20,7 +20,7 @@ export default function AddToCartButton({ product }) {
     return (
         <>
             <button className='add-to-cart-button' onClick={handleClick}>
-                Add to Cart <img className='add-to-cart-icon' src='src/img/plus-circle.svg' />
+                Add to Cart <img className='add-to-cart-icon' src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/plus-circle.svg`} />
             </button>
             {showModalPopup && <Modal
                 title={product.title}
