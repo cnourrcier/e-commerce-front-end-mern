@@ -22,7 +22,7 @@ export default function ResetPassword() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/api/reset-password/${token}`, {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/reset-password/${token}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password, confirmPassword }),
