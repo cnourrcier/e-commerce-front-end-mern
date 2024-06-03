@@ -6,7 +6,24 @@ import { AuthContext } from '../../contexts/AuthContext';
 export default function Profile() {
     const navigate = useNavigate();
     const { user, setUser, loading } = useContext(AuthContext);
+    const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
+
+    async function fetchProfile() {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/profile`, {
+                credentials: 'include', // Ensure cookies are included in the request
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setProfile(data);
+            } else {
+                setError(data.message);
+            }
+        } catch (err) {
+            setError(err.message);
+        }
+    }
 
     async function handleLogout() {
         try {
@@ -30,6 +47,8 @@ export default function Profile() {
     useEffect(() => {
         if (!user && !loading) {
             navigate('/login');
+        } else {
+            fetchProfile();
         }
     }, [user, loading, navigate]);
 
