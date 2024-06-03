@@ -1,10 +1,12 @@
 
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Login() {
     const navigate = useNavigate();
+    const { user, setUser } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -19,14 +21,19 @@ export default function Login() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
+                credentials: 'include' // Include credentials in the request
             });
             const data = await res.json();
 
-            if (data.token && data.isVerified) {
+            if (data.success && data.isVerified) {
                 // Handle successful login
-                localStorage.setItem('authToken', data.token);
+                setUser({
+                    _id: data._id,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email
+                });
                 alert('Login successful');
-                navigate('/profile');
             } else if (!data.isVerified) {
                 setError(data.message);
             } else {
@@ -39,6 +46,13 @@ export default function Login() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            console.log(user);
+            navigate('/profile');
+        }
+    }, [user, navigate]);
 
     if (loading) return <div>Loading...</div>
 
@@ -75,3 +89,17 @@ export default function Login() {
         </div>
     )
 }
+
+
+// Login flow:
+// User Logs In: The user submits the login form, and the handleLogin function is called.
+// Token is Set in HttpOnly Cookie: The backend sets the token in an HttpOnly cookie.
+// User State is Set on Successful Login: The handleLogin function updates the user state in the AuthContext.
+// Navigate to Profile: The user is redirected to /profile.
+// Protected Route: The ProtectedRoute component checks the authentication status. 
+// Since the user state is already set, it allows access to the /profile route without re-fetching the authentication status.
+
+// Summary:
+// User State: The user state is set once during login, and the AuthContext is used to manage this state.
+// Protected Routes: The ProtectedRoute component ensures that only authenticated users can access certain routes.
+// Initial Authentication Check: The AuthContext performs an initial check to see if the user is authenticated when the app loads.

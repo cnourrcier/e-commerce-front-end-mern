@@ -12,11 +12,13 @@ import RequestPasswordReset from './components/requestPasswordReset';
 import ResetPassword from './components/resetPassword';
 import VerifyEmail from './components/verifyEmail';
 import ResendVerificationEmail from './components/resendVerificationEmail';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -27,12 +29,13 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/verify-email/:token' element={<VerifyEmail />} />
         <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/profile' element={<Profile />} />
+        </Route>
         <Route path='/request-password-reset' element={<RequestPasswordReset />} />
         <Route path='/reset-password/:token' element={<ResetPassword />} />
-
       </Routes>
-    </>
+    </AuthProvider>
   )
 }
 

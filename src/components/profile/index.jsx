@@ -1,47 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { user, setUser, loading } = useContext(AuthContext);
     const [error, setError] = useState(null);
 
-    async function fetchProfile() {
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-            navigate('/login');
-            return;
-        }
-
+    async function handleLogout() {
         try {
-            const res = await fetch('http://localhost:5000/api/profile', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/logout`, {
+                method: 'POST',
+                credentials: 'include' // Ensure cookies are included in the request
             });
             const data = await res.json();
             if (res.ok) {
-                setUser(data);
+                setUser(null);
+                navigate('/login');
             } else {
+                const data = await res.json();
                 setError(data.message);
             }
         } catch (err) {
             setError(err.message);
-        } finally {
-            setLoading(false);
         }
     }
 
-    function handleLogout() {
-        localStorage.removeItem('authToken');
-        navigate('/login');
-    }
-
     useEffect(() => {
-        fetchProfile();
-    }, [history]);
+        if (!user && !loading) {
+            navigate('/login');
+        }
+    }, [user, loading, navigate]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -49,9 +39,14 @@ export default function Profile() {
     return (
         <div className='profile-container'>
             <h1>Profile</h1>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <button onClick={handleLogout}>Logout</button>
+            {user &&
+                <>
+                    <p>firstName: {user.firstName}</p>
+                    <p>lastName: {user.lastName}</p>
+                    <p>Email: {user.email}</p>
+                    <button onClick={handleLogout}>Logout</button>
+                </>
+            }
         </div>
     )
 }
