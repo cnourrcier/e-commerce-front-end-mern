@@ -5,11 +5,11 @@ import './styles.css';
 
 
 export default function AddToCartButton({ product }) {
-    const { addProduct } = useContext(ShoppingCartContext);
+    const { addToCart } = useContext(ShoppingCartContext);
     const [showModalPopup, setShowModalPopup] = useState(false);
 
     function handleClick() {
-        addProduct(product);
+        addToCart(product._id, 1);
         setShowModalPopup(true);
     };
 

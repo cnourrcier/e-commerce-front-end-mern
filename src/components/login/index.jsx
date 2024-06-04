@@ -21,7 +21,7 @@ export default function Login() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
-                credentials: 'include' // Include credentials in the request
+                credentials: 'include' // Ensure cookies are included in the request
             });
             const data = await res.json();
 

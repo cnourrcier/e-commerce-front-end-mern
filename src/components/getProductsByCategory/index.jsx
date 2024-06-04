@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Products from "../products/index";
 
-export default function GetProductsByCategory({ url, category }) {
+export default function GetProductsByCategory({ category }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ export default function GetProductsByCategory({ url, category }) {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${url}/category/${category}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/products/category/${category}`);
             if (!res.ok) {
                 throw new Error('Error occured. Please try again.');
             }

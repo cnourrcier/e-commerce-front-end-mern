@@ -3,7 +3,7 @@ import GetProductsByCategory from "../getProductsByCategory";
 import './styles.css';
 
 
-export default function GetProductCategories({ url, categories, resetCategory }) {
+export default function GetProductCategories({ resetCategory }) {
     const [categoryList, setCategoryList] = useState([]);
     const [category, setCategory] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function GetProductCategories({ url, categories, resetCategory })
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${url}/${categories}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/products/categories`);
             if (!res.ok) {
                 throw new Error('Error occured. Please try again.');
             }
@@ -29,7 +29,7 @@ export default function GetProductCategories({ url, categories, resetCategory })
 
     useEffect(() => {
         fetchProductCategories();
-    }, [url]);
+    }, []);
 
     useEffect(() => {
         if (resetCategory) {
@@ -52,7 +52,7 @@ export default function GetProductCategories({ url, categories, resetCategory })
                             ))
                         }
                     </ul >
-                    : <GetProductsByCategory url={url} category={category} />
+                    : <GetProductsByCategory category={category} />
             }
         </>
     )

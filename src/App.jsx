@@ -14,27 +14,30 @@ import VerifyEmail from './components/verifyEmail';
 import ResendVerificationEmail from './components/resendVerificationEmail';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
+import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
 
 function App() {
 
   return (
     <AuthProvider>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/shop' element={<GetProductCategories url={'https://dummyjson.com/products/'} categories={'category-list'} />} />
-        <Route path='/search' element={<Search url={'https://dummyjson.com/products/search'} />} />
-        <Route path='/cart' element={<ShoppingCart />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/verify-email/:token' element={<VerifyEmail />} />
-        <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path='/profile' element={<Profile />} />
-        </Route>
-        <Route path='/request-password-reset' element={<RequestPasswordReset />} />
-        <Route path='/reset-password/:token' element={<ResetPassword />} />
-      </Routes>
+      <ShoppingCartProvider>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/shop' element={<GetProductCategories />} />
+          <Route path='/search' element={<Search url={'https://dummyjson.com/products/search'} />} />
+          <Route path='/cart' element={<ShoppingCart />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/verify-email/:token' element={<VerifyEmail />} />
+          <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/profile' element={<Profile />} />
+          </Route>
+          <Route path='/request-password-reset' element={<RequestPasswordReset />} />
+          <Route path='/reset-password/:token' element={<ResetPassword />} />
+        </Routes>
+      </ShoppingCartProvider>
     </AuthProvider>
   )
 }

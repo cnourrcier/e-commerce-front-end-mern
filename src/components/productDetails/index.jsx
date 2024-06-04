@@ -6,8 +6,6 @@ import './styles.css';
 export default function productDetails({ returnToProducts, productData }) {
     const [showReviews, setShowReviews] = useState(false);
 
-    console.log(productData);
-
     return (
         <div className='product-details-container'>
             <Button onClick={returnToProducts} buttonText={'Return to Products'} />

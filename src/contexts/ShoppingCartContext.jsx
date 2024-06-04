@@ -1,31 +1,97 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { AuthContext } from './AuthContext';
 
 export const ShoppingCartContext = createContext();
 
 export function ShoppingCartProvider({ children }) {
-    const [cart, setCart] = useState(() => {
-        const storedCart = localStorage.getItem('shoppingCart');
-        return storedCart ? JSON.parse(storedCart) : [];
-    });
+    const { user } = useContext(AuthContext);
+    const [cart, setCart] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        localStorage.setItem('shoppingCart', JSON.stringify(cart));
-    }, [cart]);
+    console.log(user);
 
-    function addProduct(product) {
-        setCart((prevCart) => [...prevCart, product]);
+    async function fetchCart() {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart`, {
+                credentials: 'include' // Ensure cookies are included in the request 
+            });
+            const data = await res.json();
+            if (data.success) {
+                setCart(data.cart.items);
+            } else {
+                console.error(data.message);
+            }
+        } catch (err) {
+            console.error('Failed to fetch cart', err);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    function removeProduct(productId) {
-        setCart((prevCart) => prevCart.filter(product => product.id !== productId));
+    async function addToCart(productId, quantity) {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId, quantity }),
+                credentials: 'include' // Ensure cookies are included in the request
+            });
+            const data = await res.json();
+            if (data.success) {
+                setCart(data.cart.items);
+            } else {
+                console.error(data.message);
+            }
+        } catch (err) {
+            console.error('Failed to add to cart', err);
+        }
+    };
+
+    async function removeFromCart(productId) {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/remove`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId }),
+                credentials: 'include'
+            });
+            const data = await res.json();
+            if (data.success) {
+                setCart(data.cart.items);
+            } else {
+                console.error(data.message);
+            }
+        } catch (err) {
+            console.error('Failed to remove from cart', err);
+        }
     }
 
-    function clearCart() {
-        setCart([]);
-    };
+    async function removeAllFromCart() {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/removeAll`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
+            });
+            const data = await res.json();
+            if (data.success) {
+                setCart(data.cart.items);
+            } else {
+                console.error(data.message);
+            }
+        } catch (err) {
+            console.error('Failed to remove from cart', err);
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            fetchCart();
+        }
+    }, [user]);
 
     return (
-        <ShoppingCartContext.Provider value={{ cart, addProduct, removeProduct, clearCart }}>
+        <ShoppingCartContext.Provider value={{ cart, loading, addToCart, removeFromCart, removeAllFromCart }}>
             {children}
         </ShoppingCartContext.Provider>
     )
