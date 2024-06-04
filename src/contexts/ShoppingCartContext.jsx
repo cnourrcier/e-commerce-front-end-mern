@@ -45,12 +45,12 @@ export function ShoppingCartProvider({ children }) {
         }
     };
 
-    async function removeFromCart(productId) {
+    async function removeFromCart(productId, quantity) {
         try {
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/remove`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ productId }),
+                body: JSON.stringify({ productId, quantity }),
                 credentials: 'include'
             });
             const data = await res.json();
