@@ -3,7 +3,7 @@ import Products from '../products/index';
 import './styles.css';
 
 
-export default function Search({ url }) {
+export default function Search() {
     const [products, setProducts] = useState([]);
     const [text, setText] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,9 +15,10 @@ export default function Search({ url }) {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${url}?q=${searchTerm}`)
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/products/search?q=${searchTerm}`);
+
             if (!res.ok) {
-                throw new Error('Error Occured. Please try again.');
+                throw new Error('Error Occurred. Please try again.');
             }
             const data = await res.json();
             setProducts(data.products);

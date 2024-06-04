@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import './styles.css';
 import Button from '../button';
@@ -11,7 +11,7 @@ export default function ShoppingCart() {
             <h2>Shopping Cart</h2>
             <ul>
                 {cart.map((item, index) => (
-                    <li className='cart-item' key={index}>
+                    <li className='cart-item' key={item.product._id || index}>
                         {item.product.title} - ${item.product.price} qty: {item.quantity}
                         <button className='cart-item-button' onClick={() => removeFromCart(item.product._id)}>Remove</button>
                     </li>

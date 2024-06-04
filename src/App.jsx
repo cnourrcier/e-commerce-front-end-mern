@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<GetProductCategories />} />
-          <Route path='/search' element={<Search url={'https://dummyjson.com/products/search'} />} />
+          <Route path='/search' element={<Search />} />
           <Route path='/cart' element={<ShoppingCart />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />

@@ -8,8 +8,6 @@ export function ShoppingCartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    console.log(user);
-
     async function fetchCart() {
         try {
             const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart`, {
