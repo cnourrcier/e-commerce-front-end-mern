@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Products from "../products/index";
+import { useParams } from "react-router-dom";
 
-export default function GetProductsByCategory({ category }) {
+export default function GetProductsByCategory() {
+    const { category } = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

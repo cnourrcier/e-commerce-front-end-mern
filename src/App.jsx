@@ -3,6 +3,7 @@ import NavBar from './components/navBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home';
 import GetProductCategories from './components/getProductCategories';
+import GetProductsByCategory from './components/getProductsByCategory';
 import Search from './components/search';
 import ShoppingCart from './components/shoppingCart';
 import Login from './components/login';
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<GetProductCategories />} />
+          <Route path='/shop/:category' element={<GetProductsByCategory />} />
           <Route path='/search' element={<Search />} />
           <Route path='/cart' element={<ShoppingCart />} />
           <Route path='/login' element={<Login />} />

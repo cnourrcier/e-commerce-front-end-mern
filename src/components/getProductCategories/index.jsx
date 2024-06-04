@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import GetProductsByCategory from "../getProductsByCategory";
 import './styles.css';
+import { useNavigate } from "react-router-dom";
 
 
 export default function GetProductCategories({ resetCategory }) {
+    const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState([]);
     const [category, setCategory] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -42,18 +43,12 @@ export default function GetProductCategories({ resetCategory }) {
     if (error) return <div>{error}</div>
 
     return (
-        <>
+        <ul className='product-categories'>
             {
-                !category
-                    ? <ul className='product-categories'>
-                        {
-                            categoryList.map((category, index) => (
-                                <li key={index} onClick={() => setCategory(category)} >{category}</li>
-                            ))
-                        }
-                    </ul >
-                    : <GetProductsByCategory category={category} />
+                categoryList.map((category, index) => (
+                    <li key={index} onClick={() => setCategory(navigate(`/shop/${category}`))} >{category}</li>
+                ))
             }
-        </>
+        </ul >
     )
 }
