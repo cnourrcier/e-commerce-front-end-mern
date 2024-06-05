@@ -50,12 +50,12 @@ export default function NavBar() {
             </div>
             <div className={`drop-down ${dropdown ? 'open' : ''}`}>
                 <ul>
-                    <li><Link to="/" className='tab'>HOME</Link></li>
-                    <li><Link to="/shop" className='tab'>SHOP</Link></li>
-                    <li><Link to="/search" className='tab'>SEARCH</Link></li>
-                    <li><Link to="/cart" className='tab'>CART</Link></li>
-                    <li><Link to="/login" className='tab'>LOGIN</Link></li>
-                    <li><Link to="/signup" className='tab'>SIGNUP</Link></li>
+                    <li><Link to="/" className='tab' onClick={handleToggleMenu}>HOME</Link></li>
+                    <li><Link to="/shop" className='tab' onClick={handleToggleMenu}>SHOP</Link></li>
+                    <li><Link to="/search" className='tab' onClick={handleToggleMenu}>SEARCH</Link></li>
+                    <li><Link to="/cart" className='tab' onClick={handleToggleMenu}>CART</Link></li>
+                    <li><Link to="/login" className='tab' onClick={handleToggleMenu}>LOGIN</Link></li>
+                    <li><Link to="/signup" className='tab' onClick={handleToggleMenu}>SIGNUP</Link></li>
                 </ul>
             </div>
 
