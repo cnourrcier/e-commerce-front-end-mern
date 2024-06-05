@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import Button from '../button';
 import './styles.css';
 
 export default function Profile() {
@@ -58,13 +59,12 @@ export default function Profile() {
     return (
         <div className='profile-container'>
             <h1>Profile</h1>
-            <p>firstName: {user.firstName}</p>
-            <p>lastName: {user.lastName}</p>
+            <p>Name: {user.firstName} {user.lastName}</p>
             <p>Email: {user.email}</p>
             <div className='button-container'>
-                <button onClick={handleLogout}>Logout</button>
-                <button onClick={() => navigate('/account')}>Account Settings</button>
-                {user.role === 'admin' && <Link to='/admin'>Admin Dashboard</Link>}
+                <Button onClick={handleLogout} buttonText={'Logout'} />
+                <Button onClick={() => navigate('/account')} buttonText={'Account Settings'} />
+                {user.role === 'admin' && <Button onClick={() => navigate('/admin')} buttonText={'Admin Dashboard'} />}
             </div>
         </div>
     )

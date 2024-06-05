@@ -1,45 +1,55 @@
 .profile-container {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     margin: 200px auto;
-    padding: 20px;
+    height: auto;
+    width: 85%;
     border-radius: 10px;
-    background-color: rgba(20, 30, 38, 0.8);
-    border: 1px solid rgba(1, 167, 255);
+    gap: 20px;
+    padding: 20px 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-container h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #fff;
+    margin-bottom: 10px;
+    color: var(--text-color1);
 }
 
 .profile-container p {
-    font-size: 1.2em;
-    color: #ffffffaa;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color: var(--text-color1);
 }
 
 .button-container {
+    margin-top: 5px;
     display: flex;
+    width: auto;
     gap: 10px;
 }
 
-.button-container button {
+@media (max-width: 470px) {
+    .button-container {
+        flex-direction: column;
+    }
+}
+
+/* .button-container button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1em;
     color: #fff;
-    background-color: hsla(207, 31%, 61%, 0.8);
-    border: none;
+    background-color: var(--blue-shade1);
+    border: 2px solid var(--blue-shade1);
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
-}
+} */
 
-.profile-container button:hover {
+/* .profile-container button:hover {
     background: #0056b3;
-}
+    color: hsl(216, 100%, 70%);
+} */
 
 .admin-dashboard {
     margin-top: 30px;

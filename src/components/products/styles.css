@@ -10,7 +10,7 @@
 .products-header {
     margin-top: 0;
     text-align: center;
-    color: #fff;
+    color: var(--text-color1);
 }
 
 .products-grid {

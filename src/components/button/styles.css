@@ -16,3 +16,9 @@
     background-color: hsla(0, 0%, 100%, 0.8);
     color: hsl(216, 100%, 60%);
 }
+
+@media (max-width: 600px) {
+    .button {
+        padding: 1vh 10px;
+    }
+}

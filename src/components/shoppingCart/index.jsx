@@ -34,8 +34,12 @@ export default function ShoppingCart() {
                                 <span>{item.product.title}</span>
                             </div>
                             <div className='cart-item-details'>
-                                <span>${item.product.price}</span>
-                                <span><span className='qty'>qty:</span> {item.quantity}</span>
+                                <div className='price-container'>
+                                <span className='details-title'>price:</span>${item.product.price}
+                                </div>
+                                <div className='qty-container'>
+                                <span className='details-title'>qty:</span> {item.quantity}
+                                </div>
                                 <input
                                     type='number'
                                     min='1'
