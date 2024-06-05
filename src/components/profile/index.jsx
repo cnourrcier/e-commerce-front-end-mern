@@ -58,14 +58,11 @@ export default function Profile() {
     return (
         <div className='profile-container'>
             <h1>Profile</h1>
-            {user &&
-                <>
-                    <p>firstName: {user.firstName}</p>
-                    <p>lastName: {user.lastName}</p>
-                    <p>Email: {user.email}</p>
-                    <button onClick={handleLogout}>Logout</button>
-                </>
-            }
+            <p>firstName: {user.firstName}</p>
+            <p>lastName: {user.lastName}</p>
+            <p>Email: {user.email}</p>
+            <button onClick={handleLogout}>Logout</button>
+            <button onClick={() => navigate('/account')}>Account Settings</button>
         </div>
     )
 }
