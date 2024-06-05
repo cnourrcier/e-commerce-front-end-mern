@@ -6,6 +6,6 @@
 }
 
 .home-header {
-    color: #fff;
+    color: var(--text-color1);
     font-size: 5em;
 }

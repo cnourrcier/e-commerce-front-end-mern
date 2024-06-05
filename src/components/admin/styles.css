@@ -1,7 +1,75 @@
-.admin-container {
+/* .admin-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 200px;
+} */
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: 200px 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.user-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-list th, .user-list td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-list th {
+    background: #f8f8f8;
+    color: #333;
+}
+
+.user-list tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.user-list button {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.user-list button:hover {
+    background: #0056b3;
+}
+
+.user-list .delete-button {
+    background: #dc3545;
+}
+
+.user-list .delete-button:hover {
+    background: #c82333;
+}
+
+.user-list .update-button {
+    background: #ffc107;
+}
+
+.user-list .update-button:hover {
+    background: #e0a800;
 }

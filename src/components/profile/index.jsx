@@ -61,9 +61,11 @@ export default function Profile() {
             <p>firstName: {user.firstName}</p>
             <p>lastName: {user.lastName}</p>
             <p>Email: {user.email}</p>
-            <button onClick={handleLogout}>Logout</button>
-            <button onClick={() => navigate('/account')}>Account Settings</button>
-            {user.role === 'admin' && <Link to='/admin'>Admin Dashboard</Link>}
+            <div className='button-container'>
+                <button onClick={handleLogout}>Logout</button>
+                <button onClick={() => navigate('/account')}>Account Settings</button>
+                {user.role === 'admin' && <Link to='/admin'>Admin Dashboard</Link>}
+            </div>
         </div>
     )
 }

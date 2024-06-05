@@ -1,7 +1,71 @@
 .profile-container {
+    max-width: 800px;
+    margin: 200px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(20, 30, 38, 0.8);
+    border: 1px solid rgba(1, 167, 255);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.profile-container p {
+    font-size: 1.2em;
+    color: #ffffffaa;
+    margin-bottom: 10px;
+}
+
+.button-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 200px;
+    gap: 10px;
+}
+
+.button-container button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: hsla(207, 31%, 61%, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.profile-container button:hover {
+    background: #0056b3;
+}
+
+.admin-dashboard {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.admin-dashboard h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.admin-dashboard a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.admin-dashboard a:hover {
+    background: #218838;
 }

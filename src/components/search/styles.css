@@ -2,25 +2,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 200px;
+    margin: 260px;
 }
 
 .search-input {
     position: absolute;
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid hsl(216, 100%, 50%);
     border-radius: 8px;
     font-size: 16px;
     padding: 5px 70px;
-    color: #fff;
+    color: hsl(207, 31%, 11%);
 }
 
 .search-button {
     position: relative;
     transform: translateX(116px);
-    background-color: transparent;
-    border: none;
-    border-left: 2px solid #fff;
+    background-color: hsl(216, 100%, 50%);
+    border: 2px solid hsl(216, 100%, 50%);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border-top-left-radius: 4px;
@@ -33,4 +32,5 @@
 
 .search-button:hover {
     background-color: hsla(0, 0%, 100%, 0.693);
+    color: hsl(216, 100%, 60%);
 }

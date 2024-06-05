@@ -65,7 +65,7 @@
 
 .modal-icon-container {
     width: 100%;
-    background-color: rgba(1, 167, 255, 0.8);
+    background-color: var(--blue-modal);
     display: flex;
     justify-content: center;
 }
@@ -88,7 +88,7 @@
     width: 100%;
     padding: 48px 0px;
     height: 200px;
-    background-color: rgba(1, 167, 255, 0.8);
+    background-color: var(--blue-modal);
     color: rgb(255, 255, 255);
 }
 

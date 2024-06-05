@@ -6,8 +6,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --text-color1: hsl(207, 31%, 11%, 0.8);
+  --blue-shade1: hsl(216, 100%, 55%);
+  --blue-modal: hsla(216, 100%, 55%, 0.8);
+}
+
 body {
-  background-image: url('../../background.jpg');
+  /* background-image: url('../../background.jpg'); */
   /* background-image: url('../../background2.webp'); */
   /* background-image: linear-gradient(rgb(255,196,120), rgb(255,149,171)); */
   /* afternoon setting */
@@ -24,6 +30,9 @@ body {
     linear-gradient(rgba(0, 166, 255, 0.5), rgba(135, 125, 202, 0.5)),
     url('../../background1.webp'); */
 
+  /* background:
+    linear-gradient(rgba(20, 30, 38), rgba(0, 0, 0, 0.7)), url('../../background.svg'); */
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,5 +40,5 @@ body {
 }
 
 body {
-  font-family: "Freeman", sans-serif;
+  font-family: "Roboto", sans-serif;
 }

@@ -14,5 +14,5 @@
 
 .add-to-cart-icon:hover {
     border-radius: 50%;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 2px hsl(216, 100%, 50%);
 }

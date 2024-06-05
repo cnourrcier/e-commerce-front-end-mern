@@ -1,7 +1,8 @@
 .button {
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--blue-shade1);
+    color: var(--text-color1);
+    background-color: var(--blue-shade1);
     color: #fff;
-    background-color: transparent;
     border-radius: 10px 20px;
     padding: 1vh 1vw;
     cursor: pointer;
@@ -11,5 +12,7 @@
 }
 
 .button:hover {
+    border: 2px solid hsl(216, 100%, 50%);
     background-color: hsla(0, 0%, 100%, 0.8);
+    color: hsl(216, 100%, 60%);
 }

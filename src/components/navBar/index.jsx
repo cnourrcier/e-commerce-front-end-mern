@@ -16,7 +16,7 @@ export default function NavBar() {
                     <a href='https://github.com/cnourrcier' target='_blank'><img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/lorem-lorem-1.svg`} alt='' /></a>
                 </div>
                 <div className='box box-one-and-half'>
-                    <span>Cardinal Nest <br />Treasures</span>
+                    <span>Cardinal <br />Goods</span>
                 </div>
                 <div className='box box-two'>
                     <Link to="/" className='tab'>
@@ -50,12 +50,12 @@ export default function NavBar() {
             </div>
             <div className={`drop-down ${dropdown ? 'open' : ''}`}>
                 <ul>
-                    <li><Link to="/" className='tab' onClick={handleToggleMenu}>HOME</Link></li>
-                    <li><Link to="/shop" className='tab' onClick={handleToggleMenu}>SHOP</Link></li>
-                    <li><Link to="/search" className='tab' onClick={handleToggleMenu}>SEARCH</Link></li>
-                    <li><Link to="/cart" className='tab' onClick={handleToggleMenu}>CART</Link></li>
-                    <li><Link to="/login" className='tab' onClick={handleToggleMenu}>LOGIN</Link></li>
-                    <li><Link to="/signup" className='tab' onClick={handleToggleMenu}>SIGNUP</Link></li>
+                    <li><Link to="/" className='tab dropdown' onClick={handleToggleMenu}>HOME</Link></li>
+                    <li><Link to="/shop" className='tab dropdown' onClick={handleToggleMenu}>SHOP</Link></li>
+                    <li><Link to="/search" className='tab dropdown' onClick={handleToggleMenu}>SEARCH</Link></li>
+                    <li><Link to="/cart" className='tab dropdown' onClick={handleToggleMenu}>CART</Link></li>
+                    <li><Link to="/login" className='tab dropdown' onClick={handleToggleMenu}>LOGIN</Link></li>
+                    <li><Link to="/signup" className='tab dropdown' onClick={handleToggleMenu}>SIGNUP</Link></li>
                 </ul>
             </div>
 
