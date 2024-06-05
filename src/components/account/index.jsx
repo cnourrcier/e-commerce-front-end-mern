@@ -119,6 +119,7 @@ export default function Account() {
                 <button type='submit'>Update Account</button>
             </form>
             <button className='delete-account-button' onClick={handleDeleteAccount}>Delete Account</button>
+            <button onClick={() => navigate('/profile')}>Return to Profile</button>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import './styles.css';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -63,6 +63,7 @@ export default function Profile() {
             <p>Email: {user.email}</p>
             <button onClick={handleLogout}>Logout</button>
             <button onClick={() => navigate('/account')}>Account Settings</button>
+            {user.role === 'admin' && <Link to='/admin'>Admin Dashboard</Link>}
         </div>
     )
 }

@@ -13,10 +13,11 @@ import RequestPasswordReset from './components/requestPasswordReset';
 import ResetPassword from './components/resetPassword';
 import VerifyEmail from './components/verifyEmail';
 import ResendVerificationEmail from './components/resendVerificationEmail';
+import Account from './components/account';
+import Admin from './components/admin';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
-import Account from './components/account';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/verify-email/:token' element={<VerifyEmail />} />
           <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
           <Route element={<ProtectedRoute />}>
+            <Route path='/admin' element={<Admin />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/account' element={<Account />} />
           </Route>

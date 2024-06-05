@@ -31,7 +31,8 @@ export default function Login() {
                     _id: data._id,
                     firstName: data.firstName,
                     lastName: data.lastName,
-                    email: data.email
+                    email: data.email,
+                    role: data.role
                 });
                 alert('Login successful');
             } else if (!data.isVerified) {
