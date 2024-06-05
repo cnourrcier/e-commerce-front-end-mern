@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '../button';
 import './styles.css';
 
 export default function Account() {
@@ -116,10 +117,12 @@ export default function Account() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <button type='submit'>Update Account</button>
+                <button className='submit-button' type='submit'>Update Account</button>
             </form>
-            <button className='delete-account-button' onClick={handleDeleteAccount}>Delete Account</button>
-            <button onClick={() => navigate('/profile')}>Return to Profile</button>
+            <div className='non-submit-button-container'>
+            <Button onClick={handleDeleteAccount} buttonText={'Delete Account'} />
+            <Button onClick={() => navigate('/profile')} buttonText={'Return to Profile'}/>
+            </div>
         </div>
     )
 }
