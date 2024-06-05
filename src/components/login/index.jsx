@@ -1,8 +1,8 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
 import { AuthContext } from '../../contexts/AuthContext';
+import './styles.css';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -49,7 +49,6 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            console.log(user);
             navigate('/profile');
         }
     }, [user, navigate]);

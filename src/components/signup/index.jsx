@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import './styles.css';
 
 export default function Signup() {
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -43,6 +45,12 @@ export default function Signup() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate('/profile');
+        }
+    }, [user, navigate]);
 
     if (loading) return <div>Loading...</div>
 

@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
                 credentials: 'include' // Include credentials in the request 
             });
             const data = await res.json();
-
             if (data.success) {
                 setUser(data.user);
             }
@@ -27,8 +26,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         checkAuthStatus();
     }, []);
-
-    console.log(user);
 
     return (
         <AuthContext.Provider value={{ user, setUser, loading }}>
