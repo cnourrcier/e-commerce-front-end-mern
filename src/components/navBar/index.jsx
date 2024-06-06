@@ -23,18 +23,22 @@ export default function NavBar() {
                         <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/home.svg`} />
                         Home
                     </Link>
+                    <div className='tab-separator'></div>
                     <Link to="/shop" className='tab'>
                         <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/shopping-bag.svg`} />
                         Shop
                     </Link>
+                    <div className='tab-separator'></div>
                     <Link to="/search" className='tab'>
                         <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/search.svg`} />
                         Search
                     </Link>
+                    <div className='tab-separator'></div>
                     <Link to="/cart" className='tab'>
                         <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/shopping-cart.svg`} />
                         Cart
                     </Link>
+                    <div className='tab-separator'></div>
                     <Link to="/login" className='tab'>
                         <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/log-in.svg`} />
                         Login

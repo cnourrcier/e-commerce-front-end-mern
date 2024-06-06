@@ -13,6 +13,7 @@
 }
 
 body {
+  background: hsla(216, 100%, 85%, 0.1);
   /* background-image: url('../../background.jpg'); */
   /* background-image: url('../../background2.webp'); */
   /* background-image: linear-gradient(rgb(255,196,120), rgb(255,149,171)); */

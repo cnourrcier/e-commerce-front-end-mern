@@ -40,7 +40,8 @@
   width: auto;
   align-items: center;
   margin-right: auto;
-  font-weight: 500;
+  font-weight: 700;
+  color: hsl(216, 100%, 55%);
 }
 
 .box-two {
@@ -50,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5vw;
+  gap: 2.5vw;
   margin-right: 20px;
   font-weight: 500;
 }
@@ -68,6 +69,12 @@
 
 .tab:hover {
   color: hsl(216, 100%, 60%);
+}
+
+.tab-separator {
+  height: 25px;
+  width: 1px;
+  background-color: hsl(216, 100%, 70%);
 }
 
 ul {
