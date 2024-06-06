@@ -75,7 +75,7 @@ export default function Account() {
 
     return (
         <div className='account-container'>
-            <h2>Update Account</h2>
+            <h1>Update Account</h1>
             <form onSubmit={handleUpdate} >
                 <label htmlFor='firstName'>First Name</label>
                 <input
@@ -120,8 +120,8 @@ export default function Account() {
                 <button className='submit-button' type='submit'>Update Account</button>
             </form>
             <div className='non-submit-button-container'>
-            <Button onClick={handleDeleteAccount} buttonText={'Delete Account'} />
-            <Button onClick={() => navigate('/profile')} buttonText={'Return to Profile'}/>
+                <Button onClick={handleDeleteAccount} buttonText={'Delete Account'} />
+                <Button onClick={() => navigate('/profile')} buttonText={'Return to Profile'} />
             </div>
         </div>
     )

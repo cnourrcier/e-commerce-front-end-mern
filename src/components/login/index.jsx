@@ -61,8 +61,8 @@ export default function Login() {
         <div className='login-container'>
             <form>
                 <h1>Login</h1>
-                <div className='inputs-container'>
-                    <div className='input'>
+                <div className='login-inputs-container'>
+                    <div className='login-input'>
                         <label htmlFor='email'>Email:</label>
                         <input
                             type='email'
@@ -74,7 +74,7 @@ export default function Login() {
                             required
                         />
                     </div>
-                    <div className='input'>
+                    <div className='login-input'>
                         <label htmlFor='password'>Password:</label>
                         <input
                             type='password'
@@ -92,7 +92,7 @@ export default function Login() {
                 </div>
                 <p>Forgot your password? Click <a href='/request-password-reset'>here</a>.</p>
             </form>
-            <div>
+            <div className='login-bottom-links'>
                 <p>Don't have an account? Sign up <a href='/signup'>here</a>.</p>
                 <p>Didn't receive a verification email? Click <a href='/resend-verification-email'>here</a> to resend.</p>
             </div>

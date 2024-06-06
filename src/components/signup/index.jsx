@@ -62,9 +62,9 @@ export default function Signup() {
                     <>
                         <form>
                             <h1>Sign up</h1>
-                            <div className='inputs-container'>
-                                <div className='name-input-container'>
-                                    <div className='input'>
+                            <div className='signup-inputs-container'>
+                                <div className='signup-name-input-container'>
+                                    <div className='signup-input'>
                                         <label htmlFor='firstName'>First Name:</label>
                                         <input
                                             type='name'
@@ -76,7 +76,7 @@ export default function Signup() {
                                             required
                                         />
                                     </div>
-                                    <div className='input'>
+                                    <div className='signup-input'>
                                         <label htmlFor='lastName'>Last Name:</label>
                                         <input
                                             type='name'
@@ -89,7 +89,7 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className='input'>
+                                <div className='signup-input'>
                                     <label htmlFor='email'>Email:</label>
                                     <input
                                         type='email'
@@ -101,8 +101,8 @@ export default function Signup() {
                                         required
                                     />
                                 </div>
-                                <div className='password-input-container'>
-                                    <div className='input'>
+                                <div className='signup-password-input-container'>
+                                    <div className='signup-input'>
                                         <label htmlFor='password'>Password:</label>
                                         <input
                                             type='password'
@@ -114,7 +114,7 @@ export default function Signup() {
                                             required
                                         />
                                     </div>
-                                    <div className='input'>
+                                    <div className='signup-input'>
                                         <label htmlFor='confirmPassword'>Confirm Password:</label>
                                         <input
                                             type='password'
@@ -127,9 +127,7 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className='signup-button'>
-                                    <Button onClick={handleSignup} buttonText={'Signup'} />
-                                </div>
+                                <Button onClick={handleSignup} buttonText={'Signup'} />
                             </div>
                             {error && <div className='error-message'>{error}</div>}
                         </form>
