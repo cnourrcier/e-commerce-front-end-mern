@@ -17,17 +17,25 @@
     color: var(--text-color1);
 }
 
+.login-container a {
+    text-decoration: none;
+    color: var(--blue-shade1);
+    font-weight: 500;
+}
+
+.login-container a:hover {
+    color: hsl(216, 100%, 60%);
+}
+
 .inputs-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* border: 1px solid black; */
 }
 
 .input {
     display: flex;
     gap: 10px;
-    /* border: 1px solid black; */
 }
 
 .input label {
@@ -73,4 +81,3 @@
 .login-button {
     margin: 5px 0px;
 }
-
