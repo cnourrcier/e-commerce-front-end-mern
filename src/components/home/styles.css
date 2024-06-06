@@ -1,11 +1,74 @@
-.home-container {
+.home-header-container {
     display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
     align-items: center;
     justify-content: center;
-    margin: 200px;
 }
 
 .home-header {
     color: var(--text-color1);
-    font-size: 5em;
+    font-size: 7em;
+    font-family: 'Satisfy', cursive;
+    font-weight: 700;
+    line-height: 100px;
+    color: #fff;
+    z-index: 2;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    .home-header {
+        font-size: 6em;
+    }
+}
+
+.image-slider-wrapper {
+    margin-top: 200px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.image-slider-container {
+    display: flex;
+    overflow: hidden;
+    height: 15em;
+    background: #111;
+}
+
+.image-slider-container img {
+    opacity: 0.5;
+}
+
+.image-slider-container img {
+    max-width: 100%;
+    vertical-align: middle;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+    transition: opacity .2s;
+}
+
+.image-slider-container img:hover {
+    opacity: 1;
+}
+
+.image-slider-container .column {
+    animation: var(--animation, none) 16s infinite linear;
+}
+
+.image-slider-container .column:hover {
+    animation-play-state: paused;
+}
+
+.image-slider-container .column:nth-of-type(odd) {
+    align-self: flex-end;
+    --direction: 50%;
+}
+
+@keyframes slide {
+    to {
+        transform: translateY(var(--direction, -50%))
+    }
 }
