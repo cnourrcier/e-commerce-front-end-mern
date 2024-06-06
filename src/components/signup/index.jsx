@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import Button from "../button";
 import './styles.css';
 
 export default function Signup() {
@@ -59,62 +60,80 @@ export default function Signup() {
             {
                 showForm ?
                     <>
-                        <form onSubmit={handleSignup}>
+                        <form>
                             <h1>Sign up</h1>
-                            <label htmlFor='firstName'>First Name:</label>
-                            <input
-                                type='name'
-                                name='firstName'
-                                id='firstName'
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                                placeholder='First Name'
-                                required
-                            />
-                            <label htmlFor='lastName'>Last Name:</label>
-                            <input
-                                type='name'
-                                name='lastName'
-                                id='lastName'
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                                placeholder='Last Name'
-                                required
-                            />
-                            <label htmlFor='email'>Email:</label>
-                            <input
-                                type='email'
-                                name='email'
-                                id='email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder='Email'
-                                required
-                            />
-                            <label htmlFor='password'>Password:</label>
-                            <input
-                                type='password'
-                                name='password'
-                                id='password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder='Password'
-                                required
-                            />
-                            <label htmlFor='confirmPassword'>Confirm Password:</label>
-                            <input
-                                type='password'
-                                name='confirmPassword'
-                                id='confirmPassword'
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder='Confirm password'
-                                required
-                            />
-                            <button type='submit'>Signup</button>
+                            <div className='inputs-container'>
+                                <div className='name-input-container'>
+                                    <div className='input'>
+                                        <label htmlFor='firstName'>First Name:</label>
+                                        <input
+                                            type='name'
+                                            name='firstName'
+                                            id='firstName'
+                                            value={firstName}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                            placeholder='First Name'
+                                            required
+                                        />
+                                    </div>
+                                    <div className='input'>
+                                        <label htmlFor='lastName'>Last Name:</label>
+                                        <input
+                                            type='name'
+                                            name='lastName'
+                                            id='lastName'
+                                            value={lastName}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                            placeholder='Last Name'
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className='input'>
+                                    <label htmlFor='email'>Email:</label>
+                                    <input
+                                        type='email'
+                                        name='email'
+                                        id='email'
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder='Email'
+                                        required
+                                    />
+                                </div>
+                                <div className='password-input-container'>
+                                    <div className='input'>
+                                        <label htmlFor='password'>Password:</label>
+                                        <input
+                                            type='password'
+                                            name='password'
+                                            id='password'
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            placeholder='Password'
+                                            required
+                                        />
+                                    </div>
+                                    <div className='input'>
+                                        <label htmlFor='confirmPassword'>Confirm Password:</label>
+                                        <input
+                                            type='password'
+                                            name='confirmPassword'
+                                            id='confirmPassword'
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            placeholder='Confirm password'
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className='signup-button'>
+                                    <Button onClick={handleSignup} buttonText={'Signup'} />
+                                </div>
+                            </div>
                             {error && <div className='error-message'>{error}</div>}
                         </form>
-                        <p>Already have an account? Login <button type='button' onClick={() => navigate('/login')}>here</button></p>
+                        <p>Already have an account? Login <a href='/login'>here</a>.</p>
                     </>
                     : <>
                         {message && <p>{message}</p>}

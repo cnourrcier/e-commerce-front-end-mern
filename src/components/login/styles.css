@@ -4,6 +4,7 @@
     align-items: left;
     margin: 200px auto;
     height: auto;
+    max-width: 750px;
     width: 85%;
     border-radius: 10px;
     gap: 20px;
