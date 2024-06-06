@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Button from '../button';
 import './styles.css';
 
 export default function Admin() {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -91,13 +94,14 @@ export default function Admin() {
     return (
         <div className='admin-container'>
             <h1>Admin Dashboard</h1>
+            <Button onClick={() => navigate('/profile')} buttonText={'Profile'} />
             <h2>All Users</h2>
             <ul>
                 {users.map(user => (
                     <li key={user._id}>
                         {user.firstName} {user.lastName} - {user.email} ({user.role})
-                        <button onClick={() => handleEditUser(user)}>Edit</button>
-                        <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                        <Button onClick={() => handleEditUser(user)} buttonText={'Edit'} />
+                        <Button onClick={() => handleDeleteUser(user._id)} buttonText={'Delete'} />
                     </li>
                 ))}
             </ul>

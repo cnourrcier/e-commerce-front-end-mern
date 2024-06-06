@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import Button from '../button';
 import './styles.css';
 
 export default function Login() {
@@ -58,33 +59,43 @@ export default function Login() {
 
     return (
         <div className='login-container'>
-            <form onSubmit={handleLogin}>
+            <form>
                 <h1>Login</h1>
-                <label htmlFor='email'>Email:</label>
-                <input
-                    type='email'
-                    name='email'
-                    id='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder='Email'
-                    required
-                />
-                <label htmlFor='password'>Password:</label>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Password'
-                    required
-                />
-                <p>Forgot your password? Click <a href='/request-password-reset'>here</a> to reset your password.</p>
-                <button type='submit'>Login</button>
+                <div className='inputs-container'>
+                    <div className='input'>
+                        <label htmlFor='email'>Email:</label>
+                        <input
+                            type='email'
+                            name='email'
+                            id='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Email'
+                            required
+                        />
+                    </div>
+                    <div className='input'>
+                        <label htmlFor='password'>Password:</label>
+                        <input
+                            type='password'
+                            name='password'
+                            id='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder='Password'
+                            required
+                        />
+                    </div>
+                    <div className='login-button'>
+                        <Button onClick={handleLogin} buttonText={'Login'} />
+                    </div>
+                </div>
+                <p>Forgot your password? Click <a href='/request-password-reset'>here</a>.</p>
             </form>
-            <p>Don't have an account? Sign up <a href='/signup'>here</a></p>
-            <p>Didn't receive a verification email? Click <a href='/resend-verification-email'>here</a> to resend.</p>
+            <div>
+                <p>Don't have an account? Sign up <a href='/signup'>here</a>.</p>
+                <p>Didn't receive a verification email? Click <a href='/resend-verification-email'>here</a> to resend.</p>
+            </div>
             {error && <div className='error-message'>{error}</div>}
         </div>
     )
