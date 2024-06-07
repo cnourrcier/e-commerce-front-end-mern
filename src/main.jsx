@@ -7,9 +7,9 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-        <div className='background-image'>
-          <App />
-        </div>
+      <div className='background-image'>
+        <App />
+      </div>
     </Router>
   </React.StrictMode>,
 )

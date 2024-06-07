@@ -13,34 +13,34 @@ export default function NavBar() {
         <>
             <div className='row-one'>
                 <div className='box box-one'>
-                    <a href='https://github.com/cnourrcier' target='_blank'><img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/lorem-lorem-1.svg`} alt='' /></a>
+                    <a href='https://github.com/cnourrcier' target='_blank'><img src={`http://localhost:5173/src/img/lorem-lorem-1.svg`} alt='' /></a>
                 </div>
                 <div className='box box-one-and-half'>
                     <span>Cardinal <br />Goods</span>
                 </div>
                 <div className='box box-two'>
                     <Link to="/" className='tab'>
-                        <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/home.svg`} />
+                        <img src={`http://localhost:5173/src/img/home.svg`} />
                         Home
                     </Link>
                     <div className='tab-separator'></div>
                     <Link to="/shop" className='tab'>
-                        <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/shopping-bag.svg`} />
+                        <img src={`http://localhost:5173/src/img/shopping-bag.svg`} />
                         Shop
                     </Link>
                     <div className='tab-separator'></div>
                     <Link to="/search" className='tab'>
-                        <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/search.svg`} />
+                        <img src={`http://localhost:5173/src/img/search.svg`} />
                         Search
                     </Link>
                     <div className='tab-separator'></div>
                     <Link to="/cart" className='tab'>
-                        <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/shopping-cart.svg`} />
+                        <img src={`http://localhost:5173/src/img/shopping-cart.svg`} />
                         Cart
                     </Link>
                     <div className='tab-separator'></div>
                     <Link to="/login" className='tab'>
-                        <img src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/log-in.svg`} />
+                        <img src={`http://localhost:5173/src/img/log-in.svg`} />
                         Login
                     </Link>
                 </div>

@@ -14,7 +14,7 @@ export default function VerifyEmail() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/verify-email/${token}`)
+            const res = await fetch(`http://localhost:5000/api/verify-email/${token}`)
             const data = await res.json();
             if (data.message === 'Email verified successfully') {
                 setMessage(data.message);

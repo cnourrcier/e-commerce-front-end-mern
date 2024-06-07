@@ -22,7 +22,7 @@ export default function AddToCartButton({ product }) {
     return (
         <>
             <button className={`add-to-cart-button ${!user && 'disabled'}`} onClick={handleClick} disabled={!user}>
-                Add to Cart <img className={`add-to-cart-icon ${!user && 'disabled'}`} src={`${import.meta.env.VITE_REACT_APP_BASE_URL}/src/img/plus-circle.svg`} />
+                Add to Cart <img className={`add-to-cart-icon ${!user && 'disabled'}`} src={`http://localhost:5173/src/img/plus-circle.svg`} />
             </button>
             {showModalPopup && <Modal
                 title={product.title}

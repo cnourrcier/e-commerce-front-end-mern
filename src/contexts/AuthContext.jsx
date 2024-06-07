@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     // Fetch user data to check if the user is authenticated
     const checkAuthStatus = async () => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/auth-status`, {
+            const res = await fetch(`http://localhost:5000/api/auth-status`, {
                 credentials: 'include' // Include credentials in the request 
             });
             const data = await res.json();

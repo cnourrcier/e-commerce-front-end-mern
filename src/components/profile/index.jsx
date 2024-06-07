@@ -12,7 +12,7 @@ export default function Profile() {
 
     async function fetchProfile() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/profile`, {
+            const res = await fetch(`http://localhost:5000/api/profile`, {
                 credentials: 'include', // Ensure cookies are included in the request
             });
             const data = await res.json();
@@ -28,7 +28,7 @@ export default function Profile() {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/logout`, {
+            const res = await fetch(`http://localhost:5000/api/logout`, {
                 method: 'POST',
                 credentials: 'include' // Ensure cookies are included in the request
             });

@@ -10,7 +10,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function fetchCart() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart`, {
+            const res = await fetch(`http://localhost:5000/api/cart`, {
                 credentials: 'include' // Ensure cookies are included in the request 
             });
             const data = await res.json();
@@ -28,7 +28,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function addToCart(productId, quantity) {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/add`, {
+            const res = await fetch(`http://localhost:5000/api/cart/add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ productId, quantity }),
@@ -47,7 +47,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function removeFromCart(productId, quantity) {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/remove`, {
+            const res = await fetch(`http://localhost:5000/api/cart/remove`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ productId, quantity }),
@@ -66,7 +66,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function removeAllFromCart() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/cart/removeAll`, {
+            const res = await fetch(`http://localhost:5000/api/cart/removeAll`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include'

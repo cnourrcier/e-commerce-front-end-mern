@@ -21,7 +21,7 @@ export default function Account() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/account/update`, {
+            const res = await fetch(`http://localhost:5000/api/account/update`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
@@ -51,7 +51,7 @@ export default function Account() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/account/delete`, {
+            const res = await fetch(`http://localhost:5000/api/account/delete`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

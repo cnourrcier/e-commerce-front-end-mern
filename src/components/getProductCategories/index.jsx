@@ -15,7 +15,7 @@ export default function GetProductCategories({ resetCategory }) {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/products/categories`);
+            const res = await fetch(`http://localhost:5000/api/products/categories`);
             if (!res.ok) {
                 throw new Error('Error occurred. Please try again.');
             }

@@ -20,7 +20,7 @@ export default function Admin() {
 
     async function fetchUsers() {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/admin/users`, {
+            const res = await fetch(`http://localhost:5000/api/admin/users`, {
                 credentials: 'include'
             });
             const data = await res.json();
@@ -49,7 +49,7 @@ export default function Admin() {
     async function handleUpdateUser(e) {
         e.preventDefault();
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/admin/users/${selectedUser._id}`, {
+            const res = await fetch(`http://localhost:5000/api/admin/users/${selectedUser._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updateUserData),
@@ -69,7 +69,7 @@ export default function Admin() {
 
     async function handleDeleteUser(userId) {
         try {
-            const res = await fetch(`${import.meta.env.VITE_REACT_APP_SERVER_BASE_URL}/admin/users/${userId}`, {
+            const res = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });
