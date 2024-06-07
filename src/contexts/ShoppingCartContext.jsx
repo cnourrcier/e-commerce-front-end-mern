@@ -8,11 +8,9 @@ export function ShoppingCartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
-
     async function fetchCart() {
         try {
-            const res = await fetch(`${apiUrl}/api/cart`, {
+            const res = await fetch(`/api/cart`, {
                 credentials: 'include' // Ensure cookies are included in the request 
             });
             const data = await res.json();
@@ -30,7 +28,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function addToCart(productId, quantity) {
         try {
-            const res = await fetch(`${apiUrl}/api/cart/add`, {
+            const res = await fetch(`/api/cart/add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ productId, quantity }),
@@ -49,7 +47,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function removeFromCart(productId, quantity) {
         try {
-            const res = await fetch(`${apiUrl}/api/cart/remove`, {
+            const res = await fetch(`/api/cart/remove`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ productId, quantity }),
@@ -68,7 +66,7 @@ export function ShoppingCartProvider({ children }) {
 
     async function removeAllFromCart() {
         try {
-            const res = await fetch(`${apiUrl}/api/cart/removeAll`, {
+            const res = await fetch(`/api/cart/removeAll`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include'

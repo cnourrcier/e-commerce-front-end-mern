@@ -10,11 +10,9 @@ export default function Profile() {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
 
-    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
-
     async function fetchProfile() {
         try {
-            const res = await fetch(`${apiUrl}/api/profile`, {
+            const res = await fetch(`/api/profile`, {
                 credentials: 'include', // Ensure cookies are included in the request
             });
             const data = await res.json();
@@ -30,7 +28,7 @@ export default function Profile() {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${apiUrl}/api/logout`, {
+            const res = await fetch(`/api/logout`, {
                 method: 'POST',
                 credentials: 'include' // Ensure cookies are included in the request
             });

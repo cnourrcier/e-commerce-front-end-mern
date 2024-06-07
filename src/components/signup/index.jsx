@@ -17,8 +17,6 @@ export default function Signup() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
-
     async function handleSignup(e) {
         e.preventDefault();
 
@@ -30,7 +28,7 @@ export default function Signup() {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${apiUrl}/api/signup`, {
+            const res = await fetch(`/api/signup`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
