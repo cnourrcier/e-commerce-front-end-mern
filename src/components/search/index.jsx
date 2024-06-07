@@ -10,12 +10,14 @@ export default function Search() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
     async function fetchProducts() {
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`http://localhost:5000/api/products/search?q=${searchTerm}`);
+            const res = await fetch(`${apiUrl}/api/products/search?q=${searchTerm}`);
 
             if (!res.ok) {
                 throw new Error('Error Occurred. Please try again.');

@@ -9,12 +9,14 @@ export default function VerifyEmail() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
     async function verifyEmail() {
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`http://localhost:5000/api/verify-email/${token}`)
+            const res = await fetch(`${apiUrl}/api/verify-email/${token}`)
             const data = await res.json();
             if (data.message === 'Email verified successfully') {
                 setMessage(data.message);

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Button from '../button';
 import './styles.css';
 
+apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
 export default function Admin() {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -20,7 +22,7 @@ export default function Admin() {
 
     async function fetchUsers() {
         try {
-            const res = await fetch(`http://localhost:5000/api/admin/users`, {
+            const res = await fetch(`${apiUrl}/api/admin/users`, {
                 credentials: 'include'
             });
             const data = await res.json();
@@ -49,7 +51,7 @@ export default function Admin() {
     async function handleUpdateUser(e) {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:5000/api/admin/users/${selectedUser._id}`, {
+            const res = await fetch(`${apiUrl}/api/admin/users/${selectedUser._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updateUserData),
@@ -69,7 +71,7 @@ export default function Admin() {
 
     async function handleDeleteUser(userId) {
         try {
-            const res = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+            const res = await fetch(`${apiUrl}/api/admin/users/${userId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

@@ -13,12 +13,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
     async function handleLogin(e) {
         e.preventDefault();
         try {
             setLoading(true);
             setError(null);
-            const res = await fetch(`http://localhost:5000/api/login`, {
+            const res = await fetch(`${apiUrl}/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),

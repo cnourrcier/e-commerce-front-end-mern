@@ -10,13 +10,15 @@ export default function RequestPasswordReset() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
     async function handlePasswordReset(e) {
         e.preventDefault();
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`http://localhost:5000/api/request-password-reset`, {
+            const res = await fetch(`${apiUrl}/api/request-password-reset`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })

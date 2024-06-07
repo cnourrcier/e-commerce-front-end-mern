@@ -10,12 +10,15 @@ export default function GetProductCategories({ resetCategory }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    apiUrl = import.meta.env.VITE_REACT_APP_SERVER_BASE_URL_PROD;
+
+
     async function fetchProductCategories() {
         try {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`http://localhost:5000/api/products/categories`);
+            const res = await fetch(`${apiUrl}/api/products/categories`);
             if (!res.ok) {
                 throw new Error('Error occurred. Please try again.');
             }
