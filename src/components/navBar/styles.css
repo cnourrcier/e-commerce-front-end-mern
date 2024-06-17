@@ -19,6 +19,7 @@
 
 .box-one {
   margin-left: 20px;
+  max-width: 90.313px;
   max-height: 75px;
   cursor: pointer;
 }
