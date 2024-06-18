@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ export default function Checkout() {
     const [editInfo, setEditInfo] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [confirm, setConfirm] = useState(false);
 
     const shippingAndHandling = 6.99;
     const taxRate = 0.101;
@@ -48,8 +49,8 @@ export default function Checkout() {
             const data = await res.json();
 
             if (data.success) {
-                setSuccess(true);
-                removeAllFromCart();
+                // Move to payment confirmation step
+                setConfirm(true);
                 // Update user context with new information
                 setUser({ ...user, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail, address: updatedAddress });
             } else {
@@ -59,10 +60,40 @@ export default function Checkout() {
             setError(err.message);
         } finally {
             setLoading(false);
-            // navigate to payment page
         }
     }
-    if (cart.length === 0) navigate('/cart');
+
+    async function handlePayment() {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const res = await fetch(`/api/orders/mock-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: orderTotal }),
+                credentials: 'include'
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                setSuccess(true);
+                removeAllFromCart();
+            } else {
+                setError(data.message || 'Payment failed');
+            }
+        } catch (err) {
+            setError('Payment failed');
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        if (cart.length === 0) navigate('/cart');
+    }, [cart, navigate]);
+
     if (loading) return <div>Loading...</div>;
     if (success) return <div>Checkout successful! Thank you for your order!</div>;
 
@@ -96,7 +127,7 @@ export default function Checkout() {
                             <span>Order total: </span><span>${orderTotal}</span>
                         </div>
                         <div className='button-container'>
-                            <Button onClick={handleCheckout} buttonText={'Place Your Order and Pay'} />
+                            <Button onClick={handleCheckout} buttonText={'Confirm Order'} />
                             <Button onClick={() => setEditInfo(true)} buttonText={'Edit Info'} />
                         </div>
                     </div>
@@ -161,6 +192,15 @@ export default function Checkout() {
                     </form>
                     {error && <div className='error-message'>{error}</div>}
                 </>
+            )}
+
+            {confirm && (
+                <div className='confirmation-container'>
+                    <h3>Confirm Your Payment</h3>
+                    <p><strong>Order total:</strong> ${orderTotal}</p>
+                    <Button onClick={handlePayment} buttonText={'Pay Now'} />
+                    <Button onClick={() => setConfirm(false)} buttonText={'Back to Order Review'} />
+                </div>
             )}
         </div>
     )
