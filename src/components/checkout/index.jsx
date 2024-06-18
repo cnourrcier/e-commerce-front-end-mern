@@ -9,6 +9,7 @@ export default function Checkout() {
     const { user } = useContext(AuthContext);
     const [address, setAddress] = useState('');
     const [success, setSuccess] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -56,51 +57,88 @@ export default function Checkout() {
     return (
         <div className='checkout-container'>
             <h2>Checkout</h2>
-            <form>
-                <label htmlFor='name'>Name:</label>
-                <input
-                    type='text'
-                    id='name'
-                    value={user.firstName + ' ' + user.lastName}
-                    readOnly
-                />
-                <label htmlFor='email'>Email:</label>
-                <input
-                    type='email'
-                    id='email'
-                    value={user.email}
-                    readOnly
-                />
-                <label htmlFor='address'>Address:</label>
-                <input
-                    type='text'
-                    id='address'
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    required
-                />
-                <h2>Order Summary</h2>
-                <div className='checkout-subtotals-container'>
-                    <div className='checkout-subtotals-title-container'>
-                        <p>Items:</p>
-                        <p>Shipping & handling:</p>
-                        <p>Total before tax:</p>
-                        <p>Estimated tax to be collected:</p>
+            {confirm ? (
+                <>
+                    <form>
+                        <label htmlFor='name'>Name:</label>
+                        <input
+                            type='text'
+                            id='name'
+                            defaultValue={user.firstName + ' ' + user.lastName}
+                            required
+                        />
+                        <label htmlFor='email'>Email:</label>
+                        <input
+                            type='email'
+                            id='email'
+                            defaultValue={user.email}
+                            required
+                        />
+                        <label htmlFor='address'>Address:</label>
+                        <input
+                            type='text'
+                            id='address'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
+                        <h2>Order Summary</h2>
+                        <div className='checkout-subtotals-container'>
+                            <div className='checkout-subtotals-title-container'>
+                                <p>Items:</p>
+                                <p>Shipping & handling:</p>
+                                <p>Total before tax:</p>
+                                <p>Estimated tax to be collected:</p>
+                            </div>
+                            <div className='checkout-subtotals-price-container'>
+                                <p>${itemsSubtotal.toFixed(2)}</p>
+                                <p>${shippingAndHandling}</p>
+                                <p>${totalBeforeTax.toFixed(2)}</p>
+                                <p>${estimatedTax.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className='checkout-total-container'>
+                            <span>Order total: </span><span>${orderTotal}</span>
+                        </div>
+                        <Button onClick={() => setConfirm(false)} buttonText={'Back to Review Order'} />
+                    </form>
+                    {error && <div className='error-message'>{error}</div>}
+                </>
+            ) : (
+                <>
+                    <div className='confirmation-container'>
+                        <h3>Review Your Order</h3>
+                        <p><strong>Name:</strong> {user.firstName + ' ' + user.lastName}</p>
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Address:</strong> {address}</p>
+                        <h3>Order Summary</h3>
+                        <div className='checkout-subtotals-container'>
+                            <div className='checkout-subtotals-title-container'>
+                                <p>Items:</p>
+                                <p>Shipping & handling:</p>
+                                <p>Total before tax:</p>
+                                <p>Estimated tax to be collected:</p>
+                            </div>
+                            <div className='checkout-subtotals-price-container'>
+                                <p>${itemsSubtotal.toFixed(2)}</p>
+                                <p>${shippingAndHandling}</p>
+                                <p>${totalBeforeTax.toFixed(2)}</p>
+                                <p>${estimatedTax.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className='checkout-total-container'>
+                            <span>Order total: </span><span>${orderTotal}</span>
+                        </div>
+                        <div className='button-container'>
+                            <Button onClick={handleCheckout} buttonText={'Place Your Order and Pay'} />
+                            <Button onClick={() => setConfirm(true)} buttonText={'Edit Info'} />
+                        </div>
                     </div>
-                    <div className='checkout-subtotals-price-container'>
-                        <p>${itemsSubtotal.toFixed(2)}</p>
-                        <p>${shippingAndHandling}</p>
-                        <p>${totalBeforeTax.toFixed(2)}</p>
-                        <p>${estimatedTax.toFixed(2)}</p>
-                    </div>
-                </div>
-                <hr />
-                <div className='checkout-total-container'>
-                    <span>Order total: </span><span>${orderTotal}</span>
-                </div>
-                <Button onClick={handleCheckout} buttonText={'Place Your Order and Pay'} />
-            </form>
-            {error && <div className='error-message'>{error}</div>}
+                    {error && <div className='error-message'>{error}</div>}
+                </>
+            )}
         </div>
     )
 }
