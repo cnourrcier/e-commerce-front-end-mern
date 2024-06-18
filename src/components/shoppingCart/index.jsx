@@ -32,9 +32,6 @@ export default function ShoppingCart() {
             <h2>Shopping Cart</h2>
             <div className='shopping-cart-items-container'>
                 <div className='shopping-cart-items-header-container'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
                     <div>qty:</div>
                     <div>price:</div>
                 </div>

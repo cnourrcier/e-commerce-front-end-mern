@@ -32,19 +32,25 @@
     border-radius: 5px;
 }
 
-.checkout-container button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+.checkout-subtotals-container {
+    display: flex;
+    justify-content: space-between;
 }
 
-.checkout-container button:hover {
-    background: #0056b3;
+.checkout-subtotals-title-container {
+    line-height: 1.5rem;
+}
+
+.checkout-subtotals-price-container {
+    line-height: 1.5rem;
+    text-align: right;
+}
+
+.checkout-total-container {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .error-message {

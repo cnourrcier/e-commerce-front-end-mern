@@ -12,6 +12,15 @@ export default function Checkout() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const shippingAndHandling = 6.99;
+    const taxRate = 0.101;
+
+    const itemsSubtotal = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
+    const totalBeforeTax = itemsSubtotal + shippingAndHandling;
+    const estimatedTax = totalBeforeTax * taxRate;
+    const rawTotal = totalBeforeTax + estimatedTax;
+    const orderTotal = parseFloat(rawTotal.toFixed(2));
+
     async function handleCheckout(e) {
         e.preventDefault();
         setLoading(true);
@@ -21,7 +30,7 @@ export default function Checkout() {
             const res = await fetch(`api/orders`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ address, cart }),
+                body: JSON.stringify({ address, cart, totalAmount: orderTotal }),
                 credentials: 'include'
             });
             const data = await res.json();
@@ -71,12 +80,24 @@ export default function Checkout() {
                     required
                 />
                 <h2>Order Summary</h2>
-                <p>Items: </p>
-                <p>Shipping & handling: </p>
-                <p>Total before tax: </p>
-                <p>Estimated tax to be collected: </p>
+                <div className='checkout-subtotals-container'>
+                    <div className='checkout-subtotals-title-container'>
+                        <p>Items:</p>
+                        <p>Shipping & handling:</p>
+                        <p>Total before tax:</p>
+                        <p>Estimated tax to be collected:</p>
+                    </div>
+                    <div className='checkout-subtotals-price-container'>
+                        <p>${itemsSubtotal.toFixed(2)}</p>
+                        <p>${shippingAndHandling}</p>
+                        <p>${totalBeforeTax.toFixed(2)}</p>
+                        <p>${estimatedTax.toFixed(2)}</p>
+                    </div>
+                </div>
                 <hr />
-                <p>Order total: </p>
+                <div className='checkout-total-container'>
+                    <span>Order total: </span><span>${orderTotal}</span>
+                </div>
                 <Button onClick={handleCheckout} buttonText={'Place Your Order and Pay'} />
             </form>
             {error && <div className='error-message'>{error}</div>}
