@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import Button from '../button';
 import './styles.css';
 
 export default function Checkout() {
     const { cart, removeAllFromCart } = useContext(ShoppingCartContext);
     const { user, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [address, setAddress] = useState(user.address || '');
     const [firstName, setFirstName] = useState(user.firstName);
     const [lastName, setLastName] = useState(user.lastName);
@@ -60,8 +62,7 @@ export default function Checkout() {
             // navigate to payment page
         }
     }
-
-
+    if (cart.length === 0) navigate('/cart');
     if (loading) return <div>Loading...</div>;
     if (success) return <div>Checkout successful! Thank you for your order!</div>;
 
