@@ -120,7 +120,7 @@ ul {
 
   .drop-down {
     display: unset;
-    position: absolute;
+    position: fixed;
     top: 0;
     transform: translateY(-100vh);
     /* transform: translateX(-100vw); */

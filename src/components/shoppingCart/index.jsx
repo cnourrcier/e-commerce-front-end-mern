@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import Button from '../button';
 import './styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShoppingCart() {
     const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext);
     const [quantityToRemove, setQuantityToRemove] = useState({});
+    const navigate = useNavigate();
 
     function handleQuantityChange(productId, value) {
         setQuantityToRemove({
@@ -35,10 +37,10 @@ export default function ShoppingCart() {
                             </div>
                             <div className='cart-item-details'>
                                 <div className='price-container'>
-                                <span className='details-title'>price:</span>${item.product.price}
+                                    <span className='details-title'>price:</span>${item.product.price}
                                 </div>
                                 <div className='qty-container'>
-                                <span className='details-title'>qty:</span> {item.quantity}
+                                    <span className='details-title'>qty:</span> {item.quantity}
                                 </div>
                                 <input
                                     type='number'
@@ -53,6 +55,7 @@ export default function ShoppingCart() {
                     ))}
                 </ul>
             </div>
+            <Button onClick={() => navigate('/checkout')} buttonText={'Proceed to checkout'} />
             <Button onClick={removeAllFromCart} buttonText={'Remove all items from cart'} />
         </div>
     )
