@@ -7,7 +7,7 @@ import './styles.css';
 export default function Checkout() {
     const { cart, removeAllFromCart } = useContext(ShoppingCartContext);
     const { user, setUser } = useContext(AuthContext);
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState(user.address || '');
     const [firstName, setFirstName] = useState(user.firstName);
     const [lastName, setLastName] = useState(user.lastName);
     const [email, setEmail] = useState(user.email);
@@ -34,12 +34,13 @@ export default function Checkout() {
         const updatedFirstName = firstName || user.firstName;
         const updatedLastName = lastName || user.lastName;
         const updatedEmail = email || user.email;
+        const updatedAddress = address || user.address;
 
         try {
             const res = await fetch(`api/orders`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ address, cart, totalAmount: orderTotal, firstName, lastName, email }),
+                body: JSON.stringify({ address: updatedAddress, cart, totalAmount: orderTotal, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail }),
                 credentials: 'include'
             });
             const data = await res.json();
@@ -48,7 +49,7 @@ export default function Checkout() {
                 setSuccess(true);
                 removeAllFromCart();
                 // Update user context with new information
-                setUser({ ...user, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail });
+                setUser({ ...user, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail, address: updatedAddress });
             } else {
                 setError(data.message || 'Checkout failed');
             }

@@ -10,6 +10,7 @@ export default function Account() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ export default function Account() {
             const res = await fetch(`/api/account/update`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
+                body: JSON.stringify({ firstName, lastName, email, password, confirmPassword, address }),
                 credentials: 'include'
             });
             const data = await res.json();
@@ -41,6 +42,7 @@ export default function Account() {
             setFirstName('');
             setLastName('');
             setEmail('');
+            setAddress('');
             setPassword('');
             setConfirmPassword('');
         }
@@ -100,6 +102,14 @@ export default function Account() {
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                />
+                <label htmlFor='address'>Shipping Address</label>
+                <input
+                    type='text'
+                    name='address'
+                    id='address'
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                 />
                 <label htmlFor='password'>Password</label>
                 <input

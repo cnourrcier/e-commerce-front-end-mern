@@ -61,6 +61,7 @@ export default function Profile() {
             <h1>Profile</h1>
             <p>Name: {user.firstName} {user.lastName}</p>
             <p>Email: {user.email}</p>
+            <p>Shipping Address: {user.address}</p>
             <div className='button-container'>
                 <Button onClick={handleLogout} buttonText={'Logout'} />
                 <Button onClick={() => navigate('/account')} buttonText={'Account Settings'} />
