@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import Button from '../button';
 import './styles.css';
 
 export default function Profile() {
     const navigate = useNavigate();
     const { user, setUser, loading } = useContext(AuthContext);
+    const { updateCart } = useContext(ShoppingCartContext);
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
 
@@ -35,6 +37,7 @@ export default function Profile() {
             const data = await res.json();
             if (res.ok) {
                 setUser(null);
+                updateCart([]);
                 navigate('/login');
             } else {
                 const data = await res.json();

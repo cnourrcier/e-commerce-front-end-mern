@@ -7,6 +7,7 @@ export function ShoppingCartProvider({ children }) {
     const { user } = useContext(AuthContext);
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [version, setVersion] = useState(0);
 
     async function fetchCart() {
         try {
@@ -82,6 +83,11 @@ export function ShoppingCartProvider({ children }) {
         }
     }
 
+    const updateCart = (newCart) => {
+        setCart(newCart);
+        setVersion(prevVersion => prevVersion + 1);
+    }
+
     useEffect(() => {
         if (user) {
             fetchCart();
@@ -89,7 +95,7 @@ export function ShoppingCartProvider({ children }) {
     }, [user]);
 
     return (
-        <ShoppingCartContext.Provider value={{ cart, loading, addToCart, removeFromCart, removeAllFromCart }}>
+        <ShoppingCartContext.Provider value={{ cart, loading, addToCart, removeFromCart, removeAllFromCart, updateCart, version }}>
             {children}
         </ShoppingCartContext.Provider>
     )
