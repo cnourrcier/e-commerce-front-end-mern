@@ -106,7 +106,7 @@ export default function Admin() {
                 ))}
             </ul>
             {selectedUser && (
-                <form onSubmit={handleUpdateUser}>
+                <form>
                     <h2>Edit User</h2>
                     <label htmlFor="firstName">First Name:</label>
                     <input
@@ -143,8 +143,8 @@ export default function Admin() {
                         <option value='manager'>Manager</option>
                         <option value='admin'>Admin</option>
                     </select>
-                    <button type='submit'>Update</button>
-                    <button type='button' onClick={() => setSelectedUser(null)}>Cancel</button>
+                    <Button onClick={handleUpdateUser} buttonText={'Update'} />
+                    <Button onClick={() => setSelectedUser(null)} buttonText={'Cancel'} />
                 </form>
             )}
         </div>
