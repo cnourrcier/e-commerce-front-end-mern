@@ -6,17 +6,12 @@ import Button from '../button';
 import './styles.css';
 
 export default function Checkout() {
-    const { cart, removeAllFromCart } = useContext(ShoppingCartContext);
-    const { user, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [address, setAddress] = useState(user.address || '');
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [email, setEmail] = useState(user.email);
-    const [success, setSuccess] = useState(false);
-    const [editInfo, setEditInfo] = useState(false);
+    const { cart, removeAllFromCart } = useContext(ShoppingCartContext);
+    const { user } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState('');
     const [confirm, setConfirm] = useState(false);
 
     const shippingAndHandling = 6.99;
@@ -28,22 +23,22 @@ export default function Checkout() {
     const rawTotal = totalBeforeTax + estimatedTax;
     const orderTotal = parseFloat(rawTotal.toFixed(2));
 
-    async function handleCheckout(e) {
-        e.preventDefault();
+    async function handleCheckout() {
         setLoading(true);
         setError(null);
-
-        // Use the existing user information if no changes are made
-        const updatedFirstName = firstName || user.firstName;
-        const updatedLastName = lastName || user.lastName;
-        const updatedEmail = email || user.email;
-        const updatedAddress = address || user.address;
 
         try {
             const res = await fetch(`api/orders`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ address: updatedAddress, cart, totalAmount: orderTotal, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail }),
+                body: JSON.stringify({
+                    address: user.address,
+                    cart,
+                    totalAmount: orderTotal,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
+                }),
                 credentials: 'include'
             });
             const data = await res.json();
@@ -51,8 +46,6 @@ export default function Checkout() {
             if (data.success) {
                 // Move to payment confirmation step
                 setConfirm(true);
-                // Update user context with new information
-                setUser({ ...user, firstName: updatedFirstName, lastName: updatedLastName, email: updatedEmail, address: updatedAddress });
             } else {
                 setError(data.message || 'Checkout failed');
             }
@@ -78,15 +71,15 @@ export default function Checkout() {
             const data = await res.json();
 
             if (data.success) {
-                setSuccess(true);
+                alert(data.message);
                 removeAllFromCart();
             } else {
+                setLoading(false);
                 setError(data.message || 'Payment failed');
             }
         } catch (err) {
-            setError('Payment failed');
-        } finally {
             setLoading(false);
+            setError('Payment failed');
         }
     }
 
@@ -95,18 +88,19 @@ export default function Checkout() {
     }, [cart, navigate]);
 
     if (loading) return <div>Loading...</div>;
-    if (success) return <div>Checkout successful! Thank you for your order!</div>;
 
     return (
         <div className='checkout-container'>
-            <h2>Checkout</h2>
-            {!editInfo ? (
+            {message ? (
+                <div>{message}</div>
+            ) : (
                 <>
-                    <div className='confirmation-container'>
+                    <h2>Checkout</h2>
+                    <div>
                         <h3>Review Your Order</h3>
-                        <p><strong>Name:</strong> {firstName + ' ' + lastName}</p>
-                        <p><strong>Email:</strong> {email}</p>
-                        <p><strong>Address:</strong> {address}</p>
+                        <p><strong>Name:</strong> {user.firstName + ' ' + user.lastName}</p>
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Address:</strong> {user.address}</p>
                         <h3>Order Summary</h3>
                         <div className='checkout-subtotals-container'>
                             <div className='checkout-subtotals-title-container'>
@@ -126,82 +120,24 @@ export default function Checkout() {
                         <div className='checkout-total-container'>
                             <span>Order total: </span><span>${orderTotal}</span>
                         </div>
-                        <div className='button-container'>
-                            <Button onClick={handleCheckout} buttonText={'Confirm Order'} />
-                            <Button onClick={() => setEditInfo(true)} buttonText={'Edit Info'} />
-                        </div>
+                        {!confirm ? (
+                            <div className='checkout-button-container'>
+                                <Button onClick={handleCheckout} buttonText={'Confirm Order'} />
+                                <Button onClick={() => navigate('/update-info')} buttonText={'Update Info'} />
+                            </div>
+                        ) : (
+                            <div className='confirmation-container'>
+                                <h3>Confirm Your Payment</h3>
+                                <p><strong>Order total:</strong> ${orderTotal}</p>
+                                <Button onClick={handlePayment} buttonText={'Pay Now'} />
+                                <Button onClick={() => setConfirm(false)} buttonText={'Back to Order Review'} />
+                            </div>
+                        )}
                     </div>
-                    {error && <div className='error-message'>{error}</div>}
-                </>
-
-            ) : (
-                <>
-                    <form>
-                        <label htmlFor='firstName'>First Name:</label>
-                        <input
-                            type='text'
-                            id='firstName'
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='lastName'>Last Name:</label>
-                        <input
-                            type='text'
-                            id='lastName'
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='email'>Email:</label>
-                        <input
-                            type='email'
-                            id='email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                        <label htmlFor='address'>Address:</label>
-                        <input
-                            type='text'
-                            id='address'
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                        />
-                        <h2>Order Summary</h2>
-                        <div className='checkout-subtotals-container'>
-                            <div className='checkout-subtotals-title-container'>
-                                <p>Items:</p>
-                                <p>Shipping & handling:</p>
-                                <p>Total before tax:</p>
-                                <p>Estimated tax to be collected:</p>
-                            </div>
-                            <div className='checkout-subtotals-price-container'>
-                                <p>${itemsSubtotal.toFixed(2)}</p>
-                                <p>${shippingAndHandling}</p>
-                                <p>${totalBeforeTax.toFixed(2)}</p>
-                                <p>${estimatedTax.toFixed(2)}</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='checkout-total-container'>
-                            <span>Order total: </span><span>${orderTotal}</span>
-                        </div>
-                        {address && <Button onClick={() => setEditInfo(false)} buttonText={'Review Order'} />}
-                    </form>
-                    {error && <div className='error-message'>{error}</div>}
                 </>
             )}
 
-            {confirm && (
-                <div className='confirmation-container'>
-                    <h3>Confirm Your Payment</h3>
-                    <p><strong>Order total:</strong> ${orderTotal}</p>
-                    <Button onClick={handlePayment} buttonText={'Pay Now'} />
-                    <Button onClick={() => setConfirm(false)} buttonText={'Back to Order Review'} />
-                </div>
-            )}
+            {error && <div className='checkout-error-message'>{error}</div>}
         </div>
     )
 }

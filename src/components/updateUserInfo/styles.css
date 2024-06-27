@@ -1,4 +1,4 @@
-.checkout-container {
+.update-container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -7,24 +7,24 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-container h2 {
+.update-container h2 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #333;
 }
 
-.checkout-container form {
+.update-container form {
     display: flex;
     flex-direction: column;
 }
 
-.checkout-container label {
+.update-container label {
     font-size: 1em;
     margin-bottom: 5px;
     color: #666;
 }
 
-.checkout-container input {
+.update-container input {
     padding: 10px;
     margin-bottom: 15px;
     font-size: 1em;
@@ -32,35 +32,15 @@
     border-radius: 5px;
 }
 
-.checkout-subtotals-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.checkout-subtotals-title-container {
-    line-height: 1.5rem;
-}
-
-.checkout-subtotals-price-container {
-    line-height: 1.5rem;
-    text-align: right;
-}
-
-.checkout-total-container {
-    display: flex;
-    justify-content: space-between;
-    line-height: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.checkout-button-container {
+.update-button-container {
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     width: auto;
     gap: 10px;
 }
 
-.checkout-error-message {
+.update-error-message {
     color: red;
     margin-top: 10px;
 }

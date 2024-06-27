@@ -16,6 +16,7 @@ import ResendVerificationEmail from './components/resendVerificationEmail';
 import Account from './components/account';
 import Admin from './components/admin';
 import Checkout from './components/checkout';
+import UpdateUserInfo from './components/updateUserInfo';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
@@ -41,6 +42,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/account' element={<Account />} />
             <Route path='/checkout' element={<Checkout />} />
+            <Route path='/update-info' element={<UpdateUserInfo />} />
           </Route>
           <Route path='/request-password-reset' element={<RequestPasswordReset />} />
           <Route path='/reset-password/:token' element={<ResetPassword />} />
