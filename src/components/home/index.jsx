@@ -21,7 +21,7 @@ export default function Home() {
         <div className='image-slider-container'>
           <div className="column">
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/thumbnail.png" alt="image" /></a>
+            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/groceries/Beef%20Steak/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png" alt="image" /></a>
@@ -30,9 +30,9 @@ export default function Home() {
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-jewellery/Green%20Crystal%20Earring/thumbnail.png" alt="image" /></a>
           </div>
           <div className="column">
+            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/kitchen-accessories/Plate/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-shoes/Black%20&%20Brown%20Slipper/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/thumbnail.png" alt="image" /></a>
@@ -52,10 +52,10 @@ export default function Home() {
           <div className="column">
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/thumbnail.png" alt="image" /></a>
+            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Huawei%20Matebook%20X%20Pro/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/sports-accessories/American%20Football/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/sunglasses/Black%20Sun%20Glasses/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/smartphones/iPhone%206/thumbnail.png" alt="image" /></a>
+            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20S8%20Plus%20Grey/thumbnail.png" alt="image" /></a>
           </div>

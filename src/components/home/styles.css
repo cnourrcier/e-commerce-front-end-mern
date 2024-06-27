@@ -61,9 +61,9 @@
     animation: var(--animation, none) 16s infinite linear;
 }
 
-.image-slider-container .column:hover {
+/* .image-slider-container .column:hover {
     animation-play-state: paused;
-}
+} */
 
 .image-slider-container .column:nth-of-type(odd) {
     align-self: flex-end;
