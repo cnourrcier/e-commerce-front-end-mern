@@ -49,32 +49,35 @@ export default function ResetPassword() {
 
     return (
         <div className='reset-password-container'>
-            <form onSubmit={handleResetPassword}>
-                <h1>Reset Password</h1>
-                <label htmlFor="password">New Password:</label>
-                <input
-                    type="password"
-                    name='password'
-                    id='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='New Password'
-                    required
-                />
-                <label htmlFor="confirmPassword">New Password:</label>
-                <input
-                    type="password"
-                    name='confirmPassword'
-                    id='confirmPassword'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder='Confirm Password'
-                    required
-                />
-                <button type='submit' disabled={loading}>Reset Password</button>
+            {/* {Loading && <div>Loading...</div>} */}
+            <>
+                <form onSubmit={handleResetPassword}>
+                    <h1>Reset Password</h1>
+                    <label htmlFor="password">New Password:</label>
+                    <input
+                        type="password"
+                        name='password'
+                        id='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='New Password'
+                        required
+                    />
+                    <label htmlFor="confirmPassword">New Password:</label>
+                    <input
+                        type="password"
+                        name='confirmPassword'
+                        id='confirmPassword'
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder='Confirm Password'
+                        required
+                    />
+                    <button type='submit' disabled={loading}>Reset Password</button>
+                </form>
+                {error && <div className='error-message'>{error}</div>}
                 {message && <div>{message}</div>}
-                {error && <div>{error}</div>}
-            </form>
+            </>
         </div>
     );
 }
