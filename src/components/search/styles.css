@@ -11,13 +11,14 @@
     border: 2px solid hsl(216, 100%, 50%);
     border-radius: 8px;
     font-size: 16px;
-    padding: 5px 70px;
+    padding: 5px;
+    width: 300px;
     color: hsl(207, 31%, 11%);
 }
 
 .search-button {
     position: relative;
-    transform: translateX(116px);
+    transform: translateX(110px);
     background-color: hsl(216, 100%, 50%);
     border: 2px solid hsl(216, 100%, 50%);
     border-top-right-radius: 8px;

@@ -48,8 +48,18 @@ export default function Search() {
     return (
         <>
             <div className='search-bar-container'>
-                <input className='search-input' value={text} type="text" id="search" onChange={(e) => setText(e.target.value)} />
-                <button className='search-button' onClick={handleClick}>Search</button>
+                <input
+                    className='search-input'
+                    type="text"
+                    value={text}
+                    id="search"
+                    placeholder="Enter your search here"
+                    onChange={(e) => setText(e.target.value)}
+                />
+                <button
+                    className='search-button'
+                    onClick={handleClick}>Search
+                </button>
             </div>
             {
                 searchTerm && <Products products={products} header={header} />
