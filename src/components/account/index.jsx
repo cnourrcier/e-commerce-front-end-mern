@@ -13,11 +13,22 @@ export default function Account() {
     const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     async function handleUpdate(e) {
         e.preventDefault();
+
+        if (email && !validateEmail(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
         try {
             setLoading(true);
             setError(null);
@@ -29,9 +40,10 @@ export default function Account() {
                 credentials: 'include'
             });
             const data = await res.json();
+
             if (data.success) {
                 setUser(data.user);
-                alert(data.message);
+                setMessage(data.message);
             } else {
                 setError(data.message || 'Failed to update account');
             }
@@ -64,6 +76,7 @@ export default function Account() {
                 navigate('/signup');
             } else {
                 setError(data.message || 'Failed to delete account');
+                setMessage(data.message);
             }
         } catch (err) {
             setError(err.message);
@@ -72,67 +85,71 @@ export default function Account() {
         }
     }
 
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>{error}</div>
-
     return (
         <div className='account-container'>
             <h1>Update Account</h1>
-            <form onSubmit={handleUpdate} >
-                <label htmlFor='firstName'>First Name</label>
-                <input
-                    type='text'
-                    name='firstName'
-                    id='firstName'
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-                <label htmlFor='lastName'>Last Name</label>
-                <input
-                    type='text'
-                    name='lastName'
-                    id='lastName'
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
-                <label htmlFor='email'>Email</label>
-                <input
-                    type='email'
-                    name='email'
-                    id='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor='address'>Shipping Address</label>
-                <input
-                    type='text'
-                    name='address'
-                    id='address'
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                />
-                <label htmlFor='password'>Password</label>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <label htmlFor='confirmPassword'>Confirm Password</label>
-                <input
-                    type='password'
-                    name='confirmPassword'
-                    id='confirmPassword'
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                <button className='submit-button' type='submit'>Update Account</button>
-            </form>
-            <div className='non-submit-button-container'>
-                <Button onClick={handleDeleteAccount} buttonText={'Delete Account'} />
-                <Button onClick={() => navigate('/profile')} buttonText={'Return to Profile'} />
-            </div>
+            {loading && <div>Loading...</div>}
+            {!loading && (
+                <>
+                    <form>
+                        <label htmlFor='firstName'>First Name</label>
+                        <input
+                            type='text'
+                            name='firstName'
+                            id='firstName'
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        <label htmlFor='lastName'>Last Name</label>
+                        <input
+                            type='text'
+                            name='lastName'
+                            id='lastName'
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                        <label htmlFor='email'>Email</label>
+                        <input
+                            type='email'
+                            name='email'
+                            id='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label htmlFor='address'>Shipping Address</label>
+                        <input
+                            type='text'
+                            name='address'
+                            id='address'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            type='password'
+                            name='password'
+                            id='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label htmlFor='confirmPassword'>Confirm Password</label>
+                        <input
+                            type='password'
+                            name='confirmPassword'
+                            id='confirmPassword'
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                        <Button onClick={handleUpdate} buttonText={'Update Account'} />
+                    </form>
+                    <div className='non-submit-button-container'>
+                        <Button onClick={handleDeleteAccount} buttonText={'Delete Account'} />
+                        <Button onClick={() => navigate('/profile')} buttonText={'Return to Profile'} />
+                    </div>
+                    {error && <div className='error-message'>{error}</div>}
+                    {message && <div>{message}</div>}
+                </>
+            )}
         </div>
     )
 }
