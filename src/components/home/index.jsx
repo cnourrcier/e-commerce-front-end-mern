@@ -22,7 +22,7 @@ export default function Home() {
           <div className="column">
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/groceries/Beef%20Steak/thumbnail.png" alt="image" /></a>
+            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png" alt="image" /></a>
             <a href="#"><img src="https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/thumbnail.png" alt="image" /></a>
