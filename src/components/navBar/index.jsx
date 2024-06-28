@@ -43,6 +43,7 @@ export default function NavBar() {
                         <img src={`/img/log-in.svg`} />
                         Login
                     </Link>
+                    <div className='tab-separator'></div>
                     <Link to="/signup" className='tab'>
                         <img src={`/img/log-in.svg`} />
                         Signup
