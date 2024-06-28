@@ -43,6 +43,10 @@ export default function NavBar() {
                         <img src={`/img/log-in.svg`} />
                         Login
                     </Link>
+                    <Link to="/signup" className='tab'>
+                        <img src={`/img/log-in.svg`} />
+                        Signup
+                    </Link>
                 </div>
                 <div className='box box-three'>
                     <div onClick={handleToggleMenu} className='hamburger-menu'>
