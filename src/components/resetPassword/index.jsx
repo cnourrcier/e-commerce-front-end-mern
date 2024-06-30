@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import Button from '../button';
 import './styles.css';
 
 export default function ResetPassword() {
@@ -49,31 +50,36 @@ export default function ResetPassword() {
 
     return (
         <div className='reset-password-container'>
-            {/* {Loading && <div>Loading...</div>} */}
             <>
-                <form onSubmit={handleResetPassword}>
+                <form>
                     <h1>Reset Password</h1>
-                    <label htmlFor="password">New Password:</label>
-                    <input
-                        type="password"
-                        name='password'
-                        id='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='New Password'
-                        required
-                    />
-                    <label htmlFor="confirmPassword">New Password:</label>
-                    <input
-                        type="password"
-                        name='confirmPassword'
-                        id='confirmPassword'
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder='Confirm Password'
-                        required
-                    />
-                    <button type='submit' disabled={loading}>Reset Password</button>
+                    <div className='reset-password-inputs-container'>
+                        <div className='reset-password-input'>
+                            <label htmlFor="password">New Password:</label>
+                            <input
+                                type="password"
+                                name='password'
+                                id='password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder='New Password'
+                                required
+                            />
+                            <label htmlFor="confirmPassword">New Password:</label>
+                            <input
+                                type="password"
+                                name='confirmPassword'
+                                id='confirmPassword'
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                placeholder='Confirm Password'
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className='reset-password-button-container'>
+                        <Button onClick={handleResetPassword} buttonText={'Reset Password'} />
+                    </div>
                 </form>
                 {error && <div className='error-message'>{error}</div>}
                 {message && <div>{message}</div>}

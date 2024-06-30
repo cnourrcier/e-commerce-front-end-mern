@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../button';
 import './styles.css';
 
 export default function RequestPasswordReset() {
@@ -47,19 +48,24 @@ export default function RequestPasswordReset() {
                 <>
                     <form onSubmit={handlePasswordReset}>
                         <h1>Request Password Reset</h1>
-                        <label htmlFor='email'>Email:</label>
-                        <input
-                            type='email'
-                            name='email'
-                            id='email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder='Email'
-                            required
-                        />
-                        <button type='submit' disabled={loading}>Request Password Reset</button>
+                        <div className='request-password-reset-inputs-container'>
+                            <div className='request-password-reset-input'>
+                                <label htmlFor='email'>Email:</label>
+                                <input
+                                    type='email'
+                                    name='email'
+                                    id='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder='Email'
+                                    required
+                                />
+                            </div>
+                        </div>
                     </form>
-                    <button onClick={() => navigate('/login')}>Return to login form</button>
+                    <div className='request-password-reset-button-container'></div>
+                    <Button onClick={handlePasswordReset} buttonText={'Request Password Reset'} />
+                    <Button onClick={() => navigate('/login')} buttonText={'Return to login form'} />
                 </>
 
             }
