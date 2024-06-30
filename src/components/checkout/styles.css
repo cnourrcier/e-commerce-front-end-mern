@@ -32,9 +32,16 @@
     border-radius: 5px;
 }
 
+.checkout-user-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .checkout-subtotals-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .checkout-subtotals-title-container {
@@ -63,4 +70,23 @@
 .checkout-error-message {
     color: red;
     margin-top: 10px;
+}
+
+.confirmation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.confirmation-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.confirmation-button-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    gap: 10px;
 }

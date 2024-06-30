@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../button/index';
 import AddToCartButton from '../addToCartButton';
+import { numberWithCommas } from '../../utils/format';
 import './styles.css';
 
 export default function productDetails({ returnToProducts, productData }) {
@@ -38,8 +39,8 @@ export default function productDetails({ returnToProducts, productData }) {
                     productData.discountPercentage > 7 // Everything is discounted. Make it seem more realistic by showing some items without discount.
                         ? <p>
                             <span className='product-current-price'>
-                                ${(productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2)}</span> <span className='product-original-price'>{productData.price}</span></p>
-                        : <p><span className='product-current-price'>${productData.price}</span></p>
+                                ${numberWithCommas((productData.price - (productData.price * (productData.discountPercentage / 100))).toFixed(2))}</span> <span className='product-original-price'>{numberWithCommas(productData.price)}</span></p>
+                        : <p><span className='product-current-price'>${numberWithCommas(productData.price)}</span></p>
                 }
                 <AddToCartButton product={productData} />
                 <p>{productData.description}</p>

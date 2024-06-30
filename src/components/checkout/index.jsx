@@ -3,6 +3,7 @@ import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Button from '../button';
+import { numberWithCommas } from "../../utils/format";
 import './styles.css';
 
 export default function Checkout() {
@@ -97,28 +98,30 @@ export default function Checkout() {
                 <>
                     <h2>Checkout</h2>
                     <div>
-                        <h3>Review Your Order</h3>
-                        <p><strong>Name:</strong> {user.firstName + ' ' + user.lastName}</p>
-                        <p><strong>Email:</strong> {user.email}</p>
-                        <p><strong>Address:</strong> {user.address}</p>
-                        <h3>Order Summary</h3>
+                        <div className='checkout-user-info-container'>
+                            <h3>Review Your Order</h3>
+                            <p><strong>Name:</strong> {user.firstName + ' ' + user.lastName}</p>
+                            <p><strong>Email:</strong> {user.email}</p>
+                            <p><strong>Address:</strong> {user.address}</p>
+                        </div>
                         <div className='checkout-subtotals-container'>
                             <div className='checkout-subtotals-title-container'>
+                                <h3>Order Summary</h3>
                                 <p>Items:</p>
                                 <p>Shipping & handling:</p>
                                 <p>Total before tax:</p>
                                 <p>Estimated tax to be collected:</p>
                             </div>
                             <div className='checkout-subtotals-price-container'>
-                                <p>${itemsSubtotal.toFixed(2)}</p>
-                                <p>${shippingAndHandling}</p>
-                                <p>${totalBeforeTax.toFixed(2)}</p>
-                                <p>${estimatedTax.toFixed(2)}</p>
+                                <p>${numberWithCommas(itemsSubtotal.toFixed(2))}</p>
+                                <p>${numberWithCommas(shippingAndHandling)}</p>
+                                <p>${numberWithCommas(totalBeforeTax.toFixed(2))}</p>
+                                <p>${numberWithCommas(estimatedTax.toFixed(2))}</p>
                             </div>
                         </div>
                         <hr />
                         <div className='checkout-total-container'>
-                            <span>Order total: </span><span>${orderTotal}</span>
+                            <span>Order total: </span><span>${numberWithCommas(orderTotal)}</span>
                         </div>
                         {!confirm ? (
                             <div className='checkout-button-container'>
@@ -127,10 +130,14 @@ export default function Checkout() {
                             </div>
                         ) : (
                             <div className='confirmation-container'>
-                                <h3>Confirm Your Payment</h3>
-                                <p><strong>Order total:</strong> ${orderTotal}</p>
-                                <Button onClick={handlePayment} buttonText={'Pay Now'} />
-                                <Button onClick={() => setConfirm(false)} buttonText={'Back to Order Review'} />
+                                <div className='confirmation-text-container'>
+                                    <h3>Confirm Your Payment</h3>
+                                    <p><strong>Order total:</strong> ${numberWithCommas(orderTotal)}</p>
+                                </div>
+                                <div className='confirmation-button-container'>
+                                    <Button onClick={handlePayment} buttonText={'Pay Now'} />
+                                    <Button onClick={() => setConfirm(false)} buttonText={'Back to Order Review'} />
+                                </div>
                             </div>
                         )}
                     </div>

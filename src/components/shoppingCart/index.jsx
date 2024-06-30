@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import Button from '../button';
-import './styles.css';
 import { useNavigate } from 'react-router-dom';
+import { numberWithCommas } from '../../utils/format';
+import './styles.css';
+
 
 export default function ShoppingCart() {
     const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext);
@@ -59,14 +61,14 @@ export default function ShoppingCart() {
                                             {item.quantity}
                                         </div>
                                         <div className='price-container'>
-                                            ${item.product.price}
+                                            ${numberWithCommas(item.product.price)}
                                         </div>
                                     </div>
                                 </li>
                             ))}
                         </ul>
                         <div className='subtotal-container'>
-                            <span className='subtotal-title'>Subtotal ({cart.length} items): </span> <b>${totalPrice.toFixed(2)}</b>
+                            <span className='subtotal-title'>Subtotal ({cart.length} items): </span> <b>${numberWithCommas(totalPrice.toFixed(2))}</b>
                         </div>
                     </div>
                     <Button onClick={() => navigate('/checkout')} buttonText={'Proceed to checkout'} />
