@@ -63,9 +63,10 @@ export default function RequestPasswordReset() {
                             </div>
                         </div>
                     </form>
-                    <div className='request-password-reset-button-container'></div>
-                    <Button onClick={handlePasswordReset} buttonText={'Request Password Reset'} />
-                    <Button onClick={() => navigate('/login')} buttonText={'Return to login form'} />
+                    <div className='request-password-reset-button-container'>
+                        <Button onClick={handlePasswordReset} buttonText={'Request Password Reset'} />
+                        <Button onClick={() => navigate('/login')} buttonText={'Return to login form'} />
+                    </div>
                 </>
 
             }

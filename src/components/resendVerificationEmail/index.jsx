@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../button';
 import './styles.css';
 
 export default function ResendVerificationEmail() {
@@ -41,18 +42,24 @@ export default function ResendVerificationEmail() {
 
     return (
         <div className='resend-verification-email-container'>
-            <form onSubmit={handleResendVerificationEmail}>
+            <form>
                 <h1>Resend Verification Email</h1>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    name='email'
-                    id='email'
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder='Email'
-                    required
-                />
-                <button type='submit' disabled={loading}>Resend Verification Email</button>
+                <div className='resend-verification-email-inputs-container'>
+                    <div className='resend-verification-email-input'>
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            name='email'
+                            id='email'
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Email'
+                            required
+                        />
+                    </div>
+                </div>
+                <div className='resend-verification-email-button-container'>
+                    <Button onClick={handleResendVerificationEmail} buttonText={'Resend Verification Email'} />
+                </div>
                 {message && <div>{message}</div>}
                 {error && <div>{error}</div>}
             </form>
