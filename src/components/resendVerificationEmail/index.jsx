@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import Button from '../button';
 import './styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResendVerificationEmail() {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
 
     async function handleResendVerificationEmail(e) {
         e.preventDefault();
@@ -37,6 +40,12 @@ export default function ResendVerificationEmail() {
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/profile');
+        }
+    }, [user, navigate]);
 
     if (loading) return <div>Loading...</div>
 

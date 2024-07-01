@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 import Button from '../button';
 import './styles.css';
 
 export default function RequestPasswordReset() {
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
@@ -24,7 +26,7 @@ export default function RequestPasswordReset() {
             });
 
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 setMessage(data.message);
             } else if (res.status === 429) { // Check for rate limit status code
                 setError(data.message)
@@ -38,6 +40,12 @@ export default function RequestPasswordReset() {
             setShowForm(false);
         }
     }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/profile');
+        }
+    }, [user, navigate]);
 
     if (loading) return <div>Loading...</div>
 
