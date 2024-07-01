@@ -16,7 +16,7 @@ export default function VerifyEmail() {
 
             const res = await fetch(`/api/verify-email/${token}`)
             const data = await res.json();
-            if (data.message === 'Email verified successfully') {
+            if (data.success) {
                 setMessage(data.message);
                 setTimeout(() => {
                     navigate('/login');
