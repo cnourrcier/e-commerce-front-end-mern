@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Button from '../button';
 import './styles.css';
