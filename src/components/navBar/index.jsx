@@ -18,7 +18,7 @@ export default function NavBar() {
                     <a href='https://github.com/cnourrcier' target='_blank'><img src={`/img/lorem-lorem-1.svg`} alt='' /></a>
                 </div>
                 <div className='subcontainer subcontainer-one-and-half'>
-                    <span>Cardinal <br />Goods</span>
+                    <span>Cardinal <br />Finds</span>
                 </div>
                 <div className='subcontainer subcontainer-two'>
                     <Link to="/" className='tab'>
