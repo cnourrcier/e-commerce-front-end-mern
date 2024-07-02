@@ -19,11 +19,12 @@ export default function Search() {
             // Fetch products from the server
             const res = await fetch(`/api/products/search?q=${searchTerm}`);
 
-            if (!data.success) {
+            const data = await res.json(); // Parse the JSON data from the response
+            if (data.success) {
+                setProducts(data.products); // Set the products state with the fetched data
+            } else {
                 setError(data.message); // Throw error if bad response
             }
-            const data = await res.json(); // Parse the JSON data from the response
-            setProducts(data.products); // Set the products state with the fetched data
         } catch (err) {
             setError(err); // Set the error state with the caught error message
         } finally {

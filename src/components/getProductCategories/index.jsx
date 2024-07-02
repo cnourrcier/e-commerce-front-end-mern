@@ -18,11 +18,13 @@ export default function GetProductCategories({ resetCategory }) {
             setError(null); // Reset error state
 
             const res = await fetch(`/api/products/categories`); // Fetch categories from the API
-            if (!data.success) {
-                throw new Error('Error occurred. Please try again.'); // Handle HTTP errors
-            }
+
             const data = await res.json(); // Parse the JSON response
-            setCategoryList(data); // Update the category list state
+            if (data.success) {
+                setCategoryList(data.categories); // Update the category list state
+            } else {
+                setError(data.message); // set error message
+            }
         } catch (err) {
             setError(err.message); // Set error message if fetching fails
         } finally {
@@ -41,7 +43,6 @@ export default function GetProductCategories({ resetCategory }) {
             setCategory(null); // Reset the category state
         }
     }, [resetCategory]);
-
 
     if (loading) return <div>Loading...</div> // Render loading message if data is being fetched
     if (error) return <div>{error}</div> // Render error message if there was an error fetching data
