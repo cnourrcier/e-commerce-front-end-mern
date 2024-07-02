@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 260px;
+    padding: 260px;
 }
 
 .search-input {
