@@ -18,7 +18,7 @@ export default function GetProductCategories({ resetCategory }) {
             setError(null); // Reset error state
 
             const res = await fetch(`/api/products/categories`); // Fetch categories from the API
-            if (!res.ok) {
+            if (!data.success) {
                 throw new Error('Error occurred. Please try again.'); // Handle HTTP errors
             }
             const data = await res.json(); // Parse the JSON response

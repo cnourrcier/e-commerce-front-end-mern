@@ -19,7 +19,7 @@ export default function Profile() {
                 credentials: 'include', // Ensure cookies are included in the request
             });
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 setProfile(data);
             } else {
                 setError(data.message);
@@ -37,7 +37,7 @@ export default function Profile() {
                 credentials: 'include' // Ensure cookies are included in the request
             });
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 setUser(null);
                 updateCart([]);
                 navigate('/login');

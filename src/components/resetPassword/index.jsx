@@ -32,7 +32,7 @@ export default function ResetPassword() {
             });
 
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 setMessage(data.message) // Set success message
                 setTimeout(() => {
                     navigate('/login'); // Redirect to login after 1 second

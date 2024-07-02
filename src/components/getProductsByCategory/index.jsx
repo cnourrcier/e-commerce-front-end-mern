@@ -15,7 +15,7 @@ export default function GetProductsByCategory() {
             setError(null); // Reset error state
 
             const res = await fetch(`/api/products/category/${category}`); // Fetch products by category from the API
-            if (!res.ok) {
+            if (!data.success) {
                 throw new Error('Error occurred. Please try again.'); // Handle HTTP errors
             }
             const data = await res.json(); // Parse the JSON response

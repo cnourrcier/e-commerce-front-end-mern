@@ -19,13 +19,13 @@ export default function Search() {
             // Fetch products from the server
             const res = await fetch(`/api/products/search?q=${searchTerm}`);
 
-            if (!res.ok) {
-                throw new Error('Error Occurred. Please try again.'); // Throw error if bad response
+            if (!data.success) {
+                setError(data.message); // Throw error if bad response
             }
             const data = await res.json(); // Parse the JSON data from the response
             setProducts(data.products); // Set the products state with the fetched data
         } catch (err) {
-            setError(err.message); // Set the error state with the caught error message
+            setError(err); // Set the error state with the caught error message
         } finally {
             setLoading(false); // Set loading to false after the fetch is complete
         }

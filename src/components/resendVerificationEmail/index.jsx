@@ -27,10 +27,9 @@ export default function ResendVerificationEmail() {
             });
 
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 setMessage(data.message); // Success message
             } else if (res.status === 429) { // Check for rate limit status code
-                console.log(data);
                 setError(data.message) // Set rate limit error
             } else {
                 setError(data.message); // Set other errors
