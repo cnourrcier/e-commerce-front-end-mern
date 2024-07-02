@@ -7,11 +7,12 @@ import './styles.css';
 
 export default function Profile() {
     const navigate = useNavigate();
-    const { user, setUser, loading } = useContext(AuthContext);
-    const { updateCart } = useContext(ShoppingCartContext);
+    const { user, setUser, loading } = useContext(AuthContext); // Access authenticated user context
+    const { updateCart } = useContext(ShoppingCartContext); // Access shopping cart context
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
 
+    // Function to fetch the user profile data
     async function fetchProfile() {
         try {
             const res = await fetch(`/api/profile`, {
@@ -28,6 +29,7 @@ export default function Profile() {
         }
     }
 
+    // Function to handle user logout
     async function handleLogout() {
         try {
             const res = await fetch(`/api/logout`, {
@@ -48,6 +50,7 @@ export default function Profile() {
         }
     }
 
+    // Navigate to login if the user is not authenticated, and fetch profile data if authenticated
     useEffect(() => {
         if (!user && !loading) {
             navigate('/login');

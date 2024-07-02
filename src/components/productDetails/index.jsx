@@ -13,6 +13,7 @@ export default function productDetails({ returnToProducts, productData }) {
             <div
                 className='product-details'
             >
+                {/* Display the product thumbnail */}
                 <img
                     src={productData.thumbnail}
                     alt={productData.title}
@@ -27,6 +28,7 @@ export default function productDetails({ returnToProducts, productData }) {
                     {productData.availabilityStatus}
                 </span></p>
                 <p className='product-rating'>rating: <span className={`${productData.rating >= 3.5 ? 'product-rating-good' : 'product-rating-okay'}`}>{productData.rating}</span></p> {/* replace with star rating */}
+                {/* Toggle and display product reviews */}
                 <div className={`product-reviews-container ${showReviews ? 'open' : 'product-reviews-container'}`}>
                     <p onClick={() => setShowReviews(!showReviews)}><span className='show-product-reviews'><span className='product-reviews-title'>reviews: </span>{productData.reviews.length}</span></p>
                     <ul className='product-reviews-list'>
@@ -35,6 +37,7 @@ export default function productDetails({ returnToProducts, productData }) {
                         }
                     </ul>
                 </div>
+                {/* Display the product price, showing discount if applicable */}
                 {
                     productData.discountPercentage > 7 // Everything is discounted. Make it seem more realistic by showing some items without discount.
                         ? <p>
@@ -43,6 +46,7 @@ export default function productDetails({ returnToProducts, productData }) {
                         : <p><span className='product-current-price'>${numberWithCommas(productData.price)}</span></p>
                 }
                 <AddToCartButton product={productData} />
+                {/* Display the product description */}
                 <p>{productData.description}</p>
             </div>
         </div>

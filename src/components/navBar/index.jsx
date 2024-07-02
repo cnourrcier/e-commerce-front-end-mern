@@ -3,22 +3,24 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
+    // State to manage the dropdown menu visibility
     const [dropdown, setDropdown] = useState(false);
 
+    // Function to toggle the dropdown menu
     function handleToggleMenu() {
         setDropdown(!dropdown);
     }
 
     return (
         <>
-            <div className='row-one'>
-                <div className='box box-one'>
+            <div className='navbar-container'>
+                <div className='subcontainer subcontainer-one'>
                     <a href='https://github.com/cnourrcier' target='_blank'><img src={`/img/lorem-lorem-1.svg`} alt='' /></a>
                 </div>
-                <div className='box box-one-and-half'>
+                <div className='subcontainer subcontainer-one-and-half'>
                     <span>Cardinal <br />Goods</span>
                 </div>
-                <div className='box box-two'>
+                <div className='subcontainer subcontainer-two'>
                     <Link to="/" className='tab'>
                         <img src={`/img/home.svg`} />
                         Home
@@ -49,7 +51,7 @@ export default function NavBar() {
                         Signup
                     </Link>
                 </div>
-                <div className='box box-three'>
+                <div className='subcontainer subcontainer-three'>
                     <div onClick={handleToggleMenu} className='hamburger-menu'>
                         <div className='bar'></div>
                         <div className='bar'></div>

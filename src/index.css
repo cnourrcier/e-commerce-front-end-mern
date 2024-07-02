@@ -13,7 +13,7 @@
 }
 
 body {
-  background: hsla(216, 10%, 85%, 0.1);
+  background: hsl(216, 100%, 99%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

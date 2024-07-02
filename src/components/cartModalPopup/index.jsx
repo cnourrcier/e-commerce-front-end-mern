@@ -4,9 +4,10 @@ import './modal.css';
 const Modal = ({ title, handleCloseModalPopup }) => {
     const navigate = useNavigate();
 
+    // Function to handle the view cart action
     function handleViewCart() {
-        handleCloseModalPopup();
-        navigate('/cart');
+        handleCloseModalPopup(); // Close the modal popup
+        navigate('/cart'); // Navigate to the cart page
     }
 
     return (

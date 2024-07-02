@@ -4,43 +4,48 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function GetProductCategories({ resetCategory }) {
+    // Initialize hooks and state variables
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState([]);
     const [category, setCategory] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Function to fetch product categories from the API
     async function fetchProductCategories() {
         try {
-            setLoading(true);
-            setError(null);
+            setLoading(true); // Set loading to true before fetching
+            setError(null); // Reset error state
 
-            const res = await fetch(`/api/products/categories`);
+            const res = await fetch(`/api/products/categories`); // Fetch categories from the API
             if (!res.ok) {
-                throw new Error('Error occurred. Please try again.');
+                throw new Error('Error occurred. Please try again.'); // Handle HTTP errors
             }
-            const data = await res.json();
-            setCategoryList(data);
+            const data = await res.json(); // Parse the JSON response
+            setCategoryList(data); // Update the category list state
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Set error message if fetching fails
         } finally {
-            setLoading(false);
+            setLoading(false); // Set loading to false after fetching
         }
     }
 
+    // Fetch product categories on component mount
     useEffect(() => {
         fetchProductCategories();
     }, []);
 
+    // Reset the selected category when the reset flag is true
     useEffect(() => {
         if (resetCategory) {
-            setCategory(null); // Reset the category when the reset flag is true
+            setCategory(null); // Reset the category state
         }
     }, [resetCategory]);
 
 
-    if (loading) return <div>Loading...</div>
-    if (error) return <div>{error}</div>
+    if (loading) return <div>Loading...</div> // Render loading message if data is being fetched
+    if (error) return <div>{error}</div> // Render error message if there was an error fetching data
+
 
     return (
         <ul className='product-categories'>

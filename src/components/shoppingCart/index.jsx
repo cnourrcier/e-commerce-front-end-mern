@@ -7,26 +7,29 @@ import './styles.css';
 
 
 export default function ShoppingCart() {
-    const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext);
-    const [quantityToRemove, setQuantityToRemove] = useState({});
+    const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext); // Access the shopping cart context
+    const [quantityToRemove, setQuantityToRemove] = useState({}); // State to manage quantity to remove for each product
     const navigate = useNavigate();
 
+    // Handle changes in the quantity input field
     function handleQuantityChange(productId, value) {
         setQuantityToRemove({
             ...quantityToRemove,
-            [productId]: parseInt(value, 10)
+            [productId]: parseInt(value, 10) // Update quantity for the specified product
         });
     };
 
+    // Handle the removal of a product from the cart
     function handleRemoveClick(productId) {
-        const quantity = quantityToRemove[productId] || 1;
-        removeFromCart(productId, quantity);
+        const quantity = quantityToRemove[productId] || 1; // Default to removing 1 if no specific quantity is set
+        removeFromCart(productId, quantity); // Call context function to remove product
         setQuantityToRemove({
             ...quantityToRemove,
-            [productId]: 1
+            [productId]: 1 // Reset the quantity to remove for this product to 1
         });
     }
 
+    // Calculate the total price of items in the cart
     const totalPrice = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
 
     return (

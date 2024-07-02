@@ -6,7 +6,7 @@ import './styles.css';
 
 export default function Signup() {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext); // Access the authenticated user context
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,9 +17,11 @@ export default function Signup() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Handle the signup form submission
     async function handleSignup(e) {
         e.preventDefault();
 
+        // Ensure the passwords match before proceeding
         if (password != confirmPassword) {
             setError('Passwords do not match');
             return;
@@ -28,17 +30,20 @@ export default function Signup() {
             setLoading(true);
             setError(null);
 
+            // Send signup request to the backend
             const res = await fetch(`/api/signup`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
             });
             const data = await res.json();
-            if (data.message == 'Verification email sent') {
+
+            // Handle response from the backend
+            if (data.success) {
                 setMessage('Signup successful. Please check your email to verify your account.');
                 setShowForm(false);
             } else {
-                setError(data.message || 'Signup failed');
+                setError(data.message);
             }
         } catch (err) {
             setError(err.message);
@@ -47,13 +52,14 @@ export default function Signup() {
         }
     };
 
+    // Redirect to profile if user is already authenticated
     useEffect(() => {
         if (user) {
             navigate('/profile');
         }
     }, [user, navigate]);
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>Loading...</div> // Display loading indicator while the request is being processed
 
     return (
         <div className='signup-container'>

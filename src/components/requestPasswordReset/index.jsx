@@ -5,7 +5,7 @@ import Button from '../button';
 import './styles.css';
 
 export default function RequestPasswordReset() {
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext); // Access the authenticated user context
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
@@ -13,41 +13,43 @@ export default function RequestPasswordReset() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Function to handle password reset request
     async function handlePasswordReset(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         try {
-            setLoading(true);
-            setError(null);
+            setLoading(true); // Show loading indicator
+            setError(null); // Reset error state
 
             const res = await fetch(`/api/request-password-reset`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ email }) // Send email in request body
             });
 
             const data = await res.json();
             if (data.success) {
-                setMessage(data.message);
+                setMessage(data.message); // Show success message
             } else if (res.status === 429) { // Check for rate limit status code
-                setError(data.message)
+                setError(data.message) // Show rate limit error
             } else {
-                setError(data.message);
+                setError(data.message); // Show other errors
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Catch and show network or other errors
         } finally {
-            setLoading(false);
-            setShowForm(false);
+            setLoading(false); // Hide loading indicator
+            setShowForm(false); // Hide form after submission
         }
     }
 
+    // Redirect to profile if user is already logged in
     useEffect(() => {
         if (user) {
             navigate('/profile');
         }
     }, [user, navigate]);
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>Loading...</div> // Show loading indicator when loading is true
 
     return (
         <div className='request-password-reset-container'>
@@ -78,8 +80,8 @@ export default function RequestPasswordReset() {
                 </>
 
             }
-            {message && <div>{message}</div>}
-            {error && <div>{error}</div>}
+            {message && <div>{message}</div>} {/* Show success message */}
+            {error && <div>{error}</div>} {/* Show error message */}
         </div>
     )
 }

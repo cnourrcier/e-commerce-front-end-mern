@@ -5,8 +5,9 @@ import Button from '../button';
 import './styles.css';
 
 export default function Account() {
+    // Initialize hooks and state variables
     const navigate = useNavigate();
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext); // Access the authenticated user context
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,14 +18,17 @@ export default function Account() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Helper function to validate email format
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     }
 
+    // Handle account update
     async function handleUpdate(e) {
         e.preventDefault();
 
+        // Validate email format if email is provided
         if (email && !validateEmail(email)) {
             setError('Please enter a valid email address.');
             return;
@@ -42,6 +46,7 @@ export default function Account() {
             const data = await res.json();
 
             if (data.success) {
+                // Update user context and show success message
                 setUser(data.user);
                 setMessage(data.message);
             } else {
@@ -51,6 +56,7 @@ export default function Account() {
             setError(err.message);
         } finally {
             setLoading(false);
+            // Reset form fields
             setFirstName('');
             setLastName('');
             setEmail('');
@@ -60,6 +66,7 @@ export default function Account() {
         }
     };
 
+    // Handle account deletion
     async function handleDeleteAccount() {
         try {
             setLoading(true);
@@ -70,6 +77,7 @@ export default function Account() {
                 credentials: 'include'
             });
             const data = await res.json();
+            // Clear user context and navigate to signup page
             if (data.success) {
                 setUser(null);
                 alert(data.message);

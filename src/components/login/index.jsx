@@ -13,11 +13,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Function to handle the login process
     async function handleLogin(e) {
         e.preventDefault();
         try {
             setLoading(true);
             setError(null);
+
+            // Send login request to the backend
             const res = await fetch(`/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -37,24 +40,28 @@ export default function Login() {
                 });
                 alert('Login successful');
             } else if (!data.isVerified) {
+                // Handle unverified user case
                 setError(data.message);
             } else {
                 // Handle login failure
                 setError(data.message || 'Login failed');
             }
         } catch (err) {
+            // Handle any errors that occur during the request
             setError(err.message);
         } finally {
             setLoading(false);
         }
     };
 
+    // Redirect user to profile if already logged in
     useEffect(() => {
         if (user) {
             navigate('/profile');
         }
     }, [user, navigate]);
 
+    // Display loading message while the request is being processed
     if (loading) return <div>Loading...</div>
 
     return (
@@ -102,7 +109,7 @@ export default function Login() {
 }
 
 
-// Login flow:
+// Explanation of the login flow:
 // User Logs In: The user submits the login form, and the handleLogin function is called.
 // Token is Set in HttpOnly Cookie: The backend sets the token in an HttpOnly cookie.
 // User State is Set on Successful Login: The handleLogin function updates the user state in the AuthContext.

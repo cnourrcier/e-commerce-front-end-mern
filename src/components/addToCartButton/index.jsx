@@ -6,16 +6,19 @@ import './styles.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddToCartButton({ product }) {
-    const { user } = useContext(AuthContext);
-    const { addToCart } = useContext(ShoppingCartContext);
+    // Initialize hooks and state variables
+    const { user } = useContext(AuthContext); // Access the authenticated user context
+    const { addToCart } = useContext(ShoppingCartContext); // Access the shopping cart context
     const navigate = useNavigate();
     const [showModalPopup, setShowModalPopup] = useState(false);
 
+    // Handle adding product to cart
     function handleClick() {
         addToCart(product._id, 1);
-        setShowModalPopup(true);
+        setShowModalPopup(true); // Show modal popup after adding to cart
     };
 
+    // Handle closing of modal popup
     function handleCloseModalPopup() {
         setShowModalPopup(false);
     }

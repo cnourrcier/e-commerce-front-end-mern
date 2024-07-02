@@ -48,7 +48,6 @@
 .image-slider-container img {
     max-width: 100%;
     vertical-align: middle;
-    /* border: 1px solid black; */
     box-sizing: border-box;
     transition: opacity .2s;
 }
@@ -61,10 +60,6 @@
     animation: var(--animation, none) 16s infinite linear;
 }
 
-/* .image-slider-container .column:hover {
-    animation-play-state: paused;
-} */
-
 .image-slider-container .column:nth-of-type(odd) {
     align-self: flex-end;
     --direction: 50%;
@@ -75,9 +70,6 @@
         transform: translateY(var(--direction, -50%))
     }
 }
-
-
-
 
 /* slogan */
 .slogan-container {

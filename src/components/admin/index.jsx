@@ -6,90 +6,95 @@ import './styles.css';
 
 export default function Admin() {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const { user } = useContext(AuthContext); // Access the authenticated user context
+    const [users, setUsers] = useState([]); // State to store all users
+    const [selectedUser, setSelectedUser] = useState(null); // State to store the currently selected user for editing
+    const [loading, setLoading] = useState(false); // State to handle loading indicator
+    const [error, setError] = useState(null); // State to handle error messages
     const [updateUserData, setUpdateUserData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         role: ''
-    });
+    }); // State to store user data for updating
 
+    // Function to fetch all users from the backend
     async function fetchUsers() {
         try {
             const res = await fetch(`/api/admin/users`, {
-                credentials: 'include'
+                credentials: 'include' // Ensure cookies are included in the request
             });
             const data = await res.json();
             if (data.success) {
-                setUsers(data.users);
+                setUsers(data.users); // Update the users state with fetched data
             } else {
-                setError(data.message);
+                setError(data.message); // Set error message if fetch fails
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Set error message on catch
         } finally {
-            setLoading(false);
+            setLoading(false); // Stop loading indicator
         }
     }
 
+    // Function to handle editing a user
     function handleEditUser(user) {
-        setSelectedUser(user);
+        setSelectedUser(user); // Set the selected user for editing
         setUpdateUserData({
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             role: user.role
-        });
+        }); // Set the user data in the state for form inputs
     }
 
+    // Function to handle updating user data
     async function handleUpdateUser(e) {
         e.preventDefault();
         try {
             const res = await fetch(`/api/admin/users/${selectedUser._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updateUserData),
-                credentials: 'include'
+                body: JSON.stringify(updateUserData), // Send updated user data in the request body
+                credentials: 'include' // // Ensure cookies are included in the request
             });
             const data = await res.json();
             if (data.success) {
-                setSelectedUser(null);
-                fetchUsers();
+                setSelectedUser(null); // Reset selected user after update
+                fetchUsers(); // Refresh the users list
             } else {
-                setError(data.message);
+                setError(data.message); // Set error message if update fails
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Set error message on catch
         }
     }
 
+    // Function to handle deleting a user
     async function handleDeleteUser(userId) {
         try {
             const res = await fetch(`/api/admin/users/${userId}`, {
                 method: 'DELETE',
-                credentials: 'include'
+                credentials: 'include' // // Ensure cookies are included in the request
             });
             const data = await res.json();
             if (data.success) {
-                fetchUsers();
+                fetchUsers(); // Refresh the users list after deletion
             } else {
-                setError(data.message);
+                setError(data.message); // Set error message if delete fails
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Set error message on catch
         }
     }
 
+    // Fetch users on component mount
     useEffect(() => {
         fetchUsers();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <div>Loading...</div>; // Show loading message
+    if (error) return <div>{error}</div>; // Show error message
 
     return (
         <div className='admin-container'>

@@ -6,7 +6,7 @@ import './styles.css';
 
 export default function UpdateUserInfo() {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext); // Access authenticated user context
     const [firstName, setFirstName] = useState(user.firstName);
     const [lastName, setLastName] = useState(user.lastName);
     const [email, setEmail] = useState(user.email);
@@ -15,36 +15,39 @@ export default function UpdateUserInfo() {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState('');
 
+    // Function to handle saving updated user information
     async function handleSave(e) {
         e.preventDefault();
 
         try {
-            setLoading(true);
-            setError(null);
+            setLoading(true); // Set loading to true to indicate the start of the saving process
+            setError(null); // Reset any previous errors
 
+            // Make a PUT request to update the user's account information
             const res = await fetch(`/api/account/update`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email, address }),
+                body: JSON.stringify({ firstName, lastName, email, address }), // Send the updated user information in the request body
                 credentials: 'include'
             });
             const data = await res.json();
 
+            // Handle the response from the server
             if (data.success) {
-                setLoading(false);
-                setUser(data.user);
-                setMessage(data.message);
-                navigate('/checkout');
+                setLoading(false); // Set loading to false once the request is completed
+                setUser(data.user); // Update the user context with the new user data
+                setMessage(data.message); // Set the success message
+                navigate('/checkout'); // Navigate to the checkout page
             } else {
-                setLoading(false);
-                setError(data.message || 'Failed to update account');
+                setLoading(false); // Set loading to false if the request failed
+                setError(data.message); // Set the error message
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Set the error message if an exception is thrown
         }
     };
 
-    if (loading) <div>Loading...</div>;
+    if (loading) <div>Loading...</div>; // Display loading message while request is being processed
 
     return (
         <div className='update-container'>

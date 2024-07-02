@@ -8,22 +8,25 @@ import './styles.css';
 
 export default function Checkout() {
     const navigate = useNavigate();
-    const { cart, removeAllFromCart } = useContext(ShoppingCartContext);
-    const { user } = useContext(AuthContext);
+    const { cart, removeAllFromCart } = useContext(ShoppingCartContext); // Access the shopping cart context
+    const { user } = useContext(AuthContext); // Access the authenticated user context
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState('');
     const [confirm, setConfirm] = useState(false);
 
+    // Constants for shipping and tax
     const shippingAndHandling = 6.99;
     const taxRate = 0.101;
 
+    // Calculate order totals
     const itemsSubtotal = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
     const totalBeforeTax = itemsSubtotal + shippingAndHandling;
     const estimatedTax = totalBeforeTax * taxRate;
     const rawTotal = totalBeforeTax + estimatedTax;
     const orderTotal = parseFloat(rawTotal.toFixed(2));
 
+    // Handle the checkout process
     async function handleCheckout() {
         setLoading(true);
         setError(null);
@@ -40,7 +43,7 @@ export default function Checkout() {
                     lastName: user.lastName,
                     email: user.email
                 }),
-                credentials: 'include'
+                credentials: 'include' // // Ensure cookies are included in the request
             });
             const data = await res.json();
 
@@ -57,6 +60,7 @@ export default function Checkout() {
         }
     }
 
+    // Handle the payment process
     async function handlePayment() {
         setLoading(true);
         setError(null);
@@ -66,14 +70,14 @@ export default function Checkout() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: orderTotal }),
-                credentials: 'include'
+                credentials: 'include' // Ensure cookies are included in the request
             });
 
             const data = await res.json();
 
             if (data.success) {
                 alert(data.message);
-                removeAllFromCart();
+                removeAllFromCart(); // Clear the cart after successful payment
             } else {
                 setLoading(false);
                 setError(data.message || 'Payment failed');
@@ -83,7 +87,7 @@ export default function Checkout() {
             setError('Payment failed');
         }
     }
-
+    // Redirect to cart page if the cart is empty
     useEffect(() => {
         if (cart.length === 0) navigate('/cart');
     }, [cart, navigate]);

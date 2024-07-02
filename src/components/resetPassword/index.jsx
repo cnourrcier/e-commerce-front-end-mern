@@ -4,7 +4,7 @@ import Button from '../button';
 import './styles.css';
 
 export default function ResetPassword() {
-    const { token } = useParams();
+    const { token } = useParams(); // Retrieve the reset token from URL paramaters
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -12,41 +12,43 @@ export default function ResetPassword() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Function to handle password reset
     async function handleResetPassword(e) {
         e.preventDefault();
 
+        // Password match validation
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
         try {
-            setLoading(true);
-            setError(null);
+            setLoading(true); // Set loading to true while processing
+            setError(null); // Reset error state
 
             const res = await fetch(`/api/reset-password/${token}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password, confirmPassword }),
+                body: JSON.stringify({ password, confirmPassword }), // Send password data
             });
 
             const data = await res.json();
             if (res.ok) {
-                setMessage(data.message)
+                setMessage(data.message) // Set success message
                 setTimeout(() => {
-                    navigate('/login');
+                    navigate('/login'); // Redirect to login after 1 second
                 }, [1000]);
             }
             else {
-                setError(data.message);
+                setError(data.message); // Set error message if request failed
             }
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Catch and set network or other errors
         } finally {
-            setLoading(false);
+            setLoading(false); // Reset loading state
         }
     }
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>Loading...</div> // Show loading indicator when loading is true
 
     return (
         <div className='reset-password-container'>

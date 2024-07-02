@@ -7,11 +7,13 @@ export default function Products({ products, header }) {
     const [viewProductDetails, setViewProductDetails] = useState(false);
     const [productData, setProductData] = useState({});
 
+    // Function to handle viewing product details
     function handleViewProductDetails(product) {
         setViewProductDetails(true);
         setProductData(product);
     }
 
+    // Function to handle returning to the products list
     function handleReturnToProducts() {
         setViewProductDetails(false);
         setProductData({});
