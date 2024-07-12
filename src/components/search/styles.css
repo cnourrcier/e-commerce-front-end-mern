@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 100vh;
+    margin-top: 250px;
+    margin-bottom: -50px;
 }
 
 .search-input {
