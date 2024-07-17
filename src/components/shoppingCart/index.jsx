@@ -32,6 +32,9 @@ export default function ShoppingCart() {
     // Calculate the total price of items in the cart
     const totalPrice = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
 
+    // Calculate the total quantity of items in the cart
+    const totalQty = cart.reduce((total, item) => total + item.quantity, 0);
+
     return (
         <div className='shopping-cart-container'>
             <h2>Shopping Cart</h2>
@@ -71,7 +74,7 @@ export default function ShoppingCart() {
                             ))}
                         </ul>
                         <div className='subtotal-container'>
-                            <span className='subtotal-title'>Subtotal ({cart.length} items): </span> <b>${numberWithCommas(totalPrice.toFixed(2))}</b>
+                            <span className='subtotal-title'>Subtotal ({totalQty} items): </span> <b>${numberWithCommas(totalPrice.toFixed(2))}</b>
                         </div>
                     </div>
                     <Button onClick={() => navigate('/checkout')} buttonText={'Proceed to checkout'} />
