@@ -1,85 +1,156 @@
-/* Main header */
-.home-header-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+main {
+  padding: 1.5rem;
 }
 
-.home-header {
-    font-size: 7em;
-    font-family: 'Satisfy', cursive;
-    font-weight: 700;
-    line-height: 100px;
-    color: hsl(216, 77%, 97%);
-    z-index: 2;
-    text-align: center;
+/* Sale banner styles */
+.sale-banner {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: white;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  text-align: center;
 }
 
-@media (max-width: 500px) {
-    .home-header {
-        font-size: 6em;
-        font-weight: 700;
-    }
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.image-slider-wrapper {
-    margin-top: 115px;
-    position: relative;
-    display: grid;
-    place-items: center;
+.sale-banner h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  animation: bounce 2s infinite;
 }
 
-.image-slider-container {
-    display: flex;
-    overflow: hidden;
-    height: 60vh;
-    background: #111;
-    border-bottom: 10px solid hsl(216, 100%, 55%);
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
-.image-slider-container img {
-    opacity: 0.5;
+/* Product grid styles */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
 }
 
-.image-slider-container img {
-    max-width: 100%;
-    vertical-align: middle;
-    box-sizing: border-box;
-    transition: opacity .2s;
+.product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: white;
 }
 
-.image-slider-container img:hover {
-    opacity: 1;
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.image-slider-container .column {
-    animation: var(--animation, none) 16s infinite linear;
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.image-slider-container .column:nth-of-type(odd) {
-    align-self: flex-end;
-    --direction: 50%;
+.product-info {
+  padding: 1rem;
 }
 
-@keyframes slide {
-    to {
-        transform: translateY(var(--direction, -50%))
-    }
+.product-name {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
-/* slogan */
-.slogan-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20vh;
+.product-price {
+  font-weight: bold;
 }
 
-.slogan-container h2 {
-    font-family: 'Satisfy', cursive;
-    color: var(--text-color1);
+.add-to-cart-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.95);
+}
+
+/* Why Choose Us styles */
+.why-choose-us {
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.why-choose-us h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.benefit {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.benefit h3 {
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.benefit p {
+  color: #666;
 }

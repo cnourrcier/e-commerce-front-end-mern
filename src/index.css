@@ -6,14 +6,30 @@
   box-sizing: border-box;
 }
 
+/* Global styles */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
+}
+
 :root {
   --text-color1: hsl(207, 31%, 11%, 0.8);
   --blue-shade1: hsl(216, 100%, 55%);
-  --blue-modal: hsla(216, 100%, 55%, 0.8);
+  --blue-modal: hsla(216, 46%, 23%, 0.8);
 }
 
 body {
-  background: hsl(216, 100%, 99%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

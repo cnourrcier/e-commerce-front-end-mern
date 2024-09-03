@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import { useNavigate } from "react-router-dom";
 
 
-export default function GetProductCategories({ resetCategory }) {
+export default function GetProductCategories() {
     // Initialize hooks and state variables
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState([]);
-    const [category, setCategory] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -32,27 +31,42 @@ export default function GetProductCategories({ resetCategory }) {
         }
     }
 
+    // Function to fetch products by category from the API
+    async function fetchProducts(category) {
+        try {
+            setLoading(true); // Set loading to true before fetching
+            setError(null); // Reset error state
+
+            const res = await fetch(`/api/products/category/${category}`); // Fetch products by category from the API
+
+            const data = await res.json(); // Parse the JSON response
+            if (data.success) {
+                const header = `Viewing ${category}`; // Header to display the current category
+                navigate(`/products/${category}`, { state: { products: data.products, header } });                 // Navigate to Products component with the fetched products
+
+            } else {
+                setError(data.message); // set error message
+            }
+        } catch (err) {
+            setError(err.message); // Set error message if fetching fails
+        } finally {
+            setLoading(false); // Set loading to false after fetching
+        }
+    }
+
     // Fetch product categories on component mount
     useEffect(() => {
         fetchProductCategories();
     }, []);
 
-    // Reset the selected category when the reset flag is true
-    useEffect(() => {
-        if (resetCategory) {
-            setCategory(null); // Reset the category state
-        }
-    }, [resetCategory]);
-
     if (loading) return <div>Loading...</div> // Render loading message if data is being fetched
     if (error) return <div>{error}</div> // Render error message if there was an error fetching data
-
 
     return (
         <ul className='product-categories'>
             {
                 categoryList.map((category, index) => (
-                    <li key={index} onClick={() => setCategory(navigate(`/shop/${category}`))} >{category}</li>
+                    <li key={index} onClick={() => fetchProducts(category)} >{category}</li>
                 ))
             }
         </ul >

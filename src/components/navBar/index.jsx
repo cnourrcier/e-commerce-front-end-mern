@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import './styles.css';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import Search from '../search';
+import './styles.css';
 
 export default function NavBar() {
+    const { user } = useContext(AuthContext); // Access authenticated user context
     // State to manage the dropdown menu visibility
     const [dropdown, setDropdown] = useState(false);
 
@@ -14,44 +17,34 @@ export default function NavBar() {
     return (
         <>
             <div className='navbar-container'>
-                <div className='subcontainer subcontainer-one'>
-                    <a href='https://github.com/cnourrcier' target='_blank'><img src={`/img/lorem-lorem-1.svg`} alt='' /></a>
+                <div className='logo-container'>
+                    <Link to='/'><img src={`/img/logo.svg`} /></Link>
                 </div>
-                <div className='subcontainer subcontainer-one-and-half'>
+                <div className='name-container'>
                     <span>Cardinal <br />Finds</span>
                 </div>
-                <div className='subcontainer subcontainer-two'>
-                    <Link to="/" className='tab'>
-                        <img src={`/img/home.svg`} />
-                        Home
-                    </Link>
-                    <div className='tab-separator'></div>
+                <div className="search-container">
+                    <Search />
+                </div>
+                <div className='tabs-container'>
                     <Link to="/shop" className='tab'>
                         <img src={`/img/shopping-bag.svg`} />
-                        Shop
                     </Link>
-                    <div className='tab-separator'></div>
-                    <Link to="/search" className='tab'>
-                        <img src={`/img/search.svg`} />
-                        Search
-                    </Link>
-                    <div className='tab-separator'></div>
                     <Link to="/cart" className='tab'>
                         <img src={`/img/shopping-cart.svg`} />
-                        Cart
                     </Link>
-                    <div className='tab-separator'></div>
-                    <Link to="/login" className='tab'>
-                        <img src={`/img/log-in.svg`} />
-                        Login
-                    </Link>
-                    <div className='tab-separator'></div>
-                    <Link to="/signup" className='tab'>
-                        <img src={`/img/signup.svg`} />
-                        Signup
-                    </Link>
+                    {!user
+                        ? <>
+                            <Link to="/login" className='tab'>
+                                <img src={`/img/log-in.svg`} />
+                            </Link>
+                        </>
+                        : <Link to="/profile" className='tab'>
+                            <img src={`/img/signup.svg`} />
+                        </Link>
+                    }
                 </div>
-                <div className='subcontainer subcontainer-three'>
+                <div className='hamburger-menu-container'>
                     <div onClick={handleToggleMenu} className='hamburger-menu'>
                         <div className='bar'></div>
                         <div className='bar'></div>
@@ -61,12 +54,15 @@ export default function NavBar() {
             </div>
             <div className={`drop-down ${dropdown ? 'open' : ''}`}>
                 <ul>
-                    <li><Link to="/" className='tab dropdown' onClick={handleToggleMenu}>HOME</Link></li>
                     <li><Link to="/shop" className='tab dropdown' onClick={handleToggleMenu}>SHOP</Link></li>
-                    <li><Link to="/search" className='tab dropdown' onClick={handleToggleMenu}>SEARCH</Link></li>
                     <li><Link to="/cart" className='tab dropdown' onClick={handleToggleMenu}>CART</Link></li>
-                    <li><Link to="/login" className='tab dropdown' onClick={handleToggleMenu}>LOGIN</Link></li>
-                    <li><Link to="/signup" className='tab dropdown' onClick={handleToggleMenu}>SIGNUP</Link></li>
+                    {!user
+                        ? <>
+                            <li><Link to="/login" className='tab dropdown' onClick={handleToggleMenu}>LOGIN</Link></li>
+                            <li><Link to="/signup" className='tab dropdown' onClick={handleToggleMenu}>SIGNUP</Link></li>
+                        </>
+                        : <li><Link to="/profile" className='tab dropdown' onClick={handleToggleMenu}>PROFILE</Link></li>
+                    }
                 </ul>
             </div>
 

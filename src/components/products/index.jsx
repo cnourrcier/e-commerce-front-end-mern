@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ProductCard from '../productCard/index';
 import ProductDetails from '../productDetails/index';
 import './styles.css';
 
-export default function Products({ products, header }) {
+export default function Products() {
     const [viewProductDetails, setViewProductDetails] = useState(false);
     const [productData, setProductData] = useState({});
+
+    const location = useLocation();
+    const { products, header } = location.state || { products: [], header: '' };
 
     // Function to handle viewing product details
     function handleViewProductDetails(product) {

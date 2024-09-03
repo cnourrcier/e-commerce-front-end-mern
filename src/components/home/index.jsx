@@ -1,75 +1,61 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import './styles.css';
 
-export default function Home() {
+const featuredProducts = [
+  { id: 1, name: 'Wireless Earbuds', price: 79.99, image: 'https://via.placeholder.com/200x200.png?text=Placeholder' },
+  { id: 2, name: 'Smart Watch', price: 199.99, image: 'https://via.placeholder.com/200x200.png?text=Placeholder' },
+  { id: 3, name: 'Laptop', price: 899.99, image: 'https://via.placeholder.com/200x200.png?text=Placeholder' },
+  { id: 4, name: 'Smartphone', price: 699.99, image: 'https://via.placeholder.com/200x200.png?text=Placeholder' },
+];
 
-  // Set up the image slider animation when the component mounts
-  useEffect(() => {
-    const columns = document.querySelectorAll('.column');
-    columns.forEach(column => {
-      column.style.setProperty('--animation', 'slide'); // Set custom CSS property for animation
-      column.style.setProperty('height', '200%'); // Set column height to 200% to enable continuous scrolling
-      column.innerHTML = column.innerHTML + column.innerHTML; // Duplicate column content for seamless looping
-    });
-  }, []);
+export default function Home() {
+  const [hoveredProduct, setHoveredProduct] = useState(null);
 
   return (
-    <>
-      <div className='image-slider-wrapper'>
-        <div className='home-header-container'>
-          <h1 className='home-header'>Cardinal Finds</h1>
-        </div>
-        <div className='image-slider-container'>
-          {/* Column 1 */}
-          <div className="column">
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-jewellery/Green%20Crystal%20Earring/thumbnail.png" alt="image" /></a>
-          </div>
-          {/* Column 2 */}
-          <div className="column">
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/kitchen-accessories/Plate/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-shoes/Black%20&%20Brown%20Slipper/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/thumbnail.png" alt="image" /></a>
-          </div>
-          {/* Column 3 */}
-          <div className="column">
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/mobile-accessories/Amazon%20Echo%20Plus/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-dresses/Corset%20Leather%20With%20Skirt/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-bags/Blue%20Women's%20Handbag/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/groceries/Juice/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Knoll%20Saarinen%20Executive%20Conference%20Chair/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/skin-care/Attitude%20Super%20Leaves%20Hand%20Soap/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png" alt="image" /></a>
-          </div>
-          {/* Column 4 */}
-          <div className="column">
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Huawei%20Matebook%20X%20Pro/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/sports-accessories/American%20Football/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/sunglasses/Black%20Sun%20Glasses/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png" alt="image" /></a>
-            <a href="#"><img src="https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20S8%20Plus%20Grey/thumbnail.png" alt="image" /></a>
-          </div>
-        </div>
+    <main>
+      <div className='sale-banner'>
+        <h2>Summer Sale!</h2>
+        <p>Get up to 50% off on selected items. Limited time offer!</p>
       </div>
-      {/* Slogan Container */}
-      <div className='slogan-container'>
-        <h2>More Choices, Better Prices</h2>
-      </div>
-    </>
+
+      <section>
+        <h2>Featured Products</h2>
+        <div className="product-grid">
+          {featuredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="product-card"
+              onMouseEnter={() => setHoveredProduct(product.id)}
+              onMouseLeave={() => setHoveredProduct(null)}
+            >
+              <img src={product.image} alt={product.name} className="product-image" />
+              <div className="product-info">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-price">${product.price.toFixed(2)}</p>
+              </div>
+              <button className="add-to-cart-btn">Add to Cart</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="why-choose-us">
+          <h2>Why Choose Us?</h2>
+          <div className="benefits">
+            <div className="benefit">
+              <h3>Free Shipping</h3>
+              <p>On orders over $50</p>
+            </div>
+            <div className="benefit">
+              <h3>24/7 Support</h3>
+              <p>Always here to help</p>
+            </div>
+            <div className="benefit">
+              <h3>Money-Back Guarantee</h3>
+              <p>30-day return policy</p>
+            </div>
+          </div>
+        </section>
+    </main>
   );
 }

@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
-import Products from '../products/index';
-import './styles.css';
-
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
-    const [products, setProducts] = useState([]);
     const [text, setText] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate();
+
     // Function to fetch products based on the search term
     async function fetchProducts() {
         try {
-            setLoading(true); // Set loading to true before fetching data
-            setError(null); // Reset error state
+            setLoading(true);
+            setError(null);
 
             // Fetch products from the server
             const res = await fetch(`/api/products/search?q=${searchTerm}`);
+            const data = await res.json();
 
-            const data = await res.json(); // Parse the JSON data from the response
             if (data.success) {
-                setProducts(data.products); // Set the products state with the fetched data
+                const header = `Viewing products related to ${searchTerm}`; // Header to display the search term
+                navigate(`/products/${searchTerm}`, { state: { products: data.products, header } });                 // Navigate to Products component with the fetched products
+
             } else {
                 setError(data.message); // Throw error if bad response
             }
@@ -32,7 +33,6 @@ export default function Search() {
         }
     }
 
-    // Function to handle the search button click
     function handleClick() {
         setSearchTerm(text); // Set the searchTerm state with the current text value
         setText(''); // Clear the text input
@@ -45,30 +45,22 @@ export default function Search() {
         }
     }, [searchTerm]);
 
-    if (loading) return <div>Loading...</div> // Display loading indicator while fetching data
-    if (error) return <div>{error}</div> // Display error message if any error occurs
-
-    const header = `Viewing products related to ${searchTerm}`; // Header to display the search term
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>{error}</div>
 
     return (
         <>
-            <div className='search-bar-container'>
-                <input
-                    className='search-input'
-                    type="text"
-                    value={text}
-                    id="search"
-                    placeholder="Enter your search here"
-                    onChange={(e) => setText(e.target.value)}
-                />
-                <button
-                    className='search-button'
-                    onClick={handleClick}>Search
-                </button>
-            </div>
-            {
-                searchTerm && <Products products={products} header={header} />
-            }
+            <input
+                type="text"
+                value={text}
+                id="search"
+                placeholder="Search..."
+                onChange={(e) => setText(e.target.value)}
+            />
+            <img
+                src={`/img/search.svg`}
+                onClick={handleClick}
+            />
         </>
-    )
+    );
 }
