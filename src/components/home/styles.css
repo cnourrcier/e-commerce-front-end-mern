@@ -53,7 +53,202 @@ main {
   }
 }
 
-/* Product grid styles */
+.product-grid-section h2 {
+  margin-bottom: 2rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 1176px) {
+  .product-grid {
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: repeat(4, 250px); */
+  }
+}
+
+.product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 2 / 3;
+}
+
+@media (min-width: 1176px) {
+  .product-card {
+    width: 250px;
+  }
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+.add-to-cart-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.95);
+}
+
+/* Why Choose Us styles */
+.why-choose-us {
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.why-choose-us h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.benefit {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.benefit h3 {
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.benefit p {
+  color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* main {
+  padding: 1.5rem;
+}
+
+Sale banner styles
+.sale-banner {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: white;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sale-banner h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+Product grid styles
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -112,7 +307,7 @@ main {
   transform: scale(0.95);
 }
 
-/* Why Choose Us styles */
+Why Choose Us styles
 .why-choose-us {
   margin: 3rem 0;
   padding: 2rem;
@@ -153,4 +348,4 @@ main {
 
 .benefit p {
   color: #666;
-}
+} */

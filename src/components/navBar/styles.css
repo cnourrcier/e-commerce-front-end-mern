@@ -56,7 +56,8 @@
   align-items: center;
   margin-right: auto;
   font-weight: 700;
-  color: hsl(216, 100%, 55%);
+  /* color: hsl(216, 100%, 55%); */
+  color: hsl(0, 0%, 23%);
 }
 
 .tabs-container {
@@ -72,24 +73,11 @@
 }
 
 .tab {
-  border: 2px solid transparent;
   display: flex;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  color: hsl(216, 100%, 50%);
-  gap: 1vw;
   padding: 5px 8px;
-}
-
-.tab:hover {
-  color: hsl(216, 100%, 60%);
-}
-
-.tab-separator {
-  height: 25px;
-  width: 1px;
-  background-color: hsl(216, 100%, 70%);
 }
 
 ul {
@@ -127,7 +115,7 @@ ul {
     margin: 3px 0px;
     width: 25px;
     height: 4px;
-    background-color: hsl(216, 100%, 55%);
+    background-color: hsl(0, 0%, 23%);
     border-radius: 8px;
   }
 
@@ -140,7 +128,7 @@ ul {
     height: auto;
     width: auto;
     border-radius: 3px;
-    background-color: hsl(216, 100%, 55%);
+    background-color: hsl(0, 0%, 33%);
     transition: all 0.3s;
     z-index: 999;
   }
@@ -157,7 +145,7 @@ ul {
   .tab.dropdown:hover {
     background-color: hsl(0, 0%, 99%);
     border-radius: 8px;
-    color: hsl(216, 100%, 50%);
+    color: hsl(0, 0%, 23%);
   }
 
   .drop-down.open {
