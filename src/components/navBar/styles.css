@@ -88,7 +88,7 @@ ul {
   display: none;
 }
 
-.drop-down {
+.dropdown {
   display: none;
 }
 
@@ -113,13 +113,13 @@ ul {
 
   .bar {
     margin: 3px 0px;
-    width: 25px;
-    height: 4px;
+    width: 20px;
+    height: 2px;
     background-color: hsl(0, 0%, 23%);
-    border-radius: 8px;
+    border-radius: 18px;
   }
 
-  .drop-down {
+  .dropdown {
     display: unset;
     position: fixed;
     top: 0;
@@ -133,22 +133,21 @@ ul {
     z-index: 999;
   }
 
-  .drop-down li {
-    padding: 20px;
-    text-align: right;
+  .dropdown li {
+    padding: 7px 15px;
   }
 
-  .tab.dropdown {
+  .tab.dropdownTab {
     color: #fff;
   }
 
-  .tab.dropdown:hover {
+  .tab.dropdownTab:hover {
     background-color: hsl(0, 0%, 99%);
-    border-radius: 8px;
+    border-radius: 3px;
     color: hsl(0, 0%, 23%);
   }
 
-  .drop-down.open {
+  .dropdown.open {
     transform: translateY(115px);
     right: 0px;
   }

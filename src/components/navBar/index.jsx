@@ -52,16 +52,16 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
-            <div className={`drop-down ${dropdown ? 'open' : ''}`}>
+            <div className={`dropdown ${dropdown ? 'open' : ''}`}>
                 <ul>
-                    <li><Link to="/shop" className='tab dropdown' onClick={handleToggleMenu}>SHOP</Link></li>
-                    <li><Link to="/cart" className='tab dropdown' onClick={handleToggleMenu}>CART</Link></li>
+                    <li><Link to="/shop" className='tab dropdownTab' onClick={handleToggleMenu}>SHOP</Link></li>
+                    <li><Link to="/cart" className='tab dropdownTab' onClick={handleToggleMenu}>CART</Link></li>
                     {!user
                         ? <>
-                            <li><Link to="/login" className='tab dropdown' onClick={handleToggleMenu}>LOGIN</Link></li>
-                            <li><Link to="/signup" className='tab dropdown' onClick={handleToggleMenu}>SIGNUP</Link></li>
+                            <li><Link to="/login" className='tab dropdownTab' onClick={handleToggleMenu}>LOGIN</Link></li>
+                            <li><Link to="/signup" className='tab dropdownTab' onClick={handleToggleMenu}>SIGNUP</Link></li>
                         </>
-                        : <li><Link to="/profile" className='tab dropdown' onClick={handleToggleMenu}>PROFILE</Link></li>
+                        : <li><Link to="/profile" className='tab dropdownTab' onClick={handleToggleMenu}>PROFILE</Link></li>
                     }
                 </ul>
             </div>
