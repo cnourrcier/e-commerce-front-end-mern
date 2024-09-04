@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import './styles.css';
 
 export default function VerifyEmail() {
     const { token } = useParams(); // Extract the token parameter from the URL
@@ -12,8 +11,8 @@ export default function VerifyEmail() {
     // Function to verify the email using the token
     async function verifyEmail() {
         try {
-            setLoading(true); // Set loading to true to indicate the start of the request
-            setError(null); // Reset any previous errors
+            setLoading(true);
+            setError(null);
 
             // Make a GET request to verify the email with the provided token
             const res = await fetch(`/api/verify-email/${token}`)
@@ -21,24 +20,24 @@ export default function VerifyEmail() {
 
             // Handle the response from the server
             if (data.success) {
-                setMessage(data.message); // Set the success message
+                setMessage(data.message);
                 setTimeout(() => {
-                    navigate('/login'); // Navigate to the login page after a delay
+                    navigate('/login');
                 }, 2000);
             } else {
-                setError(data.message); // Set the error message if the request failed
+                setError(data.message);
             }
         } catch (err) {
-            setError(err.message); // Set the error message if an exception is thrown
+            setError(err.message);
         } finally {
-            setLoading(false); // Set loading to false once the request is completed
+            setLoading(false);
         }
     }
 
     // Call verifyEmail when the component mounts
     useEffect(() => {
         verifyEmail();
-    }, [token, navigate]); // Dependencies: token and navigate
+    }, [token, navigate]);
 
     return (
         <div className='verify-email-container'>

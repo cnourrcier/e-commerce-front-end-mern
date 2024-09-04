@@ -7,8 +7,8 @@ import './styles.css';
 
 
 export default function ShoppingCart() {
-    const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext); // Access the shopping cart context
-    const [quantityToRemove, setQuantityToRemove] = useState({}); // State to manage quantity to remove for each product
+    const { cart, removeFromCart, removeAllFromCart } = useContext(ShoppingCartContext);
+    const [quantityToRemove, setQuantityToRemove] = useState({});
     const navigate = useNavigate();
 
     // Handle changes in the quantity input field
@@ -22,7 +22,7 @@ export default function ShoppingCart() {
     // Handle the removal of a product from the cart
     function handleRemoveClick(productId) {
         const quantity = quantityToRemove[productId] || 1; // Default to removing 1 if no specific quantity is set
-        removeFromCart(productId, quantity); // Call context function to remove product
+        removeFromCart(productId, quantity);
         setQuantityToRemove({
             ...quantityToRemove,
             [productId]: 1 // Reset the quantity to remove for this product to 1

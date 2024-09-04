@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
-import Search from '../search';
 import useLogout from '../../hooks/useLogout';
+import Search from '../search';
 import './styles.css';
 
 export default function NavBar() {

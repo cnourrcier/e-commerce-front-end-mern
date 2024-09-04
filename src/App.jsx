@@ -27,25 +27,27 @@ function App() {
     <AuthProvider>
       <ShoppingCartProvider>
         <NavBar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/shop' element={<GetProductCategories />} />
-          <Route path="/products/:product" element={<Products />} />
-          <Route path='/cart' element={<ShoppingCart />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/verify-email/:token' element={<VerifyEmail />} />
-          <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/admin' element={<Admin />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/account' element={<Account />} />
-            <Route path='/checkout' element={<Checkout />} />
-            <Route path='/update-info' element={<UpdateUserInfo />} />
-          </Route>
-          <Route path='/request-password-reset' element={<RequestPasswordReset />} />
-          <Route path='/reset-password/:token' element={<ResetPassword />} />
-        </Routes>
+        <div className='page-container'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/shop' element={<GetProductCategories />} />
+            <Route path="/products/:product" element={<Products />} />
+            <Route path='/cart' element={<ShoppingCart />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/verify-email/:token' element={<VerifyEmail />} />
+            <Route path='/resend-verification-email' element={<ResendVerificationEmail />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/admin' element={<Admin />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/account' element={<Account />} />
+              <Route path='/checkout' element={<Checkout />} />
+              <Route path='/update-info' element={<UpdateUserInfo />} />
+            </Route>
+            <Route path='/request-password-reset' element={<RequestPasswordReset />} />
+            <Route path='/reset-password/:token' element={<ResetPassword />} />
+          </Routes>
+        </div>
         <Footer />
       </ShoppingCartProvider>
     </AuthProvider>
