@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import useLogout from '../../hooks/useLogout';
-import Button from '../button';
+import Button from '../../components/button';
 import './styles.css';
 
 export default function Profile() {

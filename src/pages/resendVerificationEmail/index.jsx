@@ -1,34 +1,35 @@
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import Button from '../button';
-import './styles.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import Button from '../../components/button';
+import './styles.css';
+
 
 export default function ResendVerificationEmail() {
-    const { user } = useContext(AuthContext); // Access the authenticated user context
-    const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     // Function to handle resending the verification email
     async function handleResendVerificationEmail(e) {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         try {
-            setLoading(true); // Show loading indicator
-            setError(null); // Reset error state
+            setLoading(true);
+            setError(null);
 
             // Send POST request to the API to resend verification email
             const res = await fetch(`/api/resend-verification-email`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }) // Send email in request body
+                body: JSON.stringify({ email })
             });
 
             const data = await res.json();
             if (data.success) {
-                setMessage(data.message); // Success message
+                setMessage(data.message);
             } else if (res.status === 429) { // Check for rate limit status code
                 setError(data.message) // Set rate limit error
             } else {
@@ -38,7 +39,7 @@ export default function ResendVerificationEmail() {
             setError(err.message); // Catch and set network or other errors
             setMessage(data.message);
         } finally {
-            setLoading(false); // Hide loading indicator
+            setLoading(false);
         }
     }
 
@@ -49,7 +50,7 @@ export default function ResendVerificationEmail() {
         }
     }, [user, navigate]);
 
-    if (loading) return <div>Loading...</div> // Show loading indicator if loading is true
+    if (loading) return <div>Loading...</div>
 
     return (
         <div className='resend-verification-email-container'>

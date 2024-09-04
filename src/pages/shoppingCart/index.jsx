@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
-import Button from '../button';
 import { useNavigate } from 'react-router-dom';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import { numberWithCommas } from '../../utils/format';
+import Button from '../../components/button';
 import './styles.css';
 
 

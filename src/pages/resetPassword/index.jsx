@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import Button from '../button';
+import Button from '../../components/button';
 import './styles.css';
 
 export default function ResetPassword() {

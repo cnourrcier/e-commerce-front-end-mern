@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
 
     // Call checkAuthStatus when the component mounts
     useEffect(() => {
-        console.log('checkAuthStatus has been called')
         checkAuthStatus();
     }, []);
 

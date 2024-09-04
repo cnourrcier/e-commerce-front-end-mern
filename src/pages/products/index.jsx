@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import ProductCard from '../productCard/index';
-import ProductDetails from '../productDetails/index';
+import ProductCard from '../../components/productCard/index';
+import ProductDetails from '../../components/productDetails/index';
 import './styles.css';
 
 export default function Products() {

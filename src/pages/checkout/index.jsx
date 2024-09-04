@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Button from '../button';
+import Button from '../../components/button';
 import { numberWithCommas } from "../../utils/format";
 import './styles.css';
 
