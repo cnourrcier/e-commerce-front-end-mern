@@ -2,16 +2,22 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Search from '../search';
+import useLogout from '../../hooks/useLogout';
 import './styles.css';
 
 export default function NavBar() {
-    const { user } = useContext(AuthContext); // Access authenticated user context
-    // State to manage the dropdown menu visibility
+    const { user } = useContext(AuthContext);
     const [dropdown, setDropdown] = useState(false);
 
-    // Function to toggle the dropdown menu
+    const logout = useLogout();
+
     function handleToggleMenu() {
         setDropdown(!dropdown);
+    }
+
+    function handleLogout() {
+        logout();
+        handleToggleMenu();
     }
 
     return (
@@ -61,7 +67,10 @@ export default function NavBar() {
                             <li><Link to="/login" className='tab dropdownTab' onClick={handleToggleMenu}>LOGIN</Link></li>
                             <li><Link to="/signup" className='tab dropdownTab' onClick={handleToggleMenu}>SIGNUP</Link></li>
                         </>
-                        : <li><Link to="/profile" className='tab dropdownTab' onClick={handleToggleMenu}>PROFILE</Link></li>
+                        : <>
+                            <li><Link to="/profile" className='tab dropdownTab' onClick={handleToggleMenu}>PROFILE</Link></li>
+                            <li><Link to="/login" className='tab dropdownTab' onClick={handleLogout}>LOGOUT</Link></li>
+                        </>
                     }
                 </ul>
             </div>

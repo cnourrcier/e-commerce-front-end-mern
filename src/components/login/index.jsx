@@ -7,7 +7,7 @@ import './styles.css';
 
 export default function Login() {
     const navigate = useNavigate();
-    const { user, setUser, loading } = useContext(AuthContext);
+    const { user, setUser, loading, setLoading } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
