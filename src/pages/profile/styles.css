@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: left;
     margin: 50px auto;
+    max-width: 750px;
     width: 85%;
     border-radius: 10px;
     gap: 20px;

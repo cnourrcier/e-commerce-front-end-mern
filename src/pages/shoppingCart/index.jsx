@@ -37,16 +37,12 @@ export default function ShoppingCart() {
 
     return (
         <div className='shopping-cart-container'>
-            <h2>Shopping Cart</h2>
+            <h1>Shopping Cart</h1>
             {cart.length === 0 ? (
                 <div>No items in cart</div>
             ) : (
                 <>
                     <div className='shopping-cart-items-container'>
-                        <div className='shopping-cart-items-header-container'>
-                            <div>qty:</div>
-                            <div>price:</div>
-                        </div>
                         <ul>
                             {cart.map((item, index) => (
                                 <li className='cart-item' key={item.product._id || index}>
@@ -62,9 +58,8 @@ export default function ShoppingCart() {
                                             onChange={(e) => handleQuantityChange(item.product._id, e.target.value)}
                                         />
                                         <Button onClick={() => handleRemoveClick(item.product._id)} buttonText={'Remove'} />
-                                        <div></div>
                                         <div className='qty-container'>
-                                            {item.quantity}
+                                            Qty: {item.quantity}
                                         </div>
                                         <div className='price-container'>
                                             ${numberWithCommas(item.product.price)}
@@ -77,8 +72,10 @@ export default function ShoppingCart() {
                             <span className='subtotal-title'>Subtotal ({totalQty} items): </span> <b>${numberWithCommas(totalPrice.toFixed(2))}</b>
                         </div>
                     </div>
-                    <Button onClick={() => navigate('/checkout')} buttonText={'Proceed to checkout'} />
-                    <Button onClick={removeAllFromCart} buttonText={'Remove all items from cart'} />
+                    <div className='button-container'>
+                        <Button onClick={() => navigate('/checkout')} buttonText={'Proceed to checkout'} />
+                        <Button onClick={removeAllFromCart} buttonText={'Remove all items from cart'} />
+                    </div>
                 </>
             )}
         </div>

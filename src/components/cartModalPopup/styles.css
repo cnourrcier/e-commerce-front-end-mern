@@ -19,7 +19,6 @@
     margin: auto;
     padding: 0;
     border: 1px solid rgba(1, 167, 255);
-    /* border: 1px solid #fff; */
     border-radius: 150px 300px;
     width: 40%;
     min-width: 320px;
@@ -42,7 +41,7 @@
 
 .modal-icon-container {
     width: 100%;
-    background-color: var(--blue-modal);
+    background-color: var(--blue-shade1);
     display: flex;
     justify-content: center;
 }
@@ -61,11 +60,11 @@
     color: hsl(0, 0%, 70%);
 }
 
-.body {
+.modal-text {
     width: 100%;
     padding: 48px 25px;
     height: 200px;
-    background-color: var(--blue-modal);
+    background-color: var(--blue-shade1);
     color: rgb(255, 255, 255);
 }
 

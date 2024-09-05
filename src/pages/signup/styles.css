@@ -73,6 +73,24 @@
     color: var(--text-color1);
 }
 
+.signup-container p {
+    margin-top: -5px;
+    font-size: 14px;
+    color: var(--text-color1);
+}
+
+.signup-button-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+@media (max-width: 750px) {
+    Button {
+        width: 100%;
+    }
+}
+
 @media (min-width: 750px) {
     .signup-name-input-container {
         flex-direction: row;
@@ -81,10 +99,4 @@
     .signup-password-input-container {
         flex-direction: row;
     }
-}
-
-.signup-container p {
-    margin-top: -5px;
-    font-size: 14px;
-    color: var(--text-color1);
 }

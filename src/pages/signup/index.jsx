@@ -133,7 +133,9 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <Button onClick={handleSignup} buttonText={'Signup'} />
+                                <div className='signup-button-container'>
+                                    <Button onClick={handleSignup} buttonText={'Signup'} />
+                                </div>
                             </div>
                             {error && <div className='error-message'>{error}</div>}
                         </form>

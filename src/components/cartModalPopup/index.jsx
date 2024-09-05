@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './modal.css';
+import './styles.css';
 
 const Modal = ({ title, handleCloseModalPopup }) => {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Modal = ({ title, handleCloseModalPopup }) => {
                 <div className='modal-icon-container'>
                     <span onClick={handleCloseModalPopup} className='close-modal-icon'>&times;</span>
                 </div>
-                <div className='body'>
+                <div className='modal-text'>
                     <p>{title} added to cart!</p>
                     <p onClick={handleViewCart} className='view-cart-items'>View Items in Cart</p>
                 </div>
