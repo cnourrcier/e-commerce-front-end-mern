@@ -92,7 +92,7 @@ export default function Login() {
                             required
                         />
                     </div>
-                    <div className='login-button'>
+                    <div className='login-button-container'>
                         <Button onClick={handleLogin} buttonText={'Login'} />
                     </div>
                 </div>
