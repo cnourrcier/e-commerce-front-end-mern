@@ -1,4 +1,164 @@
 .product-details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.product-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product-details-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-details-availability,
+.product-details-rating {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.in-stock {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.out-of-stock {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.product-rating-good {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.product-rating-okay {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.product-reviews-container {
+    margin-bottom: 20px;
+}
+
+.show-product-reviews {
+    cursor: pointer;
+    color: #2196f3;
+    text-decoration: underline;
+}
+
+.product-reviews-title {
+    font-weight: bold;
+}
+
+.product-reviews-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.product-reviews-container.open .product-reviews-list {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+
+.product-reviews-list li {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+.product-review-rating-title {
+    font-weight: bold;
+}
+
+.product-review-rating {
+    color: #2196f3;
+    font-weight: bold;
+}
+
+.product-review-comment {
+    margin-top: 5px;
+}
+
+.product-current-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.product-original-price {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    color: #f44336;
+}
+
+.product-details p {
+    margin-right: 10px;
+    line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .product-details {
+        grid-template-columns: 1fr;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+    }
+
+    .product-current-price {
+        font-size: 1.2rem;
+    }
+
+    .product-original-price {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .product-details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +178,19 @@
     max-width: 400px;
     background-color: hsla(0, 0%, 100%, 0.855);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 
 .product-details img {
     max-width: 100%;
@@ -98,4 +270,4 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 1.8em;
-}
+} */

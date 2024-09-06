@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
-import Modal from '../cartModalPopup/index';
 import { AuthContext } from '../../contexts/AuthContext';
-import './styles.css';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../cartModalPopup/index';
+import './styles.css';
 
-export default function AddToCartButton({ product }) {
+
+export default function AddToCartButton({ customStyles = null, product }) {
     // Initialize hooks and state variables
     const { user } = useContext(AuthContext); // Access the authenticated user context
     const { addToCart } = useContext(ShoppingCartContext); // Access the shopping cart context
@@ -25,8 +26,8 @@ export default function AddToCartButton({ product }) {
 
     return (
         <>
-            <button className={`add-to-cart-button`} onClick={!user ? () => navigate('/login') : handleClick}>
-                Add to Cart <img className={`add-to-cart-icon ${!user && 'disabled'}`} src={`/img/plus-circle.svg`} />
+            <button className={customStyles ? `add-to-cart-button ${customStyles}` : `add-to-cart-button`} onClick={!user ? () => navigate('/login') : handleClick}>
+                Add to Cart
             </button>
             {showModalPopup && <Modal
                 title={product.title}

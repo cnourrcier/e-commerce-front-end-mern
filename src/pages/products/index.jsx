@@ -33,12 +33,19 @@ export default function Products() {
                             {
                                 products?.length
                                 && products.map(product => (
-                                    <ProductCard key={product.id} product={product} viewProductDetails={handleViewProductDetails} />
+                                    <ProductCard
+                                        key={product.id}
+                                        product={product}
+                                        viewProductDetails={handleViewProductDetails}
+                                    />
                                 ))
                             }
                         </div>
                     </div >
-                    : <ProductDetails returnToProducts={handleReturnToProducts} productData={productData} />
+                    : <ProductDetails
+                        returnToProducts={handleReturnToProducts}
+                        productData={productData}
+                    />
             }
         </>
     )
