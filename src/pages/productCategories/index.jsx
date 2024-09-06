@@ -13,44 +13,44 @@ export default function GetProductCategories() {
     // Function to fetch product categories from the API
     async function fetchProductCategories() {
         try {
-            setLoading(true); // Set loading to true before fetching
-            setError(null); // Reset error state
+            setLoading(true);
+            setError(null);
 
-            const res = await fetch(`/api/products/categories`); // Fetch categories from the API
+            const res = await fetch(`/api/products/categories`);
 
-            const data = await res.json(); // Parse the JSON response
+            const data = await res.json();
             if (data.success) {
-                setCategoryList(data.categories); // Update the category list state
+                setCategoryList(data.categories);
             } else {
-                setError(data.message); // set error message
+                setError(data.message);
             }
         } catch (err) {
-            setError(err.message); // Set error message if fetching fails
+            setError(err.message);
         } finally {
-            setLoading(false); // Set loading to false after fetching
+            setLoading(false);
         }
     }
 
     // Function to fetch products by category from the API
     async function fetchProducts(category) {
         try {
-            setLoading(true); // Set loading to true before fetching
-            setError(null); // Reset error state
+            setLoading(true);
+            setError(null);
 
-            const res = await fetch(`/api/products/category/${category}`); // Fetch products by category from the API
+            const res = await fetch(`/api/products/category/${category}`);
 
-            const data = await res.json(); // Parse the JSON response
+            const data = await res.json();
             if (data.success) {
                 const header = `Viewing ${category}`; // Header to display the current category
-                navigate(`/products/${category}`, { state: { products: data.products, header } });                 // Navigate to Products component with the fetched products
+                navigate(`/products/${category}`, { state: { products: data.products, header } });  // Navigate to Products component with the fetched products
 
             } else {
-                setError(data.message); // set error message
+                setError(data.message);
             }
         } catch (err) {
-            setError(err.message); // Set error message if fetching fails
+            setError(err.message);
         } finally {
-            setLoading(false); // Set loading to false after fetching
+            setLoading(false);
         }
     }
 
@@ -59,8 +59,8 @@ export default function GetProductCategories() {
         fetchProductCategories();
     }, []);
 
-    if (loading) return <div>Loading...</div> // Render loading message if data is being fetched
-    if (error) return <div>{error}</div> // Render error message if there was an error fetching data
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>{error}</div>
 
     return (
         <ul className='product-categories'>

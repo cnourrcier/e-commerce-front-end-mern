@@ -5,11 +5,12 @@
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
+    background: linear-gradient(135deg, hsl(226, 96%, 56%), hsl(216, 100%, 50%));
     transition: background-color 0.3s ease;
 }
 
 .add-to-cart-button:hover {
-    background-color: #1976d2;
+    background: linear-gradient(135deg, hsl(216, 100%, 50%), hsl(226, 96%, 56%));
 }
 
 .add-to-cart-button.product-details-button {

@@ -1,15 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.css';
+import AddToCartButton from '../../components/addToCartButton';
 
-const featuredProducts = [
-  { id: 1, name: 'Wireless Earbuds', price: 79.99, image: 'https://cdn.dummyjson.com/products/images/mobile-accessories/Beats%20Flex%20Wireless%20Earphones/thumbnail.png' },
-  { id: 2, name: 'Smart Watch', price: 199.99, image: 'https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Watch%20Series%204%20Gold/thumbnail.png' },
-  { id: 3, name: 'Laptop', price: 899.99, image: 'https://cdn.dummyjson.com/products/images/laptops/Huawei%20Matebook%20X%20Pro/thumbnail.png' },
-  { id: 4, name: 'MonoPod', price: 699.99, image: 'https://cdn.dummyjson.com/products/images/mobile-accessories/Monopod/thumbnail.png' },
-];
+const featuredProductIds = [107, 106, 80, 109];
 
 export default function Home() {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [hoveredProduct, setHoveredProduct] = useState(null);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const productPromises = featuredProductIds.map(async (productId) => {
+          const res = await fetch(`/api/products/product/${productId}`);
+          if (!res.ok) {
+            throw new Error(`Failed to fetch product with id ${productId}`);
+          }
+          return res.json();
+        });
+        // Wait for all fetches to complete
+        const products = await Promise.all(productPromises);
+        setFeaturedProducts(products);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
 
   return (
     <main>
@@ -19,21 +47,21 @@ export default function Home() {
       </div>
 
       <section className='product-grid-section'>
-        <h2>Featured Tech Products</h2>
+        <h2>Featured Products</h2>
         <div className="product-grid">
           {featuredProducts.map((product) => (
             <div
-              key={product.id}
+              key={product.product[0].id}
               className="product-card"
-              onMouseEnter={() => setHoveredProduct(product.id)}
+              onMouseEnter={() => setHoveredProduct(product.product[0].id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >
-              <img src={product.image} alt={product.name} className="product-image" />
+              <img src={product.product[0].thumbnail} alt={product.product[0].title} className="product-image" />
               <div className="product-info">
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-price">${product.price.toFixed(2)}</p>
+                <h3 className="product-name">{product.product[0].title}</h3>
+                <p className="product-price">${product.product[0].price}</p>
               </div>
-              <button className="add-to-cart-btn">Add to Cart</button>
+              <AddToCartButton product={product.product[0]} />
             </div>
           ))}
         </div>

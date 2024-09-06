@@ -72,16 +72,16 @@ export default function NavBar() {
                     </div>
                     <div className={`main-menu-dropdown ${mainMenuDropdown ? 'show' : ''}`}>
                         <ul>
-                            <li onClick={handleToggleMainMenuDropdown}><Link to="/shop" className='tab dropdownTab'>SHOP</Link></li>
-                            <li onClick={handleToggleMainMenuDropdown}><Link to="/cart" className='tab dropdownTab' >CART</Link></li>
+                            <li><Link to="/shop" className='tab dropdownTab' onClick={handleToggleMainMenuDropdown}>SHOP</Link></li>
+                            <li ><Link to="/cart" className='tab dropdownTab' onClick={handleToggleMainMenuDropdown}>CART</Link></li>
                             {!user
                                 ? <>
-                                    <li onClick={handleToggleMainMenuDropdown}><Link to="/login" className='tab dropdownTab' >LOGIN</Link></li>
-                                    <li onClick={handleToggleMainMenuDropdown}><Link to="/signup" className='tab dropdownTab'>SIGNUP</Link></li>
+                                    <li ><Link to="/login" className='tab dropdownTab' onClick={handleToggleMainMenuDropdown}>LOGIN</Link></li>
+                                    <li ><Link to="/signup" className='tab dropdownTab' onClick={handleToggleMainMenuDropdown}>SIGNUP</Link></li>
                                 </>
                                 : <>
-                                    <li onClick={handleToggleMainMenuDropdown}><Link to="/profile" className='tab dropdownTab' >PROFILE</Link></li>
-                                    <li onClick={handleLogout}><Link to="/login" className='tab dropdownTab'>LOGOUT</Link></li>
+                                    <li ><Link to="/profile" className='tab dropdownTab' onClick={handleToggleMainMenuDropdown}>PROFILE</Link></li>
+                                    <li ><Link to="/login" className='tab dropdownTab' onClick={handleLogout}>LOGOUT</Link></li>
                                 </>
                             }
                         </ul>
